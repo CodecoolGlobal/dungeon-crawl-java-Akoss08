@@ -33,9 +33,9 @@ public abstract class Actor implements Drawable {
         double mapWidth = map.getWidth();
         double mapHeight = map.getHeight();
         return cell.getX() <= 0
-                || cell.getX() >= mapWidth - 1
+                || cell.getX() >= mapWidth
                 || cell.getY() <= 0
-                || cell.getY() >= mapHeight - 1;
+                || cell.getY() >= mapHeight;
     }
 
     public int getHealth() {

@@ -34,11 +34,6 @@ public class Player extends Actor {
         boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
         boolean isWall = nextCell.getTileName().equals("wall");
 
-        System.out.println(isMonster);
-        System.out.println(isBorder);
-        System.out.println(isClosedDoor);
-        System.out.println(isWall);
-
         if (!isMonster && !isWall && !isBorder && !isClosedDoor) {
             setNextMove(nextCell);
         } else if (isClosedDoor) {
