@@ -1,0 +1,38 @@
+package com.codecool.dungeoncrawl.data;
+
+import com.codecool.dungeoncrawl.data.items.Item;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Inventory {
+    private List<Item> items;
+
+    public Inventory() {
+        this.items = new ArrayList<Item>();
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("[");
+
+        for (Item item : items) {
+            str.append(item.getTileName());
+            if (item != items.get(items.size() - 1)) {
+                str.append(", ");
+            }
+        }
+
+        str.append("]");
+        return str.toString();
+    }
+}

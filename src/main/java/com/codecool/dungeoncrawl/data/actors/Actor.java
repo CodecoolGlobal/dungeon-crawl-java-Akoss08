@@ -3,7 +3,6 @@ package com.codecool.dungeoncrawl.data.actors;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 
 public abstract class Actor implements Drawable {
@@ -40,7 +39,7 @@ public abstract class Actor implements Drawable {
         }
     }
 
-    private  boolean isBorder (Cell cell) {
+    private boolean isBorder (Cell cell) {
       GameMap map = MapLoader.loadMap();
       double mapWidth = map.getWidth();
       double mapHeight = map.getHeight();
