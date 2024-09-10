@@ -53,4 +53,21 @@ class ActorTest {
         assertEquals(1, skeleton.getY());
         assertEquals(skeleton, gameMap.getCell(2, 1).getActor());
     }
+
+    @Test
+    void monsterHpGoesToZero() {
+        Player player = new Player(gameMap.getCell(2, 1));
+        Skeleton monster = new Skeleton(gameMap.getCell(2, 0));
+        player.attack(monster);
+        assertEquals(0, monster.getHealth());
+    }
+
+    @Test
+    void playerHpGoesToZero() {
+        Player player = new Player(gameMap.getCell(2, 1));
+        Skeleton monster = new Skeleton(gameMap.getCell(2, 0));
+        monster.setHealth(100);
+        player.attack(monster);
+        assertEquals(0, player.getHealth());
+    }
 }

@@ -8,6 +8,7 @@ public class Player extends Actor {
 
     public Player(Cell cell) {
         super(cell);
+        setAttackStrength(5);
         this.inventory = new Inventory();
     }
 

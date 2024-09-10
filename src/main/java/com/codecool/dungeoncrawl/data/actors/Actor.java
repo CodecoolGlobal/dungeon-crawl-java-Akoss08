@@ -8,10 +8,24 @@ import com.codecool.dungeoncrawl.logic.MapLoader;
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
+    private int attackStrength;
 
     public Actor(Cell cell) {
         this.cell = cell;
         this.cell.setActor(this);
+    }
+
+    public void attack (Actor attackedActor) {
+        int attackedHpAfterStrike = attackedActor.getHealth();
+        int playerHpAfterStrike = this.health;
+
+        while (attackedHpAfterStrike - this.attackStrength >= 0 && playerHpAfterStrike > 0) {
+
+            attackedHpAfterStrike -= this.attackStrength;
+            attackedActor.setHealth(attackedHpAfterStrike);
+            playerHpAfterStrike -= attackedActor.getAttackStrength();
+            this.health -= attackedActor.getAttackStrength();
+        }
     }
 
     public void move(int dx, int dy) {
@@ -37,6 +51,18 @@ public abstract class Actor implements Drawable {
 
     public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getAttackStrength() {
+        return attackStrength;
+    }
+
+    public void setAttackStrength(int attackStrength) {
+        this.attackStrength = attackStrength;
     }
 
     public Cell getCell() {
