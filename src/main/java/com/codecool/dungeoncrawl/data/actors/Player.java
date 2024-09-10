@@ -31,7 +31,6 @@ public class Player extends Actor {
         if (isItem) {
             inventory.addItem(getCell().getItem());
             getCell().setItem(null);
-            System.out.println(inventory);
         }
     }
 }

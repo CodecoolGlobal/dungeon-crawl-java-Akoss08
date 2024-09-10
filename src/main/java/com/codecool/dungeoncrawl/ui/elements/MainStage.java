@@ -26,11 +26,7 @@ public class MainStage {
         return scene;
     }
 
-    public void setHealthLabelText(String text) {
-        this.statusPane.setHealthValue(text);
-    }
-
-    public void setInventoryLabelText(String text) {
-        this.statusPane.setInventoryValue(text);
+    public void setLabelsText(String healthText, String inventoryText) {
+        this.statusPane.setValues(healthText, inventoryText);
     }
 }

@@ -39,11 +39,8 @@ public class StatusPane {
         return borderPane;
     }
 
-    public void setHealthValue(String text) {
-        healthValueLabel.setText(text);
-    }
-
-    public void setInventoryValue(String text) {
-        inventoryValueLabel.setText(text);
+    public void setValues(String health, String inventory) {
+        healthTextLabel.setText(health);
+        inventoryTextLabel.setText(inventory);
     }
 }
