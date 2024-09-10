@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Inventory;
+import com.codecool.dungeoncrawl.data.items.Sword;
 
 public class Player extends Actor {
     private final Inventory inventory;
@@ -11,7 +12,11 @@ public class Player extends Actor {
         this.inventory = new Inventory();
     }
 
+    @Override
     public String getTileName() {
+        if (inventory.getItems().stream().anyMatch(item -> item instanceof Sword)) {
+            return "playerWithSword";
+        }
         return "player";
     }
 

@@ -9,7 +9,7 @@ public class Inventory {
     private List<Item> items;
 
     public Inventory() {
-        this.items = new ArrayList<Item>();
+        this.items = new ArrayList<>();
     }
 
     public void addItem(Item item) {
