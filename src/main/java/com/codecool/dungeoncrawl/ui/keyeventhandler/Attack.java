@@ -18,17 +18,6 @@ public class Attack implements KeyHandler{
     neighbouringCells[2] = playerCell.getNeighbor(0, 1);
     neighbouringCells[3] = playerCell.getNeighbor(0, -1);
 
-    /*for (Cell neighbouringCell : neighbouringCells) {
-      if (code.equals(event.getCode())) {
-        if (neighbouringCell.getActor() != null) {
-          map.getPlayer().attack(neighbouringCell.getActor());
-          break;
-        } else {
-          System.out.println("There's no one near to attack. Don't fos!");
-        }
-      }
-    }*/
-
     Actor monster = null;
     if (code.equals(event.getCode())) {
       for (Cell neighbouringCell : neighbouringCells) {
