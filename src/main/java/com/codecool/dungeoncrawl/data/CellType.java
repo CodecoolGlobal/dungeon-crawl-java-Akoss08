@@ -3,10 +3,11 @@ package com.codecool.dungeoncrawl.data;
 public enum CellType {
     EMPTY("empty"),
     FLOOR("floor"),
-    WALL("wall");
+    WALL("wall"),
+    DOOR("closedDoor");
 
 
-    private final String tileName;
+    private String tileName;
 
     CellType(String tileName) {
         this.tileName = tileName;
@@ -14,5 +15,9 @@ public enum CellType {
 
     public String getTileName() {
         return tileName;
+    }
+
+    public void setDoorToOpen() {
+        DOOR.tileName = "openDoor";
     }
 }
