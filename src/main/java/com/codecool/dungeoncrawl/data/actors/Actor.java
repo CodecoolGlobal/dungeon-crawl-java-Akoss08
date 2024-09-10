@@ -9,6 +9,7 @@ import com.codecool.dungeoncrawl.logic.MapLoader;
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
+    private int attackStrength;
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -38,6 +39,14 @@ public abstract class Actor implements Drawable {
 
     public int getHealth() {
         return health;
+    }
+
+    public int getAttackStrength() {
+        return attackStrength;
+    }
+
+    public void setAttackStrength(int attackStrength) {
+        this.attackStrength = attackStrength;
     }
 
     public Cell getCell() {
