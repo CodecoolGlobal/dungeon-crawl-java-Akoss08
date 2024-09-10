@@ -17,7 +17,7 @@ public class GameMap {
             for (int y = 0; y < height; y++) {
                 cells[x][y] = new Cell(this, x, y, defaultCellType);
             }
-        }
+        }   
     }
 
     public Cell getCell(int x, int y) {
