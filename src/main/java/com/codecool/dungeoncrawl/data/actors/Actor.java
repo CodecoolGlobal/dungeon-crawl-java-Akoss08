@@ -17,12 +17,15 @@ public abstract class Actor implements Drawable {
     }
 
     public void attack (Actor attackedActor) {
-        int attackedHpAfterStrike = attackedActor.getHealth() - this.attackStrength;
+        int attackedHpAfterStrike = attackedActor.getHealth();
         int playerHpAfterStrike = this.health;
-        while (attackedHpAfterStrike > 0 && playerHpAfterStrike > 0) {
-            attackedActor.setHealth(attackedHpAfterStrike);
+
+        while (attackedHpAfterStrike - this.attackStrength > 0 && playerHpAfterStrike > 0) {
+
             attackedHpAfterStrike -= this.attackStrength;
+            attackedActor.setHealth(attackedHpAfterStrike);
             playerHpAfterStrike -= attackedActor.getAttackStrength();
+            this.health -= attackedActor.getAttackStrength();
         }
     }
 
