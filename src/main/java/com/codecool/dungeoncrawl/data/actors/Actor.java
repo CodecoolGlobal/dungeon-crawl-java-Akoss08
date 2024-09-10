@@ -16,6 +16,16 @@ public abstract class Actor implements Drawable {
         this.cell.setActor(this);
     }
 
+    public void attack (Actor attackedActor) {
+        int attackedHpAfterStrike = attackedActor.getHealth() - this.attackStrength;
+        int playerHpAfterStrike = this.health;
+        while (attackedHpAfterStrike > 0 && playerHpAfterStrike > 0) {
+            attackedActor.setHealth(attackedHpAfterStrike);
+            attackedHpAfterStrike -= this.attackStrength;
+            playerHpAfterStrike -= attackedActor.getAttackStrength();
+        }
+    }
+
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         boolean isMonster = nextCell.getActor() instanceof Actor;
@@ -39,6 +49,10 @@ public abstract class Actor implements Drawable {
 
     public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public int getAttackStrength() {
