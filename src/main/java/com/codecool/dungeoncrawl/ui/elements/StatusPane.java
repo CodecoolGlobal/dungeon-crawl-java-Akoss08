@@ -13,6 +13,8 @@ public class StatusPane {
     private Label healthValueLabel;
     private Label inventoryTextLabel;
     private Label inventoryValueLabel;
+    private Label monsterHealthTextLabel;
+    private Label monsterHealthValueLabel;
 
     public StatusPane() {
         ui = new GridPane();
@@ -21,6 +23,8 @@ public class StatusPane {
 
         inventoryTextLabel = new Label("Inventory: ");
         inventoryValueLabel = new Label();
+
+
     }
 
     public BorderPane build() {
