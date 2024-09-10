@@ -29,6 +29,10 @@ public class GameLogic {
         return Integer.toString(map.getPlayer().getHealth());
     }
 
+    public String getPlayerInventory() {
+        return map.getPlayer().getInventory().toString();
+    }
+
     public GameMap getMap() {
         return map;
     }

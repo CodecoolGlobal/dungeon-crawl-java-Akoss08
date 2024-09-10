@@ -11,11 +11,16 @@ public class StatusPane {
     private GridPane ui;
     private Label healthTextLabel;
     private Label healthValueLabel;
+    private Label inventoryTextLabel;
+    private Label inventoryValueLabel;
 
     public StatusPane() {
         ui = new GridPane();
         healthTextLabel = new Label("Health: ");
         healthValueLabel = new Label();
+
+        inventoryTextLabel = new Label("Inventory: ");
+        inventoryValueLabel = new Label();
     }
 
     public BorderPane build() {
@@ -26,12 +31,16 @@ public class StatusPane {
         ui.add(healthTextLabel, 0, 0);
         ui.add(healthValueLabel, 1, 0);
 
+        ui.add(inventoryTextLabel, 0, 1);
+        ui.add(inventoryValueLabel, 1, 1);
+
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
         return borderPane;
     }
 
-    public void setHealthValue(String text) {
-        healthValueLabel.setText(text);
+    public void setValues(String health, String inventory) {
+        healthTextLabel.setText(health);
+        inventoryTextLabel.setText(inventory);
     }
 }
