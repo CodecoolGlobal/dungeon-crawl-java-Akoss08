@@ -40,7 +40,7 @@ public class StatusPane {
     }
 
     public void setValues(String health, String inventory) {
-        healthTextLabel.setText(health);
-        inventoryTextLabel.setText(inventory);
+        healthValueLabel.setText(health);
+        inventoryValueLabel.setText(inventory);
     }
 }
