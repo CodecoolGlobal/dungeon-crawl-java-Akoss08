@@ -24,7 +24,8 @@ public class StatusPane {
         inventoryTextLabel = new Label("Inventory: ");
         inventoryValueLabel = new Label();
 
-
+        monsterHealthTextLabel = new Label("Monster Health: ");
+        monsterHealthValueLabel = new Label();
     }
 
     public BorderPane build() {
@@ -37,6 +38,9 @@ public class StatusPane {
 
         ui.add(inventoryTextLabel, 0, 1);
         ui.add(inventoryValueLabel, 1, 1);
+
+        ui.add(monsterHealthTextLabel, 0, 2);
+        ui.add(monsterHealthValueLabel, 1, 2);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
