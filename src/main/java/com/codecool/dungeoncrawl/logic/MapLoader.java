@@ -42,6 +42,21 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
                             break;
+                        case 'k':
+                            cell.setType(CellType.KEY);
+                            break;
+                        case 'c':
+                            cell.setType(CellType.CHEST);
+                            break;
+                        case 'd':
+                            cell.setType(CellType.DOOR);
+                            break;
+                        case 'm':
+                            cell.setType(CellType.MEAT);
+                            break;
+                        case 'S':
+                            cell.setType(CellType.STAIR);
+                            break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
