@@ -8,6 +8,7 @@ public class Sword extends Item {
         super(cell);
     }
 
+    @Override
     public String getTileName() {
         return "sword";
     }
