@@ -18,21 +18,21 @@ public abstract class Actor implements Drawable {
         Cell nextCell = cell.getNeighbor(dx, dy);
         boolean isMonster = nextCell.getActor() instanceof Actor;
         boolean isBorder = isBorder(nextCell);
-        if (!isMonster && !nextCell.getTileName().equals("wall") && !isBorder) {
+        if (!isMonster && !nextCell.getTileName().equals("wall") && !isBorder && !nextCell.getTileName().equals("closedDoor")) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
         }
     }
 
-    private boolean isBorder (Cell cell) {
-      GameMap map = MapLoader.loadMap();
-      double mapWidth = map.getWidth();
-      double mapHeight = map.getHeight();
-      return cell.getX() <= 0
-              || cell.getX() >= mapWidth - 1
-              || cell.getY() <= 0
-              || cell.getY() >= mapHeight - 1;
+    private boolean isBorder(Cell cell) {
+        GameMap map = MapLoader.loadMap();
+        double mapWidth = map.getWidth();
+        double mapHeight = map.getHeight();
+        return cell.getX() <= 0
+                || cell.getX() >= mapWidth - 1
+                || cell.getY() <= 0
+                || cell.getY() >= mapHeight - 1;
     }
 
     public int getHealth() {
