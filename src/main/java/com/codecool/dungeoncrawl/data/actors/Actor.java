@@ -16,16 +16,19 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        boolean isMonster = nextCell.getActor() instanceof Actor;
+        boolean isMonster = nextCell.getActor() != null;
         boolean isBorder = isBorder(nextCell);
-        if (!isMonster && !nextCell.getTileName().equals("wall") && !isBorder && !nextCell.getTileName().equals("closedDoor")) {
+        boolean isWall = nextCell.getTileName().equals("wall");
+        boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
+
+        if (!isMonster && !isWall && !isBorder && !isClosedDoor) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
         }
     }
 
-    private boolean isBorder(Cell cell) {
+    public boolean isBorder(Cell cell) {
         GameMap map = MapLoader.loadMap();
         double mapWidth = map.getWidth();
         double mapHeight = map.getHeight();
@@ -41,6 +44,10 @@ public abstract class Actor implements Drawable {
 
     public Cell getCell() {
         return cell;
+    }
+
+    public void setCell(Cell cell) {
+        this.cell = cell;
     }
 
     public int getX() {

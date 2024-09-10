@@ -4,10 +4,11 @@ public enum CellType {
     EMPTY("empty"),
     FLOOR("floor"),
     WALL("wall"),
-    DOOR("closedDoor");
+    CLOSED_DOOR("closedDoor"),
+    OPEN_DOOR("openDoor");
 
 
-    private String tileName;
+    private final String tileName;
 
     CellType(String tileName) {
         this.tileName = tileName;
@@ -15,9 +16,5 @@ public enum CellType {
 
     public String getTileName() {
         return tileName;
-    }
-
-    public void setDoorToOpen() {
-        DOOR.tileName = "openDoor";
     }
 }
