@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Actor;
+import com.codecool.dungeoncrawl.data.actors.Player;
 
 public class GameLogic {
     private GameMap map;
@@ -30,10 +31,33 @@ public class GameLogic {
         return Integer.toString(map.getPlayer().getHealth());
     }
 
+    public String getPlayerStrength() {
+        return Integer.toString(map.getPlayer().getAttackStrength());
+    }
+
     public String getMonsterHealth() {
+        Actor monster = getMonster();
+
+        if (monster != null) {
+            return Integer.toString(monster.getHealth());
+        }
+
+        return "";
+    }
+
+    public String getMonsterStrength() {
+        Actor monster = getMonster();
+
+        if (monster != null) {
+            return Integer.toString(monster.getAttackStrength());
+        }
+
+        return "";
+    }
+
+    public Actor getMonster() {
         Cell[] neighbouringCells = new Cell[4];
         Cell playerCell = map.getPlayer().getCell();
-        String monsterHealth = "";
         neighbouringCells[0] = playerCell.getNeighbor(1, 0);
         neighbouringCells[1] = playerCell.getNeighbor(-1, 0);
         neighbouringCells[2] = playerCell.getNeighbor(0, 1);
@@ -43,12 +67,10 @@ public class GameLogic {
         for (Cell neighbouringCell : neighbouringCells) {
             if (neighbouringCell.getActor() != null) {
                 monster = neighbouringCell.getActor();
+                break;
             }
         }
-        if (monster != null) {
-            monsterHealth = Integer.toString(monster.getHealth());
-        }
-        return monsterHealth;
+        return monster;
     }
 
     public String getPlayerInventory() {

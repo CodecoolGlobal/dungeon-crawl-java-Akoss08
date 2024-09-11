@@ -5,6 +5,9 @@ import com.codecool.dungeoncrawl.data.Drawable;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
@@ -15,17 +18,37 @@ public abstract class Actor implements Drawable {
         this.cell.setActor(this);
     }
 
-    public void attack (Actor attackedActor) {
-        int attackedHpAfterStrike = attackedActor.getHealth();
-        int playerHpAfterStrike = this.health;
+    public void attack() {
+        List<Cell> neighbors = new ArrayList<>();
+        neighbors.add(cell.getNeighbor(1, 0));
+        neighbors.add(cell.getNeighbor(-1, 0));
+        neighbors.add(cell.getNeighbor(0, 1));
+        neighbors.add(cell.getNeighbor(0, -1));
 
-        while (attackedHpAfterStrike - this.attackStrength >= 0 && playerHpAfterStrike > 0) {
+        for (Cell neighbor : neighbors) {
+            Actor monster = neighbor.getActor();
 
-            attackedHpAfterStrike -= this.attackStrength;
-            attackedActor.setHealth(attackedHpAfterStrike);
-            playerHpAfterStrike -= attackedActor.getAttackStrength();
-            this.health -= attackedActor.getAttackStrength();
+            if (!(monster instanceof Player) && monster != null) {
+                int monsterHealth = monster.getHealth();
+                int playerHealth = this.getHealth();
+
+                if (monsterHealth > 0 && playerHealth > 0) {
+                    monster.setHealth(monsterHealth - this.getAttackStrength());
+                    this.setHealth(playerHealth - monster.getAttackStrength());
+                }
+            }
         }
+
+//        int attackedHpAfterStrike = attackedActor.getHealth();
+//        int playerHpAfterStrike = this.health;
+//
+//        while (attackedHpAfterStrike - this.attackStrength >= 0 && playerHpAfterStrike > 0) {
+//
+//            attackedHpAfterStrike -= this.attackStrength;
+//            attackedActor.setHealth(attackedHpAfterStrike);
+//            playerHpAfterStrike -= attackedActor.getAttackStrength();
+//            this.health -= attackedActor.getAttackStrength();
+//        }
     }
 
     public void move(int dx, int dy) {

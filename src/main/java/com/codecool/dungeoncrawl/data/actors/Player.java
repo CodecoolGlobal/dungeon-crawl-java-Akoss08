@@ -47,8 +47,7 @@ public class Player extends Actor {
     }
 
     private boolean tryOpenDoor(Cell nextCell) {
-        if (inventory.getItems().stream().anyMatch(item -> item instanceof Key)) {
-            inventory.getItems().removeIf(item -> item instanceof Key);
+        if (inventory.getItems().removeIf(item -> item instanceof Key)) {
             nextCell.setType(CellType.OPEN_DOOR);
             return true;
         }
