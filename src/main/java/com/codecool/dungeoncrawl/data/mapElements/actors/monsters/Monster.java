@@ -1,7 +1,7 @@
-package com.codecool.dungeoncrawl.data.actors.monsters;
+package com.codecool.dungeoncrawl.data.mapElements.actors.monsters;
 
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.actors.Actor;
+import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 
 public abstract class Monster extends Actor {
     public Monster(Cell cell) {

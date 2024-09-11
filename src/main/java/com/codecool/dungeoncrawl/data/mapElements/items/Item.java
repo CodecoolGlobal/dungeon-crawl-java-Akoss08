@@ -1,7 +1,8 @@
-package com.codecool.dungeoncrawl.data.items;
+package com.codecool.dungeoncrawl.data.mapElements.items;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
+import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
 public abstract class Item implements Drawable {
     private Cell cell;
@@ -15,11 +16,8 @@ public abstract class Item implements Drawable {
         return cell;
     }
 
-    public int getX() {
-        return cell.getX();
+    public void setAbility(Player player) {
     }
 
-    public int getY() {
-        return cell.getY();
-    }
+
 }

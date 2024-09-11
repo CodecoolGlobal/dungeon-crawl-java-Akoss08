@@ -3,12 +3,14 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.actors.Player;
-import com.codecool.dungeoncrawl.data.actors.monsters.Scorpion;
-import com.codecool.dungeoncrawl.data.actors.monsters.Skeleton;
-import com.codecool.dungeoncrawl.data.actors.monsters.Spider;
-import com.codecool.dungeoncrawl.data.items.Key;
-import com.codecool.dungeoncrawl.data.items.Sword;
+import com.codecool.dungeoncrawl.data.mapElements.Chest;
+import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Skeleton;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Spider;
+import com.codecool.dungeoncrawl.data.mapElements.items.Key;
+import com.codecool.dungeoncrawl.data.mapElements.items.Shield;
+import com.codecool.dungeoncrawl.data.mapElements.items.Sword;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -65,7 +67,10 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.addMonster(new Spider(cell));
                             break;
-
+                        case 'c':
+                            cell.setType(CellType.FLOOR);
+                            new Chest(cell, new Shield(cell));
+                            break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }

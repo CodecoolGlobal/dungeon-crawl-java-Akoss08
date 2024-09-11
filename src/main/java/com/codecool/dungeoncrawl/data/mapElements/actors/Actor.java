@@ -1,4 +1,4 @@
-package com.codecool.dungeoncrawl.data.actors;
+package com.codecool.dungeoncrawl.data.mapElements.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
@@ -12,6 +12,7 @@ public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
     private int attackStrength;
+    private int defense;
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -29,7 +30,7 @@ public abstract class Actor implements Drawable {
                 int playerHealth = this.getHealth();
 
                 int monsterNewHealth = monsterHealth - this.getAttackStrength();
-                int playerNewHealth = playerHealth - monster.getAttackStrength();
+                int playerNewHealth = playerHealth - (monster.getAttackStrength() - this.getDefense());
 
                 if (monsterNewHealth <= 0) {
                     neighbor.setActor(null);
@@ -54,6 +55,7 @@ public abstract class Actor implements Drawable {
         boolean isBorder = isBorder(nextCell);
         boolean isWall = nextCell.getTileName().equals("wall");
         boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
+        boolean isChest = nextCell.getTileName().equals("closedChest");
 
         if (!isMonster && !isWall && !isBorder && !isClosedDoor) {
             cell.setActor(null);
@@ -86,6 +88,14 @@ public abstract class Actor implements Drawable {
 
     public void setAttackStrength(int attackStrength) {
         this.attackStrength = attackStrength;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
     }
 
     public Cell getCell() {

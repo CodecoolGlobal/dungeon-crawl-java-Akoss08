@@ -1,7 +1,8 @@
 package com.codecool.dungeoncrawl.data;
 
-import com.codecool.dungeoncrawl.data.actors.Actor;
-import com.codecool.dungeoncrawl.data.items.Item;
+import com.codecool.dungeoncrawl.data.mapElements.Chest;
+import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
+import com.codecool.dungeoncrawl.data.mapElements.items.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ public class Cell implements Drawable {
     private CellType type;
     private Actor actor;
     private Item item;
+    private Chest chest;
     private GameMap gameMap;
     private int x, y;
 
@@ -42,6 +44,14 @@ public class Cell implements Drawable {
 
     public Actor getActor() {
         return actor;
+    }
+
+    public Chest getChest() {
+        return chest;
+    }
+
+    public void setChest(Chest chest) {
+        this.chest = chest;
     }
 
     public Cell getNeighbor(int dx, int dy) {

@@ -1,11 +1,11 @@
-package com.codecool.dungeoncrawl.data.actors;
+package com.codecool.dungeoncrawl.data.mapElements.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Inventory;
-import com.codecool.dungeoncrawl.data.items.Item;
-import com.codecool.dungeoncrawl.data.items.Key;
-import com.codecool.dungeoncrawl.data.items.Sword;
+import com.codecool.dungeoncrawl.data.mapElements.items.Item;
+import com.codecool.dungeoncrawl.data.mapElements.items.Key;
+import com.codecool.dungeoncrawl.data.mapElements.items.Sword;
 
 public class Player extends Actor {
     private final Inventory inventory;
@@ -13,6 +13,7 @@ public class Player extends Actor {
     public Player(Cell cell) {
         super(cell);
         setAttackStrength(5);
+        setDefense(0);
         this.inventory = new Inventory();
     }
 
@@ -70,10 +71,7 @@ public class Player extends Actor {
             Item item = getCell().getItem();
             inventory.addItem(item);
             getCell().setItem(null);
-
-            if (item instanceof Sword) {
-                setAttackStrength(7);
-            }
+            item.setAbility(this);
         }
     }
 }

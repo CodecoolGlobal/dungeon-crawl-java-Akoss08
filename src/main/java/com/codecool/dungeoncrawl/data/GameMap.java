@@ -1,8 +1,7 @@
 package com.codecool.dungeoncrawl.data;
 
-import com.codecool.dungeoncrawl.data.actors.Player;
-import com.codecool.dungeoncrawl.data.actors.monsters.Monster;
-import com.codecool.dungeoncrawl.data.actors.monsters.Skeleton;
+import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,7 @@ public class GameMap {
     private Cell[][] cells;
 
     private Player player;
-    private List<Monster> monsters;
+    private final List<Monster> monsters;
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
