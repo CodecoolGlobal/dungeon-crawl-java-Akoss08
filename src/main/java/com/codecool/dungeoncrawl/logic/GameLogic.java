@@ -3,7 +3,8 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Actor;
-import com.codecool.dungeoncrawl.data.actors.Player;
+
+import java.util.List;
 
 public class GameLogic {
     private GameMap map;
@@ -56,12 +57,8 @@ public class GameLogic {
     }
 
     public Actor getMonster() {
-        Cell[] neighbouringCells = new Cell[4];
         Cell playerCell = map.getPlayer().getCell();
-        neighbouringCells[0] = playerCell.getNeighbor(1, 0);
-        neighbouringCells[1] = playerCell.getNeighbor(-1, 0);
-        neighbouringCells[2] = playerCell.getNeighbor(0, 1);
-        neighbouringCells[3] = playerCell.getNeighbor(0, -1);
+        List<Cell> neighbouringCells = playerCell.getNeighbors();
 
         Actor monster = null;
         for (Cell neighbouringCell : neighbouringCells) {

@@ -3,6 +3,9 @@ package com.codecool.dungeoncrawl.data;
 import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.items.Item;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cell implements Drawable {
     private CellType type;
     private Actor actor;
@@ -43,6 +46,17 @@ public class Cell implements Drawable {
 
     public Cell getNeighbor(int dx, int dy) {
         return gameMap.getCell(x + dx, y + dy);
+    }
+
+    public List<Cell> getNeighbors() {
+        List<Cell> neighbors = new ArrayList<>();
+
+        neighbors.add(getNeighbor(1, 0));
+        neighbors.add(getNeighbor(-1, 0));
+        neighbors.add(getNeighbor(0, 1));
+        neighbors.add(getNeighbor(0, -1));
+
+        return neighbors;
     }
 
     @Override

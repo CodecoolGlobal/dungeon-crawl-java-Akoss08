@@ -19,6 +19,7 @@ public class StatusPane {
     private Label monsterHealthValueLabel;
     private Label monsterStrengthTextLabel;
     private Label monsterStrengthValueLabel;
+    private Label emptyRow;
 
     public StatusPane() {
         ui = new GridPane();
@@ -36,6 +37,8 @@ public class StatusPane {
 
         monsterStrengthTextLabel = new Label("Monster Strength: ");
         monsterStrengthValueLabel = new Label();
+
+        emptyRow = new Label(" ");
     }
 
     public BorderPane build() {
@@ -52,11 +55,13 @@ public class StatusPane {
         ui.add(playerStrengthTextLabel, 0, 2);
         ui.add(playerStrengthValueLabel, 1, 2);
 
-        ui.add(monsterHealthTextLabel, 0, 3);
-        ui.add(monsterHealthValueLabel, 1, 3);
+        ui.add(emptyRow, 0, 3);
 
-        ui.add(monsterStrengthTextLabel, 0, 4);
-        ui.add(monsterStrengthValueLabel, 1, 4);
+        ui.add(monsterHealthTextLabel, 0, 4);
+        ui.add(monsterHealthValueLabel, 1, 4);
+
+        ui.add(monsterStrengthTextLabel, 0, 5);
+        ui.add(monsterStrengthValueLabel, 1, 5);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);

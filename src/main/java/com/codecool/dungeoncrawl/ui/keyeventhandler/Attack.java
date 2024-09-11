@@ -1,9 +1,6 @@
 package com.codecool.dungeoncrawl.ui.keyeventhandler;
 
-import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.actors.Actor;
-import com.codecool.dungeoncrawl.logic.GameLogic;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
