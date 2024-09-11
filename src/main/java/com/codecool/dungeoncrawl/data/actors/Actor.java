@@ -3,11 +3,9 @@ package com.codecool.dungeoncrawl.data.actors;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import javafx.application.Platform;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Actor implements Drawable {
