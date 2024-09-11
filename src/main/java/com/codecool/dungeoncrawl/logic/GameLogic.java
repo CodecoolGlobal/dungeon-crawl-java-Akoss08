@@ -78,4 +78,9 @@ public class GameLogic {
             monster.move(0, 1);
         }
     }
+
+    private int randomNumber(int min, int max) {
+        return (int) (Math.random() * (max - min) + min);
+    }
+
 }

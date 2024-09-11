@@ -15,4 +15,18 @@ public class Skeleton extends Actor {
         return "skeleton";
     }
 
+   /* @Override
+    public void move(int dx, int dy) {
+        Cell nextCell = this.getCell().getNeighbor(dx, dy);
+        boolean isMonster = nextCell.getActor() != null;
+        boolean isBorder = isBorder(nextCell);
+        boolean isWall = nextCell.getTileName().equals("wall");
+        boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
+
+        if (!isMonster && !isWall && !isBorder && !isClosedDoor) {
+            this.getCell().setActor(null);
+            nextCell.setActor(this);
+            this.setCell(nextCell);
+        }
+    }*/
 }
