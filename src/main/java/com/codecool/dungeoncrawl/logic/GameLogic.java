@@ -3,6 +3,10 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Actor;
+import com.codecool.dungeoncrawl.data.actors.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameLogic {
     private GameMap map;
@@ -57,5 +61,21 @@ public class GameLogic {
 
     public GameMap getMap() {
         return map;
+    }
+
+    public void moveMonsters () {
+        List<Actor> monsters = new ArrayList<>();
+        for (int x = 0; x < map.getWidth(); x++) {
+            for (int y = 0; y < map.getHeight(); y++) {
+                Actor actor = map.getCell(x, y).getActor();
+                if (actor != null && !(actor instanceof Player)) {
+                    monsters.add(actor);
+                }
+            }
+        }
+
+        for (Actor monster : monsters) {
+            monster.move(0, 1);
+        }
     }
 }
