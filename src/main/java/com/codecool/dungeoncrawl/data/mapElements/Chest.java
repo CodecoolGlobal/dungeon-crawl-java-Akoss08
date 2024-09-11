@@ -1,12 +1,13 @@
 package com.codecool.dungeoncrawl.data.mapElements;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Drawable;
 import com.codecool.dungeoncrawl.data.mapElements.items.Item;
 
 public class Chest implements Drawable {
-    private boolean isOpen;
     private final Item item;
+    private boolean isOpen = false;
 
     public Chest(Cell cell, Item item) {
         cell.setChest(this);
@@ -15,18 +16,18 @@ public class Chest implements Drawable {
 
     @Override
     public String getTileName() {
-        return "chest";
+        return isOpen ? "openChest" : "closedChest";
     }
 
-    public void open() {
-        isOpen = true;
+    public Item getItem() {
+        return item;
     }
 
     public boolean isOpen() {
         return isOpen;
     }
 
-    public Item getItem() {
-        return item;
+    public void openChest() {
+        isOpen = true;
     }
 }

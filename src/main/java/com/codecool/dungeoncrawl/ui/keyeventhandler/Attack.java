@@ -12,6 +12,6 @@ public class Attack implements KeyHandler {
         if (code.equals(event.getCode())) {
             map.getPlayer().attack();
         }
-
     }
+
 }

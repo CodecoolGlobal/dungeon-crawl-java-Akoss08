@@ -55,9 +55,9 @@ public abstract class Actor implements Drawable {
         boolean isBorder = isBorder(nextCell);
         boolean isWall = nextCell.getTileName().equals("wall");
         boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
-        boolean isChest = nextCell.getTileName().equals("closedChest");
+        boolean isChest = nextCell.getTileName().contains("Chest");
 
-        if (!isMonster && !isWall && !isBorder && !isClosedDoor) {
+        if (!isMonster && !isWall && !isBorder && !isClosedDoor && !isChest) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;

@@ -68,8 +68,8 @@ public class MapLoader {
                             map.addMonster(new Spider(cell));
                             break;
                         case 'c':
-                            cell.setType(CellType.FLOOR);
-                            new Chest(cell, new Shield(cell));
+                            cell.setType(CellType.CLOSED_CHEST);
+                            new Chest(cell, new Shield(null));
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
