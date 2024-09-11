@@ -75,7 +75,18 @@ public class GameLogic {
         }
 
         for (Actor monster : monsters) {
-            monster.move(0, 1);
+            char[] axes = {'x', 'y'};
+            int[] change = {1, -1};
+            int randomNumForAxis = randomNumber(0, 2);
+            int randomNumForChange = randomNumber(0, 2);
+            System.out.println("axisnum: " + randomNumForAxis + ", changenum" + randomNumForChange);
+
+            switch (axes[randomNumForAxis]) {
+                case 'x' : monster.move(change[randomNumForChange], 0);
+                    break;
+                case 'y' : monster.move(0, change[randomNumForChange]);
+                    break;
+            }
         }
     }
 
