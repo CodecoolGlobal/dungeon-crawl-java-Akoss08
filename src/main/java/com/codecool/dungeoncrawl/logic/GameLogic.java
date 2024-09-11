@@ -36,6 +36,10 @@ public class GameLogic {
         return Integer.toString(map.getPlayer().getAttackStrength());
     }
 
+    public String getPlayerDefense() {
+        return Integer.toString(map.getPlayer().getDefense());
+    }
+
     public String getMonsterHealth() {
         Actor monster = getMonster();
 

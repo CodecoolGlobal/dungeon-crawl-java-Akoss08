@@ -15,6 +15,9 @@ public class StatusPane {
     private Label inventoryValueLabel;
     private Label playerStrengthTextLabel;
     private Label playerStrengthValueLabel;
+    private Label playerDefenseTextLabel;
+    private Label playerDefenseValueLabel;
+
     private Label monsterHealthTextLabel;
     private Label monsterHealthValueLabel;
     private Label monsterStrengthTextLabel;
@@ -31,6 +34,9 @@ public class StatusPane {
 
         playerStrengthTextLabel = new Label("Player strength: ");
         playerStrengthValueLabel = new Label();
+
+        playerDefenseTextLabel = new Label("Player defense: ");
+        playerDefenseValueLabel = new Label();
 
         monsterHealthTextLabel = new Label("Monster Health: ");
         monsterHealthValueLabel = new Label();
@@ -55,23 +61,27 @@ public class StatusPane {
         ui.add(playerStrengthTextLabel, 0, 2);
         ui.add(playerStrengthValueLabel, 1, 2);
 
-        ui.add(emptyRow, 0, 3);
+        ui.add(playerDefenseTextLabel, 0, 3);
+        ui.add(playerDefenseValueLabel, 1, 3);
 
-        ui.add(monsterHealthTextLabel, 0, 4);
-        ui.add(monsterHealthValueLabel, 1, 4);
+        ui.add(emptyRow, 0, 4);
 
-        ui.add(monsterStrengthTextLabel, 0, 5);
-        ui.add(monsterStrengthValueLabel, 1, 5);
+        ui.add(monsterHealthTextLabel, 0, 5);
+        ui.add(monsterHealthValueLabel, 1, 5);
+
+        ui.add(monsterStrengthTextLabel, 0, 6);
+        ui.add(monsterStrengthValueLabel, 1, 6);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
         return borderPane;
     }
 
-    public void setValues(String health, String inventory, String playerStrength, String monsterHealth, String monsterStrength) {
+    public void setValues(String health, String inventory, String playerStrength, String playerDefense, String monsterHealth, String monsterStrength) {
         healthValueLabel.setText(health);
         inventoryValueLabel.setText(inventory);
         playerStrengthValueLabel.setText(playerStrength);
+        playerDefenseValueLabel.setText(playerDefense);
 
         monsterHealthValueLabel.setText(monsterHealth);
         monsterStrengthValueLabel.setText(monsterStrength);

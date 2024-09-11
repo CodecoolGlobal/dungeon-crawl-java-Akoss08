@@ -26,7 +26,7 @@ public class MainStage {
         return scene;
     }
 
-    public void setLabelsText(String healthText, String inventoryText, String playerStrengthText, String monsterHealthText, String monsterStrengthText) {
-        this.statusPane.setValues(healthText, inventoryText,  playerStrengthText, monsterHealthText, monsterStrengthText);
+    public void setLabelsText(String healthText, String inventoryText, String playerStrengthText, String playerDefense, String monsterHealthText, String monsterStrengthText) {
+        this.statusPane.setValues(healthText, inventoryText,  playerStrengthText, playerDefense, monsterHealthText, monsterStrengthText);
     }
 }
