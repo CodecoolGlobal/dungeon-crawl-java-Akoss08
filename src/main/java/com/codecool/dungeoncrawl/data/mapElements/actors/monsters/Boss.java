@@ -15,7 +15,7 @@ public class Boss extends Monster{
 
   @Override
   public String getTileName() {
-    return "boss";
+    return "duckBoss";
   }
 
   public void followPlayer() {
