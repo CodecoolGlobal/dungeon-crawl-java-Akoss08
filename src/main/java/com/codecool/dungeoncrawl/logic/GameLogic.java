@@ -62,20 +62,6 @@ public class GameLogic {
         return "";
     }
 
-    /*public Actor getMonster() {
-        Cell playerCell = map.getPlayer().getCell();
-        List<Cell> neighbouringCells = playerCell.getNeighbors();
-
-        Actor monster = null;
-        for (Cell neighbouringCell : neighbouringCells) {
-            if (neighbouringCell.getActor() != null) {
-                monster = neighbouringCell.getActor();
-                break;
-            }
-        }
-        return monster;
-    }*/
-
     public String getPlayerInventory() {
         return map.getPlayer().getInventory().toString();
     }
