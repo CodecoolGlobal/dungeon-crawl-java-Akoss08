@@ -1,15 +1,15 @@
 package com.codecool.dungeoncrawl.data.mapElements.actors.monsters;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Boss extends Monster {
     public Boss(Cell cell) {
         super(cell);
-        setAttackStrength(10);
+        setAttackStrength(5);
         setHealth(20);
     }
 
@@ -18,7 +18,32 @@ public class Boss extends Monster {
         return "duckBoss";
     }
 
-//  public void followPlayer() {
+    @Override
+    public void move(int dx, int dy) {
+        Cell nextCell = getCell().getNeighbor(dx, dy);
+        boolean isWalkable = getCell().isWalkable(nextCell);
+        int bossHorPos = dx * 2;
+        int bossVerPos = dy * 2;
+
+        if (dx != 0 && isWalkable) {
+            super.move(bossHorPos, dy);
+        } else if (isWalkable) {
+            super.move(dx, bossVerPos);
+        }
+
+        List<Cell> neighboringCells = getCell().getNeighbors();
+
+        for (Cell neighbor : neighboringCells) {
+            Actor player = neighbor.getActor();
+
+            if (player instanceof Player) {
+                attack((Player) player);
+                break;
+            }
+        }
+    }
+
+    //  public void followPlayer() {
 //    List<Cell> bossNeighbours = this.getCell().getBossNeighbours();
 //    Cell playerCell = null;
 //    List<Cell> playerNeighbours;
