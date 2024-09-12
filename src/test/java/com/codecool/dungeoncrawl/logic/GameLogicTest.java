@@ -4,6 +4,8 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.*;
+import com.codecool.dungeoncrawl.data.mapElements.items.Item;
+import com.codecool.dungeoncrawl.data.mapElements.items.Key;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -56,12 +58,16 @@ class GameLogicTest {
     assertEquals(expected, monsterStrength);
   }
 
-  @Test
+  /*@Test
   void getPlayerInventory() {
+    Player player = new Player(map.getCell(1,1));
+    map.setPlayer(player);
+    Item key = new Key(map.getCell(1,1));
+
   }
 
   @Test
   void moveMonsters() {
 
-  }
+  }*/
 }
