@@ -2,19 +2,27 @@ package com.codecool.dungeoncrawl.data.mapElements.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
+import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.Inventory;
 import com.codecool.dungeoncrawl.data.mapElements.Chest;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Actor {
     private final Inventory inventory;
+    private int powerUpDuration;
+    private boolean isStrengthPotionActive;
 
     public Player(Cell cell) {
         super(cell);
         setAttackStrength(5);
         setDefense(0);
+        this.powerUpDuration = 0;
+        this.isStrengthPotionActive = false;
         this.inventory = new Inventory();
     }
 
@@ -52,6 +60,60 @@ public class Player extends Actor {
                 setNextMove(nextCell);
             }
         }
+    }
+
+    public void attack() {
+        List<Cell> neighbors = getCell().getNeighbors();
+        List<Monster> allMonsters = GameMap.getMonsters();
+
+        for (Cell neighbor : neighbors) {
+            Monster monster = (Monster) neighbor.getActor();
+
+            if (monster != null) {
+                attackMonster(neighbor, monster, allMonsters);
+            }
+        }
+    }
+
+    private void attackMonster(Cell neighbor, Monster monster, List<Monster> allMonsters) {
+        int monsterHealth = monster.getHealth();
+
+        applyPowerUp();
+
+        int monsterNewHealth = monsterHealth - getAttackStrength();
+
+        if (monsterNewHealth <= 0) {
+            killMonster(neighbor, monster, allMonsters);
+        } else {
+            monster.setHealth(monsterNewHealth);
+            monster.attack(this);
+        }
+    }
+
+    private void killMonster(Cell neighbor, Monster monster, List<Monster> allMonsters) {
+        if (monster instanceof Scorpion) {
+            neighbor.setItem(new PowerPotion(neighbor));
+        }
+        neighbor.setActor(null);
+        allMonsters.remove(monster);
+
+        if (allMonsters.size() == 1) {
+            neighbor.setItem(new Key(neighbor));
+        }
+    }
+
+    private void applyPowerUp() {
+        if (isStrengthPotionActive) {
+            powerUpDuration--;
+            if (powerUpDuration == 0) {
+                resetPowerUp();
+            }
+        }
+    }
+
+    private void resetPowerUp() {
+        setAttackStrength(getAttackStrength() - PowerPotion.PLUS_STRENGTH);
+        isStrengthPotionActive = false;
     }
 
     private boolean tryOpenDoor(Cell nextCell) {
@@ -100,7 +162,16 @@ public class Player extends Actor {
     public void heal() {
         if (inventory.getItems().removeIf(item -> item instanceof HealthPotion)) {
             this.setHealth(10);
-
         }
     }
+
+    public void powerUp() {
+        if (inventory.getItems().removeIf(item -> item instanceof PowerPotion)) {
+            this.setAttackStrength(this.getAttackStrength() + PowerPotion.PLUS_STRENGTH);
+            this.powerUpDuration = 3;
+            this.isStrengthPotionActive = true;
+        }
+    }
+
+
 }

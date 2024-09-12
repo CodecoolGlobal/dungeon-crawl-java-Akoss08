@@ -12,8 +12,9 @@ public class Cell implements Drawable {
     private Actor actor;
     private Item item;
     private Chest chest;
-    private GameMap gameMap;
-    private int x, y;
+    private final GameMap gameMap;
+    private final int x;
+    private final int y;
     private boolean isWalkable;
 
     public Cell(GameMap gameMap, int x, int y, CellType type) {
@@ -22,10 +23,6 @@ public class Cell implements Drawable {
         this.y = y;
         this.type = type;
         setWalkable();
-    }
-
-    public CellType getType() {
-        return type;
     }
 
     public void setType(CellType type) {
@@ -71,30 +68,15 @@ public class Cell implements Drawable {
         return neighbors;
     }
 
-    public List<Cell> getBossNeighbours() {
-        List<Cell> bossNeighbours = getNeighbors();
-
-        bossNeighbours.add(getNeighbor(1, 1));
-        bossNeighbours.add(getNeighbor(-1, 1));
-        bossNeighbours.add(getNeighbor(1, -1));
-        bossNeighbours.add(getNeighbor(-1, -1));
-
-        return bossNeighbours;
-    }
-
     public boolean isWalkable() {
         return isWalkable;
     }
 
     private void setWalkable() {
-        if (type.equals(CellType.WALL)
-                || type.equals(CellType.CLOSED_DOOR)
-                || getTileName().contains("Chest")
-                || actor != null) {
-            this.isWalkable = false;
-        } else {
-            this.isWalkable = true;
-        }
+        this.isWalkable = !type.equals(CellType.WALL)
+                && !type.equals(CellType.CLOSED_DOOR)
+                && !getTileName().contains("Chest")
+                && actor == null;
     }
 
     @Override

@@ -1,52 +1,39 @@
 package com.codecool.dungeoncrawl.data;
 
-import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Boss;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Skeleton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameMap {
-    private int width;
-    private int height;
-    private Cell[][] cells;
+    private final int width;
+    private final int height;
+    private final Cell[][] cells;
 
     private Player player;
 
-    private final List<Monster> monsters;
+    private final static List<Monster> monsters = new ArrayList<>();
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
         this.height = height;
         cells = new Cell[width][height];
-        monsters = new ArrayList<>();
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 cells[x][y] = new Cell(this, x, y, defaultCellType);
             }
-        }   
-    }
-
-    public Boss getBoss() {
-        Boss boss = null;
-        for (Monster monster : monsters) {
-            if (monster instanceof Boss) {
-                boss = (Boss) monster;
-            }
         }
-        return boss;
     }
 
-    public Actor getMonster() {
-        Actor monster = null;
-        Cell playerCell = this.getPlayer().getCell();
+    public Monster getMonster() {
+        Cell playerCell = getPlayer().getCell();
         List<Cell> neighbouringCells = playerCell.getNeighbors();
+
+        Monster monster = null;
         for (Cell neighbouringCell : neighbouringCells) {
-            if (neighbouringCell.getActor() != null) {
-                monster = neighbouringCell.getActor();
+            if (neighbouringCell.getActor() instanceof Monster) {
+                monster = (Monster) neighbouringCell.getActor();
                 break;
             }
         }
@@ -55,6 +42,10 @@ public class GameMap {
 
     public Cell getCell(int x, int y) {
         return cells[x][y];
+    }
+
+    public static List<Monster> getMonsters() {
+        return monsters;
     }
 
     public void setPlayer(Player player) {
