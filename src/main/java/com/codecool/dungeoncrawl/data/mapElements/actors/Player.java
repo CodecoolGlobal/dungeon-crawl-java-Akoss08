@@ -96,4 +96,11 @@ public class Player extends Actor {
             }
         }
     }
+
+    public void heal() {
+        if (inventory.getItems().removeIf(item -> item instanceof HealthPotion)) {
+            this.setHealth(10);
+
+        }
+    }
 }
