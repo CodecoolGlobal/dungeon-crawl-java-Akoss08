@@ -6,26 +6,33 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 public class StatusPane {
-    public static final int RIGHT_PANEL_WIDTH = 250;
+    public static final int RIGHT_PANEL_WIDTH = 350;
     public static final int RIGHT_PANEL_PADDING = 10;
-    private GridPane ui;
-    private Label healthTextLabel;
-    private Label healthValueLabel;
-    private Label inventoryTextLabel;
-    private Label inventoryValueLabel;
-    private Label playerStrengthTextLabel;
-    private Label playerStrengthValueLabel;
-    private Label playerDefenseTextLabel;
-    private Label playerDefenseValueLabel;
+    private final GridPane ui;
+    private Label instructionsTextLabel;
+    private Label instructionsValueLabel;
 
-    private Label monsterHealthTextLabel;
-    private Label monsterHealthValueLabel;
-    private Label monsterStrengthTextLabel;
-    private Label monsterStrengthValueLabel;
-    private Label emptyRow;
+    private final Label healthTextLabel;
+    private final Label healthValueLabel;
+    private final Label inventoryTextLabel;
+    private final Label inventoryValueLabel;
+    private final Label playerStrengthTextLabel;
+    private final Label playerStrengthValueLabel;
+    private final Label playerDefenseTextLabel;
+    private final Label playerDefenseValueLabel;
+
+    private final Label monsterHealthTextLabel;
+    private final Label monsterHealthValueLabel;
+    private final Label monsterStrengthTextLabel;
+    private final Label monsterStrengthValueLabel;
+    private final Label emptyRow;
+    private final Label emptyRow2;
 
     public StatusPane() {
         ui = new GridPane();
+        instructionsTextLabel = new Label("Instruction: ");
+        instructionsValueLabel = new Label();
+
         healthTextLabel = new Label("Player health: ");
         healthValueLabel = new Label();
 
@@ -45,6 +52,7 @@ public class StatusPane {
         monsterStrengthValueLabel = new Label();
 
         emptyRow = new Label(" ");
+        emptyRow2 = new Label(" ");
     }
 
     public BorderPane build() {
@@ -52,25 +60,30 @@ public class StatusPane {
         ui.setPrefWidth(RIGHT_PANEL_WIDTH);
         ui.setPadding(new Insets(RIGHT_PANEL_PADDING));
 
-        ui.add(healthTextLabel, 0, 0);
-        ui.add(healthValueLabel, 1, 0);
+        ui.add(instructionsTextLabel, 0, 0);
+        ui.add(instructionsValueLabel, 1, 0);
 
-        ui.add(inventoryTextLabel, 0, 1);
-        ui.add(inventoryValueLabel, 1, 1);
+        ui.add(emptyRow2, 0, 1);
 
-        ui.add(playerStrengthTextLabel, 0, 2);
-        ui.add(playerStrengthValueLabel, 1, 2);
+        ui.add(healthTextLabel, 0, 2);
+        ui.add(healthValueLabel, 1, 2);
 
-        ui.add(playerDefenseTextLabel, 0, 3);
-        ui.add(playerDefenseValueLabel, 1, 3);
+        ui.add(inventoryTextLabel, 0, 3);
+        ui.add(inventoryValueLabel, 1, 3);
 
-        ui.add(emptyRow, 0, 4);
+        ui.add(playerStrengthTextLabel, 0, 4);
+        ui.add(playerStrengthValueLabel, 1, 4);
 
-        ui.add(monsterHealthTextLabel, 0, 5);
-        ui.add(monsterHealthValueLabel, 1, 5);
+        ui.add(playerDefenseTextLabel, 0, 5);
+        ui.add(playerDefenseValueLabel, 1, 5);
 
-        ui.add(monsterStrengthTextLabel, 0, 6);
-        ui.add(monsterStrengthValueLabel, 1, 6);
+        ui.add(emptyRow, 0, 6);
+
+        ui.add(monsterHealthTextLabel, 0, 7);
+        ui.add(monsterHealthValueLabel, 1, 7);
+
+        ui.add(monsterStrengthTextLabel, 0, 8);
+        ui.add(monsterStrengthValueLabel, 1, 8);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
@@ -78,6 +91,7 @@ public class StatusPane {
     }
 
     public void setValues(String health, String inventory, String playerStrength, String playerDefense, String monsterHealth, String monsterStrength) {
+        instructionsValueLabel.setText("[A: attack, O: open, H: heal]");
         healthValueLabel.setText(health);
         inventoryValueLabel.setText(inventory);
         playerStrengthValueLabel.setText(playerStrength);
