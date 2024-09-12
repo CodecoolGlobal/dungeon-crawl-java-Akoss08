@@ -24,6 +24,13 @@ class GameLogicTest {
 
   @Test
   void getPlayerDefense() {
+    Player player = new Player(map.getCell(1,1));
+    map.setPlayer(player);
+
+    String expected = "0";
+    String playerDefense = logic.getPlayerDefense();
+
+    assertEquals(expected, playerDefense);
   }
 
   @Test
