@@ -1,7 +1,9 @@
 package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Boss;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Skeleton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,16 @@ public class GameMap {
                 cells[x][y] = new Cell(this, x, y, defaultCellType);
             }
         }   
+    }
+
+    public Boss getBoss() {
+        Boss boss = null;
+        for (Monster monster : monsters) {
+            if (monster instanceof Boss) {
+                boss = (Boss) monster;
+            }
+        }
+        return boss;
     }
 
     public Cell getCell(int x, int y) {

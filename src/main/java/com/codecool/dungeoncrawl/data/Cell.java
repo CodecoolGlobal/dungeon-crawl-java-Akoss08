@@ -71,6 +71,17 @@ public class Cell implements Drawable {
         return neighbors;
     }
 
+    public List<Cell> getBossNeighbours() {
+        List<Cell> bossNeighbours = getNeighbors();
+
+        bossNeighbours.add(getNeighbor(1, 1));
+        bossNeighbours.add(getNeighbor(-1, 1));
+        bossNeighbours.add(getNeighbor(1, -1));
+        bossNeighbours.add(getNeighbor(-1, -1));
+
+        return bossNeighbours;
+    }
+
     public boolean isWalkable() {
         return isWalkable;
     }
