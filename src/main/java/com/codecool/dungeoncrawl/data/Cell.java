@@ -76,7 +76,10 @@ public class Cell implements Drawable {
     }
 
     private void setWalkable() {
-        if (type.equals(CellType.WALL) || type.equals(CellType.CLOSED_DOOR) || actor != null) {
+        if (type.equals(CellType.WALL)
+                || type.equals(CellType.CLOSED_DOOR)
+                || getTileName().contains("Chest")
+                || actor != null) {
             this.isWalkable = false;
         } else {
             this.isWalkable = true;
