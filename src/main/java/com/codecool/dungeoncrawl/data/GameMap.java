@@ -1,6 +1,5 @@
 package com.codecool.dungeoncrawl.data;
 
-import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 
@@ -35,19 +34,6 @@ public class GameMap {
         for (Cell neighbouringCell : neighbouringCells) {
             if (neighbouringCell.getActor() instanceof Monster) {
                 monster = (Monster) neighbouringCell.getActor();
-                break;
-            }
-        }
-        return monster;
-    }
-
-    public Actor getMonster() {
-        Actor monster = null;
-        Cell playerCell = this.getPlayer().getCell();
-        List<Cell> neighbouringCells = playerCell.getNeighbors();
-        for (Cell neighbouringCell : neighbouringCells) {
-            if (neighbouringCell.getActor() != null) {
-                monster = neighbouringCell.getActor();
                 break;
             }
         }
