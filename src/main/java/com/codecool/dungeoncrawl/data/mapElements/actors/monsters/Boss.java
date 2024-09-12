@@ -6,17 +6,17 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Boss extends Monster{
-  public Boss(Cell cell) {
-    super(cell);
-    setAttackStrength(10);
-    setHealth(20);
-  }
+public class Boss extends Monster {
+    public Boss(Cell cell) {
+        super(cell);
+        setAttackStrength(10);
+        setHealth(20);
+    }
 
-  @Override
-  public String getTileName() {
-    return "duckBoss";
-  }
+    @Override
+    public String getTileName() {
+        return "duckBoss";
+    }
 
 //  public void followPlayer() {
 //    List<Cell> bossNeighbours = this.getCell().getBossNeighbours();

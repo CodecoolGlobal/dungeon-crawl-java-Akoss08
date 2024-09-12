@@ -16,6 +16,7 @@ public class Helmet extends Item{
 
     @Override
     public void setAbility(Player player) {
-        player.setDefense(player.getDefense() + 2);
+        int plusDefense = 2;
+        player.setDefense(player.getDefense() + plusDefense);
     }
 }

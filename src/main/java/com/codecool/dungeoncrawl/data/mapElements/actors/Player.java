@@ -12,11 +12,15 @@ import java.util.List;
 
 public class Player extends Actor {
     private final Inventory inventory;
+    private int powerUpDuration;
+    private boolean isStrengthPotionActive;
 
     public Player(Cell cell) {
         super(cell);
         setAttackStrength(5);
         setDefense(0);
+        this.powerUpDuration = 0;
+        this.isStrengthPotionActive = false;
         this.inventory = new Inventory();
     }
 
@@ -65,6 +69,8 @@ public class Player extends Actor {
             if (monster != null) {
                 int monsterHealth = monster.getHealth();
 
+                applyPowerUp();
+
                 int monsterNewHealth = monsterHealth - getAttackStrength();
 
                 if (monsterNewHealth <= 0) {
@@ -78,6 +84,20 @@ public class Player extends Actor {
                 }
             }
         }
+    }
+
+    private void applyPowerUp() {
+        if (isStrengthPotionActive) {
+            powerUpDuration--;
+            if (powerUpDuration == 0) {
+                resetPowerUp();
+            }
+        }
+    }
+
+    private void resetPowerUp() {
+        setAttackStrength(getAttackStrength() - PowerPotion.PLUS_STRENGTH);
+        isStrengthPotionActive = false;
     }
 
     private boolean tryOpenDoor(Cell nextCell) {
@@ -131,8 +151,11 @@ public class Player extends Actor {
 
     public void powerUp() {
         if (inventory.getItems().removeIf(item -> item instanceof PowerPotion)) {
-            this.setAttackStrength(10);
+            this.setAttackStrength(this.getAttackStrength() + PowerPotion.PLUS_STRENGTH);
+            this.powerUpDuration = 3;
+            this.isStrengthPotionActive = true;
         }
     }
+
 
 }

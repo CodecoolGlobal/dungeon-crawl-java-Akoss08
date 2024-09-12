@@ -16,6 +16,7 @@ public class Sword extends Item {
 
     @Override
     public void setAbility(Player player) {
-        player.setAttackStrength(7);
+        int plusAttack = 2;
+        player.setAttackStrength(player.getAttackStrength() + plusAttack);
     }
 }
