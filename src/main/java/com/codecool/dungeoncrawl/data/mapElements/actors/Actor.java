@@ -1,30 +1,51 @@
-package com.codecool.dungeoncrawl.data.actors;
+package com.codecool.dungeoncrawl.data.mapElements.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+import javafx.application.Platform;
+
+import java.util.List;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
     private int attackStrength;
+    private int defense;
 
     public Actor(Cell cell) {
         this.cell = cell;
         this.cell.setActor(this);
     }
 
-    public void attack (Actor attackedActor) {
-        int attackedHpAfterStrike = attackedActor.getHealth();
-        int playerHpAfterStrike = this.health;
+    public void attack() {
+        List<Cell> neighbors = cell.getNeighbors();
 
-        while (attackedHpAfterStrike - this.attackStrength >= 0 && playerHpAfterStrike > 0) {
+        for (Cell neighbor : neighbors) {
+            Actor monster = neighbor.getActor();
 
-            attackedHpAfterStrike -= this.attackStrength;
-            attackedActor.setHealth(attackedHpAfterStrike);
-            playerHpAfterStrike -= attackedActor.getAttackStrength();
-            this.health -= attackedActor.getAttackStrength();
+            if (monster != null) {
+                int monsterHealth = monster.getHealth();
+                int playerHealth = this.getHealth();
+
+                int monsterNewHealth = monsterHealth - this.getAttackStrength();
+                int playerNewHealth = playerHealth - (monster.getAttackStrength() - this.getDefense());
+
+                if (monsterNewHealth <= 0) {
+                    neighbor.setActor(null);
+                } else {
+                    monster.setHealth(monsterNewHealth);
+                }
+
+                if (playerNewHealth <= 0) {
+                    cell.setActor(null);
+                    Platform.exit();
+                    break;
+                } else {
+                    this.setHealth(playerNewHealth);
+                }
+            }
         }
     }
 
@@ -34,8 +55,9 @@ public abstract class Actor implements Drawable {
         boolean isBorder = isBorder(nextCell);
         boolean isWall = nextCell.getTileName().equals("wall");
         boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
+        boolean isChest = nextCell.getTileName().contains("Chest");
 
-        if (!isMonster && !isWall && !isBorder && !isClosedDoor) {
+        if (!isMonster && !isWall && !isBorder && !isClosedDoor && !isChest) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
@@ -66,6 +88,14 @@ public abstract class Actor implements Drawable {
 
     public void setAttackStrength(int attackStrength) {
         this.attackStrength = attackStrength;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
     }
 
     public Cell getCell() {

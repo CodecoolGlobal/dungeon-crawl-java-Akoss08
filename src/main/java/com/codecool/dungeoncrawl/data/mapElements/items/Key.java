@@ -1,4 +1,4 @@
-package com.codecool.dungeoncrawl.data.items;
+package com.codecool.dungeoncrawl.data.mapElements.items;
 
 import com.codecool.dungeoncrawl.data.Cell;
 

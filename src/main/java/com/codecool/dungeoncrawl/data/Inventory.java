@@ -1,6 +1,6 @@
 package com.codecool.dungeoncrawl.data;
 
-import com.codecool.dungeoncrawl.data.items.Item;
+import com.codecool.dungeoncrawl.data.mapElements.items.Item;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,15 @@
-package com.codecool.dungeoncrawl.data.actors;
+package com.codecool.dungeoncrawl.data.mapElements.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Inventory;
-import com.codecool.dungeoncrawl.data.items.Key;
-import com.codecool.dungeoncrawl.data.items.Sword;
+import com.codecool.dungeoncrawl.data.mapElements.Chest;
+import com.codecool.dungeoncrawl.data.mapElements.items.Item;
+import com.codecool.dungeoncrawl.data.mapElements.items.Key;
+import com.codecool.dungeoncrawl.data.mapElements.items.Shield;
+import com.codecool.dungeoncrawl.data.mapElements.items.Sword;
+
+import java.util.List;
 
 public class Player extends Actor {
     private final Inventory inventory;
@@ -12,12 +17,16 @@ public class Player extends Actor {
     public Player(Cell cell) {
         super(cell);
         setAttackStrength(5);
+        setDefense(0);
         this.inventory = new Inventory();
     }
 
     @Override
     public String getTileName() {
         if (inventory.getItems().stream().anyMatch(item -> item instanceof Sword)) {
+            if (inventory.getItems().stream().anyMatch(item -> item instanceof Shield)) {
+                return "playerWithSwordAndShield";
+            }
             return "playerWithSword";
         }
         return "player";
@@ -34,8 +43,9 @@ public class Player extends Actor {
         boolean isBorder = isBorder(nextCell);
         boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
         boolean isWall = nextCell.getTileName().equals("wall");
+        boolean isChest = nextCell.getTileName().contains("Chest");
 
-        if (!isMonster && !isWall && !isBorder && !isClosedDoor) {
+        if (!isMonster && !isWall && !isBorder && !isClosedDoor && !isChest) {
             setNextMove(nextCell);
         } else if (isClosedDoor) {
             boolean doorOpened = tryOpenDoor(nextCell);
@@ -47,8 +57,7 @@ public class Player extends Actor {
     }
 
     private boolean tryOpenDoor(Cell nextCell) {
-        if (inventory.getItems().stream().anyMatch(item -> item instanceof Key)) {
-            inventory.getItems().removeIf(item -> item instanceof Key);
+        if (inventory.getItems().removeIf(item -> item instanceof Key)) {
             nextCell.setType(CellType.OPEN_DOOR);
             return true;
         }
@@ -67,8 +76,26 @@ public class Player extends Actor {
         boolean isItem = getCell().getItem() != null;
 
         if (isItem) {
-            inventory.addItem(getCell().getItem());
+            Item item = getCell().getItem();
+            inventory.addItem(item);
             getCell().setItem(null);
+            item.setAbility(this);
+        }
+    }
+
+    public void openChest() {
+        List<Cell> neighborsCell = getCell().getNeighbors();
+
+        for (Cell neighbor : neighborsCell) {
+            Chest chest = neighbor.getChest();
+
+            if (chest != null && !chest.isOpen()) {
+                chest.openChest();
+                neighbor.setType(CellType.OPEN_CHEST);
+                Item chestItem = chest.getItem();
+                inventory.addItem(chest.getItem());
+                chestItem.setAbility(this);
+            }
         }
     }
 }
