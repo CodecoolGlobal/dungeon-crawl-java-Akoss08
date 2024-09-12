@@ -14,12 +14,14 @@ public class Cell implements Drawable {
     private Chest chest;
     private GameMap gameMap;
     private int x, y;
+    private boolean isWalkable;
 
     public Cell(GameMap gameMap, int x, int y, CellType type) {
         this.gameMap = gameMap;
         this.x = x;
         this.y = y;
         this.type = type;
+        setWalkable();
     }
 
     public CellType getType() {
@@ -67,6 +69,18 @@ public class Cell implements Drawable {
         neighbors.add(getNeighbor(0, -1));
 
         return neighbors;
+    }
+
+    public boolean isWalkable() {
+        return isWalkable;
+    }
+
+    private void setWalkable() {
+        if (type.equals(CellType.WALL) || type.equals(CellType.CLOSED_DOOR) || actor != null) {
+            this.isWalkable = false;
+        } else {
+            this.isWalkable = true;
+        }
     }
 
     @Override
