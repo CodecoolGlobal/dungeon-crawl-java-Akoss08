@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,10 +36,24 @@ class GameLogicTest {
 
   @Test
   void getMonsterHealth() {
+    Monster spider = new Spider(map.getCell(0, 0));
+    map.addMonster(spider);
+
+    String spiderExpectedHealth = "20";
+    String spiderHealth = logic.getMonsterHealth();
+
+    assertEquals(spiderExpectedHealth, spiderHealth);
   }
 
   @Test
   void getMonsterStrength() {
+    Monster scorpion = new Scorpion(map.getCell(0, 0));
+    map.addMonster(scorpion);
+
+    String expected = "7";
+    String monsterStrength = logic.getMonsterStrength();
+
+    assertEquals(expected, monsterStrength);
   }
 
   @Test
