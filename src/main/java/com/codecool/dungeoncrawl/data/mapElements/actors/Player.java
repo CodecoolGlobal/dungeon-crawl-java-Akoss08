@@ -4,10 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Inventory;
 import com.codecool.dungeoncrawl.data.mapElements.Chest;
-import com.codecool.dungeoncrawl.data.mapElements.items.Item;
-import com.codecool.dungeoncrawl.data.mapElements.items.Key;
-import com.codecool.dungeoncrawl.data.mapElements.items.Shield;
-import com.codecool.dungeoncrawl.data.mapElements.items.Sword;
+import com.codecool.dungeoncrawl.data.mapElements.items.*;
 
 import java.util.List;
 
@@ -23,9 +20,13 @@ public class Player extends Actor {
 
     @Override
     public String getTileName() {
-        if (inventory.getItems().stream().anyMatch(item -> item instanceof Sword)) {
-            if (inventory.getItems().stream().anyMatch(item -> item instanceof Shield)) {
-                return "playerWithSwordAndShield";
+        boolean hasSword = inventory.getItems().stream().anyMatch(item -> item instanceof Sword);
+        boolean hasShield = inventory.getItems().stream().anyMatch(item -> item instanceof Shield);
+        boolean hasHelmet = inventory.getItems().stream().anyMatch(item -> item instanceof Helmet);
+
+        if (hasSword) {
+            if (hasShield) {
+                return hasHelmet ? "playerWithSwordAndShieldAndHelmet" : "playerWithSwordAndShield";
             }
             return "playerWithSword";
         }

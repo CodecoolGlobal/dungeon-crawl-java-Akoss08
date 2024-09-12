@@ -26,9 +26,10 @@ public abstract class Actor implements Drawable {
             if (monster != null) {
                 int monsterHealth = monster.getHealth();
                 int playerHealth = this.getHealth();
+                int monsterStrength = Math.max(monster.getAttackStrength() - this.getDefense(), 0);
 
                 int monsterNewHealth = monsterHealth - this.getAttackStrength();
-                int playerNewHealth = playerHealth - (monster.getAttackStrength() - this.getDefense());
+                int playerNewHealth = playerHealth - monsterStrength;
 
                 if (monsterNewHealth <= 0) {
                     neighbor.setActor(null);

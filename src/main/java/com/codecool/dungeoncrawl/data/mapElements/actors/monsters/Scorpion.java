@@ -6,7 +6,7 @@ public class Scorpion extends Monster {
 
     public Scorpion(Cell cell) {
         super(cell);
-        setAttackStrength(5);
+        setAttackStrength(7);
         setHealth(5);
     }
 

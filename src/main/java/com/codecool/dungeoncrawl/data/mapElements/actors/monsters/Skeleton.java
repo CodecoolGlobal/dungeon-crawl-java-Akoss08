@@ -6,7 +6,7 @@ public class Skeleton extends Monster {
 
     public Skeleton(Cell cell) {
         super(cell);
-        setAttackStrength(2);
+        setAttackStrength(4);
     }
 
     @Override
