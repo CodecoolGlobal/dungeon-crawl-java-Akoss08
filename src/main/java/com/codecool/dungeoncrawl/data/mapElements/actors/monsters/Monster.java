@@ -7,8 +7,11 @@ import javafx.application.Platform;
 
 
 public abstract class Monster extends Actor {
+    private String ability;
+
     public Monster(Cell cell) {
         super(cell);
+        this.ability = "No special ability";
     }
 
     public void attack(Player player) {
@@ -26,6 +29,10 @@ public abstract class Monster extends Actor {
     }
 
     public String getAbility() {
-        return "";
+        return ability;
+    }
+
+    public void setAbility(String ability) {
+        this.ability = ability;
     }
 }

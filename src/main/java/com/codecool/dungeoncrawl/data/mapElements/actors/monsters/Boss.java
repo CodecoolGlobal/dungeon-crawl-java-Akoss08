@@ -7,12 +7,11 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import java.util.List;
 
 public class Boss extends Monster {
-    private final String ability = "Chicken flies 2 cells and attacks you immediately";
-
     public Boss(Cell cell) {
         super(cell);
         setAttackStrength(5);
         setHealth(20);
+        setAbility("Chicken flies 2 cells and attacks you immediately");
     }
 
     @Override
@@ -47,11 +46,6 @@ public class Boss extends Monster {
                 break;
             }
         }
-    }
-
-    @Override
-    public String getAbility() {
-        return ability;
     }
 
     //  public void followPlayer() {
