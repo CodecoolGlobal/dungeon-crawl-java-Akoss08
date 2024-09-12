@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Boss;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Spider;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,16 @@ class GameMapTest {
 
   @Test
   void getBoss() {
+    Monster boss = new Boss(map.getCell(1, 0));
+    map.addMonster(boss);
+
+    Boss result = map.getBoss();
+    assertEquals(boss, result);
+  }
+
+  @Test
+  void getBossReturnsNullWhenNoBoss() {
+    assertNull(map.getBoss());
   }
 
   @Test
