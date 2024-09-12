@@ -72,6 +72,7 @@ public class GameLogic {
         }
 
         return "";
+    }
 
     public String getPlayerInventory() {
         return map.getPlayer().getInventory().toString();
