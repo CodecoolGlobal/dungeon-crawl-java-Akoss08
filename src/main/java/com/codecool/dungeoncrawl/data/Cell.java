@@ -109,4 +109,13 @@ public class Cell implements Drawable {
     public int getY() {
         return y;
     }
+
+    public boolean isWalkable(Cell nextCell) {
+        boolean isMonster = nextCell.getActor() != null;
+        boolean isWall = nextCell.getTileName().equals("wall");
+        boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
+        boolean isChest = nextCell.getTileName().contains("Chest");
+
+        return !isMonster && !isWall && !isChest && !isClosedDoor;
+    }
 }

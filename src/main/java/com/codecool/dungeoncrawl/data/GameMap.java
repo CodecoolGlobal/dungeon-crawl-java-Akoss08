@@ -14,6 +14,7 @@ public class GameMap {
     private Cell[][] cells;
 
     private Player player;
+
     private final List<Monster> monsters;
 
     public GameMap(int width, int height, CellType defaultCellType) {
@@ -52,10 +53,6 @@ public class GameMap {
 
     public void addMonster(Monster monster) {
         this.monsters.add(monster);
-    }
-
-    public List<Monster> getMonsters() {
-        return monsters;
     }
 
     public int getWidth() {
