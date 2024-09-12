@@ -8,10 +8,7 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Skeleton;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Spider;
-import com.codecool.dungeoncrawl.data.mapElements.items.Helmet;
-import com.codecool.dungeoncrawl.data.mapElements.items.Key;
-import com.codecool.dungeoncrawl.data.mapElements.items.Shield;
-import com.codecool.dungeoncrawl.data.mapElements.items.Sword;
+import com.codecool.dungeoncrawl.data.mapElements.items.*;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -75,6 +72,10 @@ public class MapLoader {
                         case 'h':
                             cell.setType(CellType.FLOOR);
                             new Helmet(cell);
+                            break;
+                        case 'p':
+                            cell.setType(CellType.FLOOR);
+                            new HealthPotion(cell);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
