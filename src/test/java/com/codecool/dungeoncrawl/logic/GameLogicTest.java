@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
@@ -38,7 +39,9 @@ class GameLogicTest {
 
   @Test
   void getMonsterHealth() {
-    Monster spider = new Spider(map.getCell(0, 0));
+    Monster spider = new Spider(map.getCell(1, 0));
+    Player player = new Player(map.getCell(1,1));
+    map.setPlayer(player);
     map.addMonster(spider);
 
     String spiderExpectedHealth = "20";
@@ -49,7 +52,9 @@ class GameLogicTest {
 
   @Test
   void getMonsterStrength() {
-    Monster scorpion = new Scorpion(map.getCell(0, 0));
+    Monster scorpion = new Scorpion(map.getCell(1, 0));
+    Player player = new Player(map.getCell(1,1));
+    map.setPlayer(player);
     map.addMonster(scorpion);
 
     String expected = "7";
