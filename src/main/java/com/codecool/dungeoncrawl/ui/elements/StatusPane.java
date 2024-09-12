@@ -6,11 +6,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 public class StatusPane {
-    public static final int RIGHT_PANEL_WIDTH = 350;
+    public static final int RIGHT_PANEL_WIDTH = 400;
     public static final int RIGHT_PANEL_PADDING = 10;
     private final GridPane ui;
-    private Label instructionsTextLabel;
-    private Label instructionsValueLabel;
+    private final Label instructionsTextLabel;
+    private final Label instructionsValueLabel;
 
     private final Label healthTextLabel;
     private final Label healthValueLabel;
@@ -25,6 +25,9 @@ public class StatusPane {
     private final Label monsterHealthValueLabel;
     private final Label monsterStrengthTextLabel;
     private final Label monsterStrengthValueLabel;
+    private final Label monsterAbilityTextLabel;
+    private final Label monsterAbilityValueLabel;
+
     private final Label emptyRow;
     private final Label emptyRow2;
 
@@ -50,6 +53,9 @@ public class StatusPane {
 
         monsterStrengthTextLabel = new Label("Monster Strength: ");
         monsterStrengthValueLabel = new Label();
+
+        monsterAbilityTextLabel = new Label("Monster Ability: ");
+        monsterAbilityValueLabel = new Label();
 
         emptyRow = new Label(" ");
         emptyRow2 = new Label(" ");
@@ -85,12 +91,15 @@ public class StatusPane {
         ui.add(monsterStrengthTextLabel, 0, 8);
         ui.add(monsterStrengthValueLabel, 1, 8);
 
+        ui.add(monsterAbilityTextLabel, 0, 9);
+        ui.add(monsterAbilityValueLabel, 1, 9);
+
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
         return borderPane;
     }
 
-    public void setValues(String health, String inventory, String playerStrength, String playerDefense, String monsterHealth, String monsterStrength) {
+    public void setValues(String health, String inventory, String playerStrength, String playerDefense, String monsterHealth, String monsterStrength, String monsterAbility) {
         instructionsValueLabel.setText("[A: attack, O: open, H: heal]");
         healthValueLabel.setText(health);
         inventoryValueLabel.setText(inventory);
@@ -99,5 +108,6 @@ public class StatusPane {
 
         monsterHealthValueLabel.setText(monsterHealth);
         monsterStrengthValueLabel.setText(monsterStrength);
+        monsterAbilityValueLabel.setText(monsterAbility);
     }
 }

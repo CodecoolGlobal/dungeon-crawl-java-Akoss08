@@ -24,4 +24,8 @@ public abstract class Monster extends Actor {
             player.setHealth(playerNewHealth);
         }
     }
+
+    public String getAbility() {
+        return "";
+    }
 }

@@ -6,6 +6,7 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Boss;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 
 import java.util.*;
 
@@ -44,7 +45,7 @@ public class GameLogic {
     }
 
     public String getMonsterHealth() {
-        Actor monster = map.getMonster();
+        Monster monster = map.getMonster();
 
         if (monster != null) {
             return Integer.toString(monster.getHealth());
@@ -54,10 +55,20 @@ public class GameLogic {
     }
 
     public String getMonsterStrength() {
-        Actor monster = map.getMonster();
+        Monster monster = map.getMonster();
 
         if (monster != null) {
             return Integer.toString(monster.getAttackStrength());
+        }
+
+        return "";
+    }
+
+    public String getMonsterAbility() {
+        Monster monster = map.getMonster();
+
+        if (monster != null) {
+            return monster.getAbility();
         }
 
         return "";

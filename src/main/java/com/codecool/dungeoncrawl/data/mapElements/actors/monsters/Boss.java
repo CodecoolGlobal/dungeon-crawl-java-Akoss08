@@ -7,6 +7,8 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import java.util.List;
 
 public class Boss extends Monster {
+    private final String ability = "Chicken flies 2 cells and attacks you immediately";
+
     public Boss(Cell cell) {
         super(cell);
         setAttackStrength(5);
@@ -31,6 +33,10 @@ public class Boss extends Monster {
             super.move(dx, bossVerPos);
         }
 
+        attackPlayer();
+    }
+
+    private void attackPlayer() {
         List<Cell> neighboringCells = getCell().getNeighbors();
 
         for (Cell neighbor : neighboringCells) {
@@ -41,6 +47,11 @@ public class Boss extends Monster {
                 break;
             }
         }
+    }
+
+    @Override
+    public String getAbility() {
+        return ability;
     }
 
     //  public void followPlayer() {

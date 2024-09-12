@@ -64,6 +64,6 @@ public class UI {
                 }
             }
         }
-        mainStage.setLabelsText(logic.getPlayerHealth(), logic.getPlayerInventory(), logic.getPlayerStrength(), logic.getPlayerDefense(), logic.getMonsterHealth(), logic.getMonsterStrength());
+        mainStage.setLabelsText(logic.getPlayerHealth(), logic.getPlayerInventory(), logic.getPlayerStrength(), logic.getPlayerDefense(), logic.getMonsterHealth(), logic.getMonsterStrength(), logic.getMonsterAbility());
     }
 }
