@@ -1,7 +1,6 @@
 package com.codecool.dungeoncrawl.data.mapElements;
 
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Drawable;
 import com.codecool.dungeoncrawl.data.mapElements.items.Item;
 
