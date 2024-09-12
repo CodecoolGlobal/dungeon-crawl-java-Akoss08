@@ -39,13 +39,10 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = getCell().getNeighbor(dx, dy);
-        boolean isMonster = nextCell.getActor() != null;
-        boolean isBorder = isBorder(nextCell);
+        boolean isWalkable = getCell().isWalkable(nextCell);
         boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
-        boolean isWall = nextCell.getTileName().equals("wall");
-        boolean isChest = nextCell.getTileName().contains("Chest");
 
-        if (!isMonster && !isWall && !isBorder && !isClosedDoor && !isChest) {
+        if (isWalkable) {
             setNextMove(nextCell);
         } else if (isClosedDoor) {
             boolean doorOpened = tryOpenDoor(nextCell);

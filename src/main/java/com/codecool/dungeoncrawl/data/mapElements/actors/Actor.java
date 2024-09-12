@@ -2,8 +2,6 @@ package com.codecool.dungeoncrawl.data.mapElements.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
-import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.logic.MapLoader;
 import javafx.application.Platform;
 
 import java.util.List;
@@ -51,27 +49,13 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        boolean isMonster = nextCell.getActor() != null;
-        boolean isBorder = isBorder(nextCell);
-        boolean isWall = nextCell.getTileName().equals("wall");
-        boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
-        boolean isChest = nextCell.getTileName().contains("Chest");
+        boolean isWalkable = cell.isWalkable(nextCell);
 
-        if (!isMonster && !isWall && !isBorder && !isClosedDoor && !isChest) {
+        if (isWalkable) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
         }
-    }
-
-    public boolean isBorder(Cell cell) {
-        GameMap map = MapLoader.loadMap();
-        double mapWidth = map.getWidth();
-        double mapHeight = map.getHeight();
-        return cell.getX() <= 0
-                || cell.getX() >= mapWidth
-                || cell.getY() <= 0
-                || cell.getY() >= mapHeight;
     }
 
     public int getHealth() {
