@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Inventory;
 import com.codecool.dungeoncrawl.data.mapElements.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
+import com.codecool.dungeoncrawl.ui.keyeventhandler.PowerUp;
 
 import java.util.List;
 
@@ -100,7 +101,13 @@ public class Player extends Actor {
     public void heal() {
         if (inventory.getItems().removeIf(item -> item instanceof HealthPotion)) {
             this.setHealth(10);
-
         }
     }
+
+    public void powerUp() {
+        if (inventory.getItems().removeIf(item -> item instanceof PowerPotion)) {
+            this.setAttackStrength(10);
+        }
+    }
+
 }

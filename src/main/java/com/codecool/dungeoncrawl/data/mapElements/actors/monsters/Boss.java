@@ -18,34 +18,35 @@ public class Boss extends Monster{
     return "duckBoss";
   }
 
-  public void followPlayer() {
-    List<Cell> bossNeighbours = this.getCell().getBossNeighbours();
-    Cell playerCell = null;
-    List<Cell> playerNeighbours;
-    List<Cell> commonNeighbours = new ArrayList<>();
-    List<Cell> walkableCommonNeighbours = new ArrayList<>();
-    for (Cell cell : bossNeighbours) {
-      if (cell.getActor() instanceof Player) {
-        playerCell = cell;
-      }
-    }
-    if (playerCell != null) {
-      playerNeighbours = playerCell.getNeighbors();
+//  public void followPlayer() {
+//    List<Cell> bossNeighbours = this.getCell().getBossNeighbours();
+//    Cell playerCell = null;
+//    List<Cell> playerNeighbours;
+//    List<Cell> commonNeighbours = new ArrayList<>();
+//    List<Cell> walkableCommonNeighbours = new ArrayList<>();
+//    for (Cell cell : bossNeighbours) {
+//      if (cell.getActor() instanceof Player) {
+//        playerCell = cell;
+//      }
+//    }
+//    if (playerCell != null) {
+//      playerNeighbours = playerCell.getNeighbors();
+//
+//      for (Cell playerNeighbour : playerNeighbours) {
+//        for (Cell bossNeighbour : bossNeighbours) {
+//          if (playerNeighbour.getX() == bossNeighbour.getX()
+//                  && playerNeighbour.getY() == bossNeighbour.getY()) {
+//            commonNeighbours.add(bossNeighbour);
+//          }
+//        }
+//      }
+//
+//      for (Cell commonNeighbour : commonNeighbours) {
+//        if (commonNeighbour.isWalkable()) {
+//          walkableCommonNeighbours.add(commonNeighbour);
+//        }
+//      }
+//    }
+//  }
 
-      for (Cell playerNeighbour : playerNeighbours) {
-        for (Cell bossNeighbour : bossNeighbours) {
-          if (playerNeighbour.getX() == bossNeighbour.getX()
-                  && playerNeighbour.getY() == bossNeighbour.getY()) {
-            commonNeighbours.add(bossNeighbour);
-          }
-        }
-      }
-
-      for (Cell commonNeighbour : commonNeighbours) {
-        if (commonNeighbour.isWalkable()) {
-          walkableCommonNeighbours.add(commonNeighbour);
-        }
-      }
-    }
-  }
 }
