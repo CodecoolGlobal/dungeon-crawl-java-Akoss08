@@ -35,6 +35,12 @@ public class Tiles {
         tileMap.put("playerWithSword", new Tile(26, 0));
         tileMap.put("closedDoor", new Tile(10, 9));
         tileMap.put("openDoor", new Tile(9, 9));
+        tileMap.put("scorpion", new Tile(24, 5));
+        tileMap.put("spider", new Tile(28, 5));
+        tileMap.put("closedChest", new Tile(8, 6));
+        tileMap.put("openChest", new Tile(9, 6));
+        tileMap.put("shield", new Tile(8, 24));
+        tileMap.put("playerWithSwordAndShield", new Tile(27, 0));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {

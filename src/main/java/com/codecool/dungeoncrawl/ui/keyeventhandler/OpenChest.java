@@ -4,13 +4,13 @@ import com.codecool.dungeoncrawl.data.GameMap;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class Attack implements KeyHandler {
-    public static final KeyCode code = KeyCode.A;
+public class OpenChest implements KeyHandler {
+    public static final KeyCode code = KeyCode.O;
 
     @Override
     public void perform(KeyEvent event, GameMap map) {
         if (code.equals(event.getCode())) {
-            map.getPlayer().attack();
+            map.getPlayer().openChest();
         }
     }
 
