@@ -7,7 +7,7 @@ public class Scorpion extends Monster {
     public Scorpion(Cell cell) {
         super(cell);
         setAttackStrength(7);
-        setHealth(5);
+        setHealth(6);
     }
 
     @Override

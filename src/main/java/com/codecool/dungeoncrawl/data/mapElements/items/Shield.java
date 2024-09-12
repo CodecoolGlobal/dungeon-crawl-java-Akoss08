@@ -16,6 +16,7 @@ public class Shield extends Item {
 
     @Override
     public void setAbility(Player player) {
-        player.setDefense(player.getDefense() + 1);
+        int plusDefense = 1;
+        player.setDefense(player.getDefense() + plusDefense);
     }
 }

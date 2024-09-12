@@ -12,10 +12,6 @@ public class Down implements KeyHandler {
     public void perform(KeyEvent event, GameMap map) {
         if (code.equals(event.getCode())) {
             map.getPlayer().move(0, 1);
-            Boss boss = map.getBoss();
-            if (boss != null) {
-                boss.move(0, 1);
-            }
         }
     }
 }
