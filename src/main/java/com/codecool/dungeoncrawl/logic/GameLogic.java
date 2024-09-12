@@ -5,8 +5,7 @@ import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Player;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class GameLogic {
     private GameMap map;
@@ -73,20 +72,8 @@ public class GameLogic {
                 }
             }
         }
-
         for (Actor monster : monsters) {
-            char[] axes = {'x', 'y'};
-            int[] change = {1, -1};
-            int randomNumForAxis = randomNumber(0, 2);
-            int randomNumForChange = randomNumber(0, 2);
-            System.out.println("axisnum: " + randomNumForAxis + ", changenum" + randomNumForChange);
-
-            switch (axes[randomNumForAxis]) {
-                case 'x' : monster.move(change[randomNumForChange], 0);
-                    break;
-                case 'y' : monster.move(0, change[randomNumForChange]);
-                    break;
-            }
+            moveRandomly(monster);
         }
     }
 
@@ -94,4 +81,29 @@ public class GameLogic {
         return (int) (Math.random() * (max - min) + min);
     }
 
+    private List<Cell> getWalkableCells (Actor monster) {
+        Cell[] neighbouringCells = new Cell[4];
+        List<Cell> walkableCells = new ArrayList<>();
+        neighbouringCells[0] = monster.getCell().getNeighbor(0, 1);
+        neighbouringCells[1] = monster.getCell().getNeighbor(0, -1);
+        neighbouringCells[2] = monster.getCell().getNeighbor(1, 0);
+        neighbouringCells[3] = monster.getCell().getNeighbor(-1, 0);
+
+        for (Cell cell : neighbouringCells) {
+            if (cell.isWalkable()) {
+                walkableCells.add(cell);
+            }
+        }
+        return walkableCells;
+    }
+
+    private void moveRandomly(Actor monster) {
+        List<Cell> walkableCells = getWalkableCells(monster);
+        Cell nextCell = walkableCells.get(randomNumber(0, walkableCells.size()));
+        int currentX = monster.getX();
+        int currentY = monster.getY();
+        int nextX = nextCell.getX();
+        int nextY = nextCell.getY();
+        monster.move(nextX - currentX, nextY - currentY);
+    }
 }
