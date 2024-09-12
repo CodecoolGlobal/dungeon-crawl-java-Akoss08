@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.mapElements.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Boss;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Skeleton;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Spider;
@@ -76,6 +77,11 @@ public class MapLoader {
                         case 'p':
                             cell.setType(CellType.FLOOR);
                             new HealthPotion(cell);
+                            break;
+                        case 'D':
+                            cell.setType(CellType.FLOOR);
+                            Boss duckBoss = new Boss(cell);
+                            map.addMonster(duckBoss);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
