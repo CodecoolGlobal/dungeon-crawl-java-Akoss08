@@ -4,8 +4,9 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Inventory;
 import com.codecool.dungeoncrawl.data.mapElements.Chest;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
-import com.codecool.dungeoncrawl.ui.keyeventhandler.PowerUp;
 
 import java.util.List;
 
@@ -51,6 +52,30 @@ public class Player extends Actor {
 
             if (doorOpened) {
                 setNextMove(nextCell);
+            }
+        }
+    }
+
+    public void attack() {
+        List<Cell> neighbors = getCell().getNeighbors();
+
+        for (Cell neighbor : neighbors) {
+            Monster monster = (Monster) neighbor.getActor();
+
+            if (monster != null) {
+                int monsterHealth = monster.getHealth();
+
+                int monsterNewHealth = monsterHealth - getAttackStrength();
+
+                if (monsterNewHealth <= 0) {
+                    if (monster instanceof Scorpion) {
+                        neighbor.setItem(new PowerPotion(neighbor));
+                    }
+                    neighbor.setActor(null);
+                } else {
+                    monster.setHealth(monsterNewHealth);
+                    monster.attack(this);
+                }
             }
         }
     }

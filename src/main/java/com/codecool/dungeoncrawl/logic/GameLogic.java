@@ -43,7 +43,7 @@ public class GameLogic {
     }
 
     public String getMonsterHealth() {
-        Actor monster = getMonster();
+        Actor monster = map.getMonster();
 
         if (monster != null) {
             return Integer.toString(monster.getHealth());
@@ -53,27 +53,13 @@ public class GameLogic {
     }
 
     public String getMonsterStrength() {
-        Actor monster = getMonster();
+        Actor monster = map.getMonster();
 
         if (monster != null) {
             return Integer.toString(monster.getAttackStrength());
         }
 
         return "";
-    }
-
-    public Actor getMonster() {
-        Cell playerCell = map.getPlayer().getCell();
-        List<Cell> neighbouringCells = playerCell.getNeighbors();
-
-        Actor monster = null;
-        for (Cell neighbouringCell : neighbouringCells) {
-            if (neighbouringCell.getActor() != null) {
-                monster = neighbouringCell.getActor();
-                break;
-            }
-        }
-        return monster;
     }
 
     public String getPlayerInventory() {

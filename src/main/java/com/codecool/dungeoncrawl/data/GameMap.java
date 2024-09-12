@@ -3,7 +3,6 @@ package com.codecool.dungeoncrawl.data;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Boss;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Skeleton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +36,20 @@ public class GameMap {
             }
         }
         return boss;
+    }
+
+    public Monster getMonster() {
+        Cell playerCell = getPlayer().getCell();
+        List<Cell> neighbouringCells = playerCell.getNeighbors();
+
+        Monster monster = null;
+        for (Cell neighbouringCell : neighbouringCells) {
+            if (neighbouringCell.getActor() instanceof Monster) {
+                monster = (Monster) neighbouringCell.getActor();
+                break;
+            }
+        }
+        return monster;
     }
 
     public Cell getCell(int x, int y) {

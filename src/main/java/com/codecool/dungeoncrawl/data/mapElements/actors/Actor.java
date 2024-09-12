@@ -2,11 +2,6 @@ package com.codecool.dungeoncrawl.data.mapElements.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
-import com.codecool.dungeoncrawl.data.mapElements.items.PowerPotion;
-import javafx.application.Platform;
-
-import java.util.List;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
@@ -17,40 +12,6 @@ public abstract class Actor implements Drawable {
     public Actor(Cell cell) {
         this.cell = cell;
         this.cell.setActor(this);
-    }
-
-    public void attack() {
-        List<Cell> neighbors = cell.getNeighbors();
-
-        for (Cell neighbor : neighbors) {
-            Actor monster = neighbor.getActor();
-
-            if (monster != null) {
-                int monsterHealth = monster.getHealth();
-                int playerHealth = this.getHealth();
-                int monsterStrength = Math.max(monster.getAttackStrength() - this.getDefense(), 0);
-
-                int monsterNewHealth = monsterHealth - this.getAttackStrength();
-                int playerNewHealth = playerHealth - monsterStrength;
-
-                if (monsterNewHealth <= 0) {
-                    if (monster instanceof Scorpion) {
-                        neighbor.setItem(new PowerPotion(neighbor));
-                    }
-                    neighbor.setActor(null);
-                } else {
-                    monster.setHealth(monsterNewHealth);
-                }
-
-                if (playerNewHealth <= 0) {
-                    cell.setActor(null);
-                    Platform.exit();
-                    break;
-                } else {
-                    this.setHealth(playerNewHealth);
-                }
-            }
-        }
     }
 
     public void move(int dx, int dy) {
