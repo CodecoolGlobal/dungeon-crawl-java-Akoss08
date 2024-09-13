@@ -10,7 +10,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameMapTest {
-  GameMap map = new GameMap(3, 3, CellType.FLOOR);
+  private GameMap map;
+
+  @BeforeEach
+  void setup() {
+    map = new GameMap(3, 3, CellType.FLOOR);
+  }
 
   @Test
   void getBoss() {

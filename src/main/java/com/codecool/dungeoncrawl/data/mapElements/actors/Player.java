@@ -13,14 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Actor {
+    private static final int BASE_HEALTH = 10;
+    private static final int BASE_POWER = 5;
+    private static final int BASE_DEFENSE = 0;
     private final Inventory inventory;
     private int powerUpDuration;
     private boolean isStrengthPotionActive;
 
     public Player(Cell cell) {
-        super(cell);
-        setAttackStrength(5);
-        setDefense(0);
+        super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE);
         this.powerUpDuration = 0;
         this.isStrengthPotionActive = false;
         this.inventory = new Inventory();
@@ -31,7 +32,7 @@ public class Player extends Actor {
         boolean hasSword = inventory.getItems().stream().anyMatch(item -> item instanceof Sword);
         boolean hasShield = inventory.getItems().stream().anyMatch(item -> item instanceof Shield);
         boolean hasHelmet = inventory.getItems().stream().anyMatch(item -> item instanceof Helmet);
-
+        
         if (hasSword) {
             if (hasShield) {
                 return hasHelmet ? "playerWithSwordAndShieldAndHelmet" : "playerWithSwordAndShield";
@@ -47,7 +48,7 @@ public class Player extends Actor {
 
     @Override
     public void move(int dx, int dy) {
-        Cell nextCell = getCell().getNeighbor(dx, dy);
+        Cell nextCell = cell.getNeighbor(dx, dy);
         boolean isWalkable = getCell().isWalkable(nextCell);
         boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
 
@@ -80,7 +81,7 @@ public class Player extends Actor {
 
         applyPowerUp();
 
-        int monsterNewHealth = monsterHealth - getAttackStrength();
+        int monsterNewHealth = monsterHealth - attackStrength;
 
         if (monsterNewHealth <= 0) {
             killMonster(neighbor, monster, allMonsters);
@@ -126,17 +127,16 @@ public class Player extends Actor {
     }
 
     private void setNextMove(Cell nextCell) {
-        getCell().setActor(null);
+        cell.setActor(null);
         nextCell.setActor(this);
-        setCell(nextCell);
+        cell = nextCell;
         pickUpItemIfAny();
     }
 
     private void pickUpItemIfAny() {
-        boolean isItem = getCell().getItem() != null;
+        Item item = cell.getItem();
 
-        if (isItem) {
-            Item item = getCell().getItem();
+        if (item != null) {
             inventory.addItem(item);
             getCell().setItem(null);
             item.setAbility(this);
@@ -153,7 +153,7 @@ public class Player extends Actor {
                 chest.openChest();
                 neighbor.setType(CellType.OPEN_CHEST);
                 Item chestItem = chest.getItem();
-                inventory.addItem(chest.getItem());
+                inventory.addItem(chestItem);
                 chestItem.setAbility(this);
             }
         }

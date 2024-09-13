@@ -13,7 +13,7 @@ public class GameMap {
 
     private Player player;
 
-    private final static List<Monster> monsters = new ArrayList<>();
+    private final List<Monster> monsters = new ArrayList<>();
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -30,14 +30,13 @@ public class GameMap {
         Cell playerCell = getPlayer().getCell();
         List<Cell> neighbouringCells = playerCell.getNeighbors();
 
-        Monster monster = null;
         for (Cell neighbouringCell : neighbouringCells) {
             if (neighbouringCell.getActor() instanceof Monster) {
-                monster = (Monster) neighbouringCell.getActor();
-                break;
+                return (Monster) neighbouringCell.getActor();
+        
             }
         }
-        return monster;
+        return null;
     }
 
     public Cell getCell(int x, int y) {
@@ -46,6 +45,18 @@ public class GameMap {
 
     public static List<Monster> getMonsters() {
         return monsters;
+    }
+
+    public void moveMonsters() {
+        List<Monster> deadMonsters = new ArrayList<>();
+        for (Actor monster : monsters) {
+            if(monster.isDead()) {
+                deadMonsters.add(monster);
+            } else {
+                moveRandomly(monster);
+            }
+        }
+        monsters.removeAll(deadMonsters);
     }
 
     public void setPlayer(Player player) {

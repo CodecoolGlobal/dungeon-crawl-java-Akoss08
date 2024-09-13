@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
 public class Helmet extends Item{
+    private static final int PLUS_DEFENSE = 2;
 
     public Helmet(Cell cell) {
         super(cell);
@@ -16,7 +17,6 @@ public class Helmet extends Item{
 
     @Override
     public void setAbility(Player player) {
-        int plusDefense = 2;
-        player.setDefense(player.getDefense() + plusDefense);
+        player.setDefense(player.getDefense() + PLUS_DEFENSE);
     }
 }

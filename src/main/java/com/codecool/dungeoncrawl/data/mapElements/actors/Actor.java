@@ -4,14 +4,17 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
 
 public abstract class Actor implements Drawable {
-    private Cell cell;
+    protected Cell cell;
     private int health = 10;
-    private int attackStrength;
+    protected int attackStrength;
     private int defense;
 
-    public Actor(Cell cell) {
+    public Actor(Cell cell, int health, int attackStrength, int defense) {
         this.cell = cell;
         this.cell.setActor(this);
+        this.health = health;
+        this.attackStrength = attackStrength;
+        this.defense = defense;
     }
 
     public void move(int dx, int dy) {

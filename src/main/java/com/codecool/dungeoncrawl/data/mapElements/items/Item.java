@@ -18,8 +18,7 @@ public abstract class Item implements Drawable {
         return cell;
     }
 
-    public void setAbility(Player player) {
-    }
+    public abstract void setAbility(Player player);
 
 
 }

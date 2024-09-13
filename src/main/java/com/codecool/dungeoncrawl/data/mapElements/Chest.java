@@ -18,15 +18,15 @@ public class Chest implements Drawable {
         return isOpen ? "openChest" : "closedChest";
     }
 
-    public Item getItem() {
-        return item;
-    }
-
     public boolean isOpen() {
         return isOpen;
     }
 
-    public void openChest() {
-        isOpen = true;
+    public Item openChest() {
+        if(!isOpen) {
+            isOpen = true;
+            return item;
+        }
+        return null;
     }
 }

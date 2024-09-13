@@ -83,7 +83,8 @@ public class GameLogic {
     }
 
     public void moveMonsters () {
-        List<Actor> monsters = new ArrayList<>();
+        map.moveMonsters();
+        /*List<Actor> monsters = new ArrayList<>();
         for (int x = 0; x < map.getWidth(); x++) {
             for (int y = 0; y < map.getHeight(); y++) {
                 Actor actor = map.getCell(x, y).getActor();
@@ -94,7 +95,7 @@ public class GameLogic {
         }
         for (Actor monster : monsters) {
             moveRandomly(monster);
-        }
+        }*/
     }
 
     private int randomNumber(int min, int max) {
