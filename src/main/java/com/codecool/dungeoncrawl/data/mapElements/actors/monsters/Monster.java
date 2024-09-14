@@ -7,11 +7,15 @@ import javafx.application.Platform;
 
 
 public abstract class Monster extends Actor {
-    private String ability;
+    private String ability = "No special ability";
 
-    public Monster(Cell cell) {
-        super(cell);
-        this.ability = "No special ability";
+    public Monster(Cell cell, int health, int strength, int defense) {
+        super(cell, health, strength, defense);
+    }
+
+    public Monster(Cell cell, int health, int strength, int defense, String ability) {
+        super(cell, health, strength, defense);
+        this.ability = ability;
     }
 
     public void attack(Player player) {
@@ -30,9 +34,5 @@ public abstract class Monster extends Actor {
 
     public String getAbility() {
         return ability;
-    }
-
-    public void setAbility(String ability) {
-        this.ability = ability;
     }
 }

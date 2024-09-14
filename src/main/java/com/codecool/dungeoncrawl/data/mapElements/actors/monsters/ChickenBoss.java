@@ -6,14 +6,10 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
 import java.util.List;
 
-public class Boss extends Monster {
-    private int bossHealth;
+public class ChickenBoss extends Monster {
 
-    public Boss(Cell cell) {
-        super(cell);
-        setAttackStrength(5);
-        setHealth(20);
-        setAbility("Chicken flies 2 cells and attacks you immediately");
+    public ChickenBoss(Cell cell, int health, int strength, int defense, String ability) {
+        super(cell, health, strength, defense, ability);
     }
 
     @Override

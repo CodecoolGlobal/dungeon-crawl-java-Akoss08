@@ -5,9 +5,9 @@ import com.codecool.dungeoncrawl.data.Drawable;
 
 public abstract class Actor implements Drawable {
     protected Cell cell;
-    private int health;
+    protected int health;
     protected int attackStrength;
-    private int defense;
+    protected int defense;
 
     public Actor(Cell cell, int health, int attackStrength, int defense) {
         this.cell = cell;

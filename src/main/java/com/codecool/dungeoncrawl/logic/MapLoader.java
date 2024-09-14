@@ -5,7 +5,7 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.mapElements.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Boss;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.ChickenBoss;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Skeleton;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Spider;
@@ -80,7 +80,11 @@ public class MapLoader {
                             break;
                         case 'D':
                             cell.setType(CellType.FLOOR);
-                            Boss duckBoss = new Boss(cell);
+                            int health = 10;
+                            int strength = 5;
+                            int defense = 0;
+                            String ability = "Chicken can fly 2 cells and attacks immediately";
+                            ChickenBoss duckBoss = new ChickenBoss(cell, health, strength, defense, ability);
                             map.addMonster(duckBoss);
                             break;
                         default:
