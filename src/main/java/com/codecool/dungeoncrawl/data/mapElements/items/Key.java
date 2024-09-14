@@ -11,7 +11,7 @@ public class Key extends Item{
     }
 
     @Override
-    public void setAbility(Player player) {
+    public void addToPlayer(Player player) {
         player.getInventory().addItem(this);
     }
 }

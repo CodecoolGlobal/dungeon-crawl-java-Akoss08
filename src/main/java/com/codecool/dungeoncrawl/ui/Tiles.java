@@ -44,7 +44,7 @@ public class Tiles {
         tileMap.put("helmet", new Tile(1, 22));
         tileMap.put("playerWithSwordAndShieldAndHelmet", new Tile(28, 0));
         tileMap.put("healthPotion", new Tile(16, 25));
-        tileMap.put("duckBoss", new Tile(26, 7));
+        tileMap.put("chickenBoss", new Tile(26, 7));
         tileMap.put("powerPotion", new Tile(17, 25));
     }
 

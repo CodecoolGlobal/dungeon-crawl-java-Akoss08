@@ -33,7 +33,7 @@ public class Player extends Actor {
         boolean hasSword = inventory.getItems().stream().anyMatch(item -> item instanceof Sword);
         boolean hasShield = inventory.getItems().stream().anyMatch(item -> item instanceof Shield);
         boolean hasHelmet = inventory.getItems().stream().anyMatch(item -> item instanceof Helmet);
-        
+
         if (hasSword) {
             if (hasShield) {
                 return hasHelmet ? "playerWithSwordAndShieldAndHelmet" : "playerWithSwordAndShield";
@@ -45,6 +45,10 @@ public class Player extends Actor {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public int getBaseHealth() {
+        return BASE_HEALTH;
     }
 
     @Override
@@ -138,9 +142,8 @@ public class Player extends Actor {
         Item item = cell.getItem();
 
         if (item != null) {
-            inventory.addItem(item);
             getCell().setItem(null);
-            item.setAbility(this);
+            item.addToPlayer(this);
         }
     }
 
@@ -161,8 +164,10 @@ public class Player extends Actor {
     }
 
     public void heal() {
+        HealthPotion healthPotion = new HealthPotion(null);
+
         if (inventory.getItems().removeIf(item -> item instanceof HealthPotion)) {
-            this.setHealth(10);
+            healthPotion.use(this);
         }
     }
 
