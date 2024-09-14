@@ -142,11 +142,9 @@ public class Player extends Actor {
             Chest chest = neighbor.getChest();
 
             if (chest != null && !chest.isOpen()) {
-                chest.openChest();
                 neighbor.setType(CellType.OPEN_CHEST);
-                Item chestItem = chest.getItem();
-                inventory.addItem(chestItem);
-                chestItem.setAbility(this);
+                Item chestItem = chest.openChest();
+                chestItem.addToPlayer(this);
             }
         }
     }
