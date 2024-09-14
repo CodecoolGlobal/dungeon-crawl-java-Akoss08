@@ -34,7 +34,7 @@ public class GameMap {
         for (Cell neighbouringCell : neighbouringCells) {
             if (neighbouringCell.getActor() instanceof Monster) {
                 return (Monster) neighbouringCell.getActor();
-        
+
             }
         }
         return null;
@@ -50,14 +50,43 @@ public class GameMap {
 
     public void moveMonsters() {
         List<Monster> deadMonsters = new ArrayList<>();
-        for (Actor monster : monsters) {
-            if(monster.isDead()) {
+
+        for (Monster monster : monsters) {
+            if (monster.isDead()) {
                 deadMonsters.add(monster);
             } else {
                 moveRandomly(monster);
             }
         }
         monsters.removeAll(deadMonsters);
+    }
+
+    private void moveRandomly(Actor monster) {
+        List<Cell> walkableCells = getWalkableCells(monster);
+        Cell nextCell = walkableCells.get(randomNumber(walkableCells.size()));
+        int currentX = monster.getX();
+        int currentY = monster.getY();
+        int nextX = nextCell.getX();
+        int nextY = nextCell.getY();
+
+        monster.move(nextX - currentX, nextY - currentY);
+    }
+
+    private int randomNumber(int max) {
+        return (int) (Math.random() * max + 0);
+    }
+
+    private List<Cell> getWalkableCells(Actor monster) {
+        List<Cell> monsterNeighbouringCells = monster.getCell().getNeighbors();
+        List<Cell> walkableCells = new ArrayList<>();
+        walkableCells.add(monster.getCell());
+
+        for (Cell cell : monsterNeighbouringCells) {
+            if (cell.isWalkable()) {
+                walkableCells.add(cell);
+            }
+        }
+        return walkableCells;
     }
 
     public void setPlayer(Player player) {

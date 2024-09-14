@@ -84,44 +84,5 @@ public class GameLogic {
 
     public void moveMonsters() {
         map.moveMonsters();
-        /*List<Actor> monsters = new ArrayList<>();
-        for (int x = 0; x < map.getWidth(); x++) {
-            for (int y = 0; y < map.getHeight(); y++) {
-                Actor actor = map.getCell(x, y).getActor();
-                if (actor != null && !(actor instanceof Player)) {
-                    monsters.add(actor);
-                }
-            }
-        }
-        for (Actor monster : monsters) {
-            moveRandomly(monster);
-        }*/
-    }
-
-    private int randomNumber(int min, int max) {
-        return (int) (Math.random() * (max - min) + min);
-    }
-
-    private List<Cell> getWalkableCells(Actor monster) {
-        List<Cell> monsterNeighbouringCells = monster.getCell().getNeighbors();
-        List<Cell> walkableCells = new ArrayList<>();
-
-        for (Cell cell : monsterNeighbouringCells) {
-            if (cell.isWalkable()) {
-                walkableCells.add(cell);
-            }
-        }
-        return walkableCells;
-    }
-
-    private void moveRandomly(Actor monster) {
-        List<Cell> walkableCells = getWalkableCells(monster);
-        Cell nextCell = walkableCells.get(randomNumber(0, walkableCells.size()));
-        int currentX = monster.getX();
-        int currentY = monster.getY();
-        int nextX = nextCell.getX();
-        int nextY = nextCell.getY();
-
-        monster.move(nextX - currentX, nextY - currentY);
     }
 }

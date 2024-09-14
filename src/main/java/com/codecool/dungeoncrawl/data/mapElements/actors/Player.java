@@ -2,10 +2,8 @@ package com.codecool.dungeoncrawl.data.mapElements.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
-import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.mapElements.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
 import javafx.application.Platform;
 
@@ -51,13 +49,12 @@ public class Player extends Actor {
 
     public void attack() {
         List<Cell> neighbors = cell.getNeighbors();
-        List<Monster> allMonsters = GameMap.getMonsters();
 
         for (Cell neighbor : neighbors) {
             Actor monster = neighbor.getActor();
 
             if (monster instanceof Monster) {
-                attackMonster((Monster) monster, allMonsters);
+                attackMonster((Monster) monster);
             }
         }
     }
@@ -70,7 +67,7 @@ public class Player extends Actor {
 
     ;
 
-    private void attackMonster(Monster monster, List<Monster> allMonsters) {
+    private void attackMonster(Monster monster) {
         if (powerBoost != null) {
             applyPowerUp();
         }
@@ -86,18 +83,6 @@ public class Player extends Actor {
         monster.setHealth(monsterNewHealth);
 
         monster.attack(this);
-    }
-
-    private void killMonster(Monster monster, List<Monster> allMonsters) {
-        if (monster instanceof Scorpion) {
-            neighbor.setItem(new PowerPotion(neighbor));
-        }
-        neighbor.setActor(null);
-        allMonsters.remove(monster);
-
-        if (allMonsters.size() == 1) {
-            neighbor.setItem(new Key(neighbor));
-        }
     }
 
     private void applyPowerUp() {

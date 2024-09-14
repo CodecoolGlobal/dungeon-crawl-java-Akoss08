@@ -23,7 +23,7 @@ public class Inventory {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("[\n");
+        str.append("[");
 
         for (Item item : items) {
             str.append(item.getTileName());
@@ -32,7 +32,7 @@ public class Inventory {
             }
         }
 
-        str.append("\n]");
+        str.append("]");
         return str.toString();
     }
 }
