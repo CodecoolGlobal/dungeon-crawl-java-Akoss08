@@ -18,5 +18,6 @@ public class HealthPotion extends Item implements Interractable{
     @Override
     public void use(Player player) {
         player.setHealth(player.getBaseHealth());
+        player.getInventory().getItems().remove(this);
     }
 }

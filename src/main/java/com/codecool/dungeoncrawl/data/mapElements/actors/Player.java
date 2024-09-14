@@ -164,10 +164,13 @@ public class Player extends Actor {
     }
 
     public void heal() {
-        HealthPotion healthPotion = new HealthPotion(null);
+        List<Item> items = inventory.getItems();
 
-        if (inventory.getItems().removeIf(item -> item instanceof HealthPotion)) {
-            healthPotion.use(this);
+        for (Item item : items) {
+            if (item instanceof HealthPotion) {
+                ((HealthPotion) item).use(this);
+                break;
+            }
         }
     }
 
