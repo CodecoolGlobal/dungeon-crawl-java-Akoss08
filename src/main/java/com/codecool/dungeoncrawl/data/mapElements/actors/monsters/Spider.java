@@ -3,10 +3,11 @@ package com.codecool.dungeoncrawl.data.mapElements.actors.monsters;
 import com.codecool.dungeoncrawl.data.Cell;
 
 public class Spider extends Monster {
+    private static final int BASE_HEALTH = 10;
+    private static final int BASE_POWER = 5;
+
     public Spider(Cell cell) {
-        super(cell);
-        setHealth(20);
-        setAttackStrength(1);
+        super(cell, BASE_HEALTH, BASE_POWER);
     }
 
     @Override
