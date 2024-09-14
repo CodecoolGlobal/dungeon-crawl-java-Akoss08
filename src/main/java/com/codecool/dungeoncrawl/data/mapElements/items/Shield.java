@@ -4,19 +4,18 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
 public class Shield extends Item {
+    private static final String TILE_NAME = "shield";
+    private static final int PLUS_DEFENSE = 1;
+    private static final String TILE_NAME_FOR_PLAYER = "playerWithSwordAndShield";
 
     public Shield(Cell cell) {
-        super(cell);
+        super(cell, TILE_NAME);
     }
 
     @Override
-    public String getTileName() {
-        return "shield";
-    }
-
-    @Override
-    public void setAbility(Player player) {
-        int plusDefense = 1;
-        player.setDefense(player.getDefense() + plusDefense);
+    public void addToPlayer(Player player) {
+        player.getInventory().addItem(this);
+        player.setDefense(player.getDefense() + PLUS_DEFENSE);
+        player.setTileName(TILE_NAME_FOR_PLAYER);
     }
 }

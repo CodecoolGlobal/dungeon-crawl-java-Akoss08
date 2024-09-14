@@ -17,14 +17,14 @@ public class Player extends Actor {
     private static final int BASE_DEFENSE = 0;
     private String tileName;
     private final Inventory inventory;
-    private int powerUpDuration;
-    private boolean isStrengthPotionActive;
+    private PowerPotion powerBoost;
+    private HealthPotion healthBoost;
 
     public Player(Cell cell, String tileName) {
         super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE, tileName);
-        this.powerUpDuration = 0;
-        this.isStrengthPotionActive = false;
         this.inventory = new Inventory();
+        this.tileName = tileName;
+        this.powerBoost = null;
     }
 
     @Override
@@ -34,6 +34,10 @@ public class Player extends Actor {
 
     public void setTileName(String tileName) {
         this.tileName = tileName;
+    }
+
+    public void setPowerBoost(PowerPotion powerBoost) {
+        this.powerBoost = powerBoost;
     }
 
     public Inventory getInventory() {
@@ -75,10 +79,11 @@ public class Player extends Actor {
     }
 
     private void attackMonster(Cell neighbor, Monster monster, List<Monster> allMonsters) {
+        if (powerBoost != null) {
+            applyPowerUp();
+        }
+
         int monsterHealth = monster.getHealth();
-
-        applyPowerUp();
-
         int monsterNewHealth = monsterHealth - attackStrength;
 
         if (monsterNewHealth <= 0) {
@@ -102,17 +107,11 @@ public class Player extends Actor {
     }
 
     private void applyPowerUp() {
-        if (isStrengthPotionActive) {
-            powerUpDuration--;
-            if (powerUpDuration == 0) {
-                resetPowerUp();
-            }
+        powerBoost.decreaseDuration();
+        if (powerBoost.getDuration() == 0) {
+            powerBoost.resetPowerBoost(this);
+            powerBoost = null;
         }
-    }
-
-    private void resetPowerUp() {
-        setAttackStrength(getAttackStrength() - PowerPotion.PLUS_STRENGTH);
-        isStrengthPotionActive = false;
     }
 
     private boolean tryOpenDoor(Cell nextCell) {
@@ -136,6 +135,7 @@ public class Player extends Actor {
 
         if (item != null) {
             getCell().setItem(null);
+            inventory.addItem(item);
             item.addToPlayer(this);
         }
     }
@@ -157,22 +157,34 @@ public class Player extends Actor {
     }
 
     public void heal() {
-        List<Item> items = inventory.getItems();
+        Item toRemove = null;
 
-        for (Item item : items) {
+        for (Item item : inventory.getItems()) {
             if (item instanceof HealthPotion) {
-                ((HealthPotion) item).use(this);
+                healthBoost = (HealthPotion) item;
+                healthBoost.use(this);
+                toRemove = item;
+                healthBoost = null;
                 break;
             }
         }
+
+        inventory.getItems().remove(toRemove);
     }
 
     public void powerUp() {
-        if (inventory.getItems().removeIf(item -> item instanceof PowerPotion)) {
-            this.setAttackStrength(this.getAttackStrength() + PowerPotion.PLUS_STRENGTH);
-            this.powerUpDuration = 3;
-            this.isStrengthPotionActive = true;
+        Item toRemove = null;
+
+        for (Item item : inventory.getItems()) {
+            if (item instanceof PowerPotion) {
+                powerBoost = (PowerPotion) item;
+                powerBoost.use(this);
+                toRemove = item;
+                break;
+            }
         }
+
+        inventory.getItems().remove(toRemove);
     }
 
 
