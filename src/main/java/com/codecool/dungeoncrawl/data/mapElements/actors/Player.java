@@ -9,20 +9,19 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Actor {
     private static final int BASE_HEALTH = 10;
     private static final int BASE_POWER = 5;
     private static final int BASE_DEFENSE = 0;
-    private static final String TILE_NAME = "player";
+    private String tileName;
     private final Inventory inventory;
     private int powerUpDuration;
     private boolean isStrengthPotionActive;
 
-    public Player(Cell cell) {
-        super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE, TILE_NAME);
+    public Player(Cell cell, String tileName) {
+        super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE, tileName);
         this.powerUpDuration = 0;
         this.isStrengthPotionActive = false;
         this.inventory = new Inventory();
@@ -30,17 +29,11 @@ public class Player extends Actor {
 
     @Override
     public String getTileName() {
-        boolean hasSword = inventory.getItems().stream().anyMatch(item -> item instanceof Sword);
-        boolean hasShield = inventory.getItems().stream().anyMatch(item -> item instanceof Shield);
-        boolean hasHelmet = inventory.getItems().stream().anyMatch(item -> item instanceof Helmet);
+        return tileName;
+    }
 
-        if (hasSword) {
-            if (hasShield) {
-                return hasHelmet ? "playerWithSwordAndShieldAndHelmet" : "playerWithSwordAndShield";
-            }
-            return "playerWithSword";
-        }
-        return "player";
+    public void setTileName(String tileName) {
+        this.tileName = tileName;
     }
 
     public Inventory getInventory() {
