@@ -7,7 +7,14 @@ public abstract class Actor implements Drawable {
     protected Cell cell;
     protected int health;
     protected int attackStrength;
-    protected int defense;
+    protected int defense = 0;
+
+    public Actor(Cell cell, int health, int attackStrength) {
+        this.cell = cell;
+        this.cell.setActor(this);
+        this.health = health;
+        this.attackStrength = attackStrength;
+    }
 
     public Actor(Cell cell, int health, int attackStrength, int defense) {
         this.cell = cell;

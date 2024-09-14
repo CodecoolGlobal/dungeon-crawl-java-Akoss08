@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.data;
 
+import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 
@@ -43,7 +44,7 @@ public class GameMap {
         return cells[x][y];
     }
 
-    public static List<Monster> getMonsters() {
+    public List<Monster> getMonsters() {
         return monsters;
     }
 

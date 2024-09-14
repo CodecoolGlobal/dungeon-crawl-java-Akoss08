@@ -60,10 +60,7 @@ public class MapLoader {
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            int scorpionHealth = 6;
-                            int scorpionStrength = 7;
-                            int scorpionDefense = 0;
-                            map.addMonster(new Scorpion(cell, scorpionHealth, scorpionStrength, scorpionDefense));
+                            map.addMonster(new Scorpion(cell));
                             break;
                         case 'B':
                             cell.setType(CellType.FLOOR);
@@ -83,20 +80,8 @@ public class MapLoader {
                             break;
                         case 'D':
                             cell.setType(CellType.FLOOR);
-
-                            int chickenBossHealth = 20;
-                            int chickenBossStrength = 5;
-                            int chickenBossDefense = 0;
-                            String ability = "Chicken can fly 2 cells and attacks immediately";
-
-                            ChickenBoss duckBoss = new ChickenBoss(
-                                    cell,
-                                    chickenBossHealth,
-                                    chickenBossStrength,
-                                    chickenBossDefense,
-                                    ability);
-
-                            map.addMonster(duckBoss);
+                            ChickenBoss chickenBoss = new ChickenBoss(cell);
+                            map.addMonster(chickenBoss);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

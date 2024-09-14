@@ -9,6 +9,15 @@ import javafx.application.Platform;
 public abstract class Monster extends Actor {
     private String ability = "No special ability";
 
+    public Monster(Cell cell, int health, int strength) {
+        super(cell, health, strength);
+    }
+
+    public Monster(Cell cell, int health, int strength, String ability) {
+        super(cell, health, strength);
+        this.ability = ability;
+    }
+
     public Monster(Cell cell, int health, int strength, int defense) {
         super(cell, health, strength, defense);
     }

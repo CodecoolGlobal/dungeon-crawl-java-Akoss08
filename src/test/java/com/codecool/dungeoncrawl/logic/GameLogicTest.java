@@ -52,7 +52,7 @@ class GameLogicTest {
 
   @Test
   void getMonsterStrength() {
-    Monster scorpion = new Scorpion(map.getCell(1, 0), 5, 7, 0);
+    Monster scorpion = new Scorpion(map.getCell(1, 0));
     Player player = new Player(map.getCell(1,1));
     map.setPlayer(player);
     map.addMonster(scorpion);

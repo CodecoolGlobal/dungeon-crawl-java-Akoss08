@@ -7,9 +7,12 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import java.util.List;
 
 public class ChickenBoss extends Monster {
+    private static final int BASE_HEALTH = 10;
+    private static final int BASE_POWER = 5;
+    private static final String ABILITY = "Chicken can fly 2 cells and attacks immediately";
 
-    public ChickenBoss(Cell cell, int health, int strength, int defense, String ability) {
-        super(cell, health, strength, defense, ability);
+    public ChickenBoss(Cell cell) {
+        super(cell, BASE_HEALTH, BASE_POWER, ABILITY);
     }
 
     @Override
