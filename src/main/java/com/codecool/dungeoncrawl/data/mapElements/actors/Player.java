@@ -50,7 +50,7 @@ public class Player extends Actor {
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         boolean isWalkable = getCell().isWalkable(nextCell);
-        boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
+        boolean isClosedDoor = nextCell.getType().equals(CellType.CLOSED_DOOR);
 
         if (isWalkable) {
             setNextMove(nextCell);

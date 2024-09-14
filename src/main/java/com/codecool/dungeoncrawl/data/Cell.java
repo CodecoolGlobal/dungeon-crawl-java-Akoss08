@@ -9,13 +9,13 @@ import java.util.List;
 
 public class Cell implements Drawable {
     private CellType type;
+
     private Actor actor;
     private Item item;
     private Chest chest;
     private final GameMap gameMap;
     private final int x;
     private final int y;
-
     public Cell(GameMap gameMap, int x, int y, CellType type) {
         this.gameMap = gameMap;
         this.x = x;
@@ -25,6 +25,10 @@ public class Cell implements Drawable {
 
     public void setType(CellType type) {
         this.type = type;
+    }
+
+    public CellType getType() {
+        return type;
     }
 
     public void setActor(Actor actor) {
@@ -88,9 +92,9 @@ public class Cell implements Drawable {
     //Why do we need this?
     public boolean isWalkable(Cell nextCell) {
         boolean isMonster = nextCell.getActor() != null;
-        boolean isWall = nextCell.getTileName().equals("wall");
-        boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
-        boolean isChest = nextCell.getTileName().contains("Chest");
+        boolean isWall = nextCell.getType().equals(CellType.WALL);
+        boolean isClosedDoor = nextCell.getType().equals(CellType.CLOSED_DOOR);
+        boolean isChest = nextCell.getType().getTileName().contains("Chest");
 
         return !isMonster && !isWall && !isChest && !isClosedDoor;
     }

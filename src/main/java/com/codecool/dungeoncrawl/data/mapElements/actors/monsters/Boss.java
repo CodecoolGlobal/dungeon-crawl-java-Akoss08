@@ -7,6 +7,8 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import java.util.List;
 
 public class Boss extends Monster {
+    private int bossHealth;
+
     public Boss(Cell cell) {
         super(cell);
         setAttackStrength(5);
