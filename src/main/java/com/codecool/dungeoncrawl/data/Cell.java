@@ -16,6 +16,7 @@ public class Cell implements Drawable {
     private final GameMap gameMap;
     private final int x;
     private final int y;
+
     public Cell(GameMap gameMap, int x, int y, CellType type) {
         this.gameMap = gameMap;
         this.x = x;
@@ -71,8 +72,7 @@ public class Cell implements Drawable {
     }
 
     public boolean isWalkable() {
-        return this.isWalkable = type.isWalkable()
-                && actor == null;
+        return type.isWalkable() && actor == null;
     }
 
     @Override
@@ -86,16 +86,5 @@ public class Cell implements Drawable {
 
     public int getY() {
         return y;
-    }
-
-
-    //Why do we need this?
-    public boolean isWalkable(Cell nextCell) {
-        boolean isMonster = nextCell.getActor() != null;
-        boolean isWall = nextCell.getType().equals(CellType.WALL);
-        boolean isClosedDoor = nextCell.getType().equals(CellType.CLOSED_DOOR);
-        boolean isChest = nextCell.getType().getTileName().contains("Chest");
-
-        return !isMonster && !isWall && !isChest && !isClosedDoor;
     }
 }

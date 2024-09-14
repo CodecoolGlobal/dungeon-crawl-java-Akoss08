@@ -18,14 +18,12 @@ public class ChickenBoss extends Monster {
 
     @Override
     public void move(int dx, int dy) {
-        Cell nextCell = cell.getNeighbor(dx, dy);
-        boolean isWalkable = cell.isWalkable(nextCell);
         int bossHorPos = dx * 2;
         int bossVerPos = dy * 2;
 
-        if (dx != 0 && isWalkable) {
+        if (dx != 0) {
             super.move(bossHorPos, dy);
-        } else if (isWalkable) {
+        } else {
             super.move(dx, bossVerPos);
         }
 

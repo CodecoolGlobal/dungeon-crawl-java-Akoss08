@@ -63,7 +63,7 @@ public class GameLogic {
         return "";
     }
 
-  
+
     public String getMonsterAbility() {
         Monster monster = map.getMonster();
 
@@ -82,7 +82,7 @@ public class GameLogic {
         return map;
     }
 
-    public void moveMonsters () {
+    public void moveMonsters() {
         map.moveMonsters();
         /*List<Actor> monsters = new ArrayList<>();
         for (int x = 0; x < map.getWidth(); x++) {
@@ -102,15 +102,11 @@ public class GameLogic {
         return (int) (Math.random() * (max - min) + min);
     }
 
-    private List<Cell> getWalkableCells (Actor monster) {
-        Cell[] neighbouringCells = new Cell[4];
+    private List<Cell> getWalkableCells(Actor monster) {
+        List<Cell> monsterNeighbouringCells = monster.getCell().getNeighbors();
         List<Cell> walkableCells = new ArrayList<>();
-        neighbouringCells[0] = monster.getCell().getNeighbor(0, 1);
-        neighbouringCells[1] = monster.getCell().getNeighbor(0, -1);
-        neighbouringCells[2] = monster.getCell().getNeighbor(1, 0);
-        neighbouringCells[3] = monster.getCell().getNeighbor(-1, 0);
 
-        for (Cell cell : neighbouringCells) {
+        for (Cell cell : monsterNeighbouringCells) {
             if (cell.isWalkable()) {
                 walkableCells.add(cell);
             }

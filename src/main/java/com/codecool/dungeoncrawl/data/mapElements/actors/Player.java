@@ -3,7 +3,6 @@ package com.codecool.dungeoncrawl.data.mapElements.actors;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.Inventory;
 import com.codecool.dungeoncrawl.data.mapElements.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
@@ -37,10 +36,9 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        boolean isWalkable = cell.isWalkable(nextCell);
         boolean isClosedDoor = nextCell.getType().equals(CellType.CLOSED_DOOR);
 
-        if (isWalkable) {
+        if (nextCell.isWalkable()) {
             setNextMove(nextCell);
         } else if (isClosedDoor) {
             boolean doorOpened = tryOpenDoor(nextCell);
