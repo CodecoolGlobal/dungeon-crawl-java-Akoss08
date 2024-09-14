@@ -8,20 +8,28 @@ public abstract class Actor implements Drawable {
     protected int health;
     protected int attackStrength;
     protected int defense = 0;
+    protected final String tileName;
 
-    public Actor(Cell cell, int health, int attackStrength) {
+    public Actor(Cell cell, int health, int attackStrength, String tileName) {
         this.cell = cell;
         this.cell.setActor(this);
         this.health = health;
         this.attackStrength = attackStrength;
+        this.tileName = tileName;
     }
 
-    public Actor(Cell cell, int health, int attackStrength, int defense) {
+    public Actor(Cell cell, int health, int attackStrength, int defense, String tileName) {
         this.cell = cell;
         this.cell.setActor(this);
         this.health = health;
         this.attackStrength = attackStrength;
         this.defense = defense;
+        this.tileName = tileName;
+    }
+
+    @Override
+    public String getTileName() {
+        return tileName;
     }
 
     public void move(int dx, int dy) {

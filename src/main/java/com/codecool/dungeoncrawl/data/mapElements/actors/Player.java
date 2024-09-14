@@ -16,12 +16,13 @@ public class Player extends Actor {
     private static final int BASE_HEALTH = 10;
     private static final int BASE_POWER = 5;
     private static final int BASE_DEFENSE = 0;
+    private static final String TILE_NAME = "player";
     private final Inventory inventory;
     private int powerUpDuration;
     private boolean isStrengthPotionActive;
 
     public Player(Cell cell) {
-        super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE);
+        super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE, TILE_NAME);
         this.powerUpDuration = 0;
         this.isStrengthPotionActive = false;
         this.inventory = new Inventory();

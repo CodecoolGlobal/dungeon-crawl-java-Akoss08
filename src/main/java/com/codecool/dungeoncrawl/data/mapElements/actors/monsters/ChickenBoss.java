@@ -10,14 +10,10 @@ public class ChickenBoss extends Monster {
     private static final int BASE_HEALTH = 10;
     private static final int BASE_POWER = 5;
     private static final String ABILITY = "Chicken can fly 2 cells and attacks immediately";
+    private static final String TILE_NAME = "chickenBoss";
 
     public ChickenBoss(Cell cell) {
-        super(cell, BASE_HEALTH, BASE_POWER, ABILITY);
-    }
-
-    @Override
-    public String getTileName() {
-        return "duckBoss";
+        super(cell, BASE_HEALTH, BASE_POWER, ABILITY, TILE_NAME);
     }
 
     @Override
@@ -48,36 +44,5 @@ public class ChickenBoss extends Monster {
             }
         }
     }
-
-    //  public void followPlayer() {
-//    List<Cell> bossNeighbours = this.getCell().getBossNeighbours();
-//    Cell playerCell = null;
-//    List<Cell> playerNeighbours;
-//    List<Cell> commonNeighbours = new ArrayList<>();
-//    List<Cell> walkableCommonNeighbours = new ArrayList<>();
-//    for (Cell cell : bossNeighbours) {
-//      if (cell.getActor() instanceof Player) {
-//        playerCell = cell;
-//      }
-//    }
-//    if (playerCell != null) {
-//      playerNeighbours = playerCell.getNeighbors();
-//
-//      for (Cell playerNeighbour : playerNeighbours) {
-//        for (Cell bossNeighbour : bossNeighbours) {
-//          if (playerNeighbour.getX() == bossNeighbour.getX()
-//                  && playerNeighbour.getY() == bossNeighbour.getY()) {
-//            commonNeighbours.add(bossNeighbour);
-//          }
-//        }
-//      }
-//
-//      for (Cell commonNeighbour : commonNeighbours) {
-//        if (commonNeighbour.isWalkable()) {
-//          walkableCommonNeighbours.add(commonNeighbour);
-//        }
-//      }
-//    }
-//  }
 
 }
