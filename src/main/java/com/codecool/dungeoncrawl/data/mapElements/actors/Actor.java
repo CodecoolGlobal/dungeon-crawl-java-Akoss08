@@ -8,7 +8,7 @@ public abstract class Actor implements Drawable {
     protected int health;
     protected int attackStrength;
     protected int defense = 0;
-    protected final String tileName;
+    private String tileName;
 
     public Actor(Cell cell, int health, int attackStrength, String tileName) {
         this.cell = cell;
@@ -31,6 +31,14 @@ public abstract class Actor implements Drawable {
     public String getTileName() {
         return tileName;
     }
+
+    public void setTileName(String tileName) {
+        this.tileName = tileName;
+    }
+
+    protected void die() {
+        cell.setActor(null);
+    };
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);

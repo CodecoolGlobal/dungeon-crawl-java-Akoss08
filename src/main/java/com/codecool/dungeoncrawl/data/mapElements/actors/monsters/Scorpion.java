@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.data.mapElements.actors.monsters;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.mapElements.items.PowerPotion;
 
 public class Scorpion extends Monster {
     private static final int BASE_HEALTH = 10;
@@ -11,4 +12,9 @@ public class Scorpion extends Monster {
         super(cell, BASE_HEALTH, BASE_POWER, TILE_NAME);
     }
 
+    @Override
+    protected void die() {
+        super.die();
+        cell.setItem(new PowerPotion(cell));
+    }
 }

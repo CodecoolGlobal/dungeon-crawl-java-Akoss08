@@ -28,15 +28,13 @@ public abstract class Monster extends Actor {
     }
 
     public void attack(Player player) {
-        int playerHealth = player.getHealth();
-        int monsterStrength = Math.max(getAttackStrength() - player.getDefense(), 0);
-
-        int playerNewHealth = playerHealth - monsterStrength;
-
-        if (playerNewHealth <= 0) {
-            getCell().setActor(null);
-            Platform.exit();
+        if (health <= 0) {
+            die();
         } else {
+            int playerHealth = player.getHealth();
+            int monsterStrength = Math.max(attackStrength - player.getDefense(), 0);
+            int playerNewHealth = playerHealth - monsterStrength;
+
             player.setHealth(playerNewHealth);
         }
     }

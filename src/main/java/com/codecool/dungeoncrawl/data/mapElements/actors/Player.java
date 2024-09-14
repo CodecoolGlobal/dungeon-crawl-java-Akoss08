@@ -8,6 +8,7 @@ import com.codecool.dungeoncrawl.data.mapElements.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
+import javafx.application.Platform;
 
 import java.util.List;
 
@@ -15,30 +16,14 @@ public class Player extends Actor {
     private static final int BASE_HEALTH = 10;
     private static final int BASE_POWER = 5;
     private static final int BASE_DEFENSE = 0;
-    private String tileName;
     private final Inventory inventory;
     private PowerPotion powerBoost;
-    private HealthPotion healthBoost;
 
     public Player(Cell cell, String tileName) {
         super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE, tileName);
         this.inventory = new Inventory();
-        this.tileName = tileName;
-        this.powerBoost = null;
     }
 
-    @Override
-    public String getTileName() {
-        return tileName;
-    }
-
-    public void setTileName(String tileName) {
-        this.tileName = tileName;
-    }
-
-    public void setPowerBoost(PowerPotion powerBoost) {
-        this.powerBoost = powerBoost;
-    }
 
     public Inventory getInventory() {
         return inventory;
@@ -47,6 +32,7 @@ public class Player extends Actor {
     public int getBaseHealth() {
         return BASE_HEALTH;
     }
+
 
     @Override
     public void move(int dx, int dy) {
@@ -70,31 +56,41 @@ public class Player extends Actor {
         List<Monster> allMonsters = GameMap.getMonsters();
 
         for (Cell neighbor : neighbors) {
-            Monster monster = (Monster) neighbor.getActor();
+            Actor monster = neighbor.getActor();
 
-            if (monster != null) {
-                attackMonster(neighbor, monster, allMonsters);
+            if (monster instanceof Monster) {
+                attackMonster((Monster) monster, allMonsters);
             }
         }
     }
 
-    private void attackMonster(Cell neighbor, Monster monster, List<Monster> allMonsters) {
+    @Override
+    protected void die() {
+        super.die();
+        Platform.exit();
+    }
+
+    ;
+
+    private void attackMonster(Monster monster, List<Monster> allMonsters) {
         if (powerBoost != null) {
             applyPowerUp();
         }
 
-        int monsterHealth = monster.getHealth();
-        int monsterNewHealth = monsterHealth - attackStrength;
-
-        if (monsterNewHealth <= 0) {
-            killMonster(neighbor, monster, allMonsters);
-        } else {
-            monster.setHealth(monsterNewHealth);
-            monster.attack(this);
+        if (health <= 0) {
+            die();
         }
+
+        int monsterHealth = monster.getHealth();
+        int playerStrength = Math.max(attackStrength - monster.getDefense(), 0);
+        int monsterNewHealth = monsterHealth - playerStrength;
+
+        monster.setHealth(monsterNewHealth);
+
+        monster.attack(this);
     }
 
-    private void killMonster(Cell neighbor, Monster monster, List<Monster> allMonsters) {
+    private void killMonster(Monster monster, List<Monster> allMonsters) {
         if (monster instanceof Scorpion) {
             neighbor.setItem(new PowerPotion(neighbor));
         }
@@ -161,10 +157,9 @@ public class Player extends Actor {
 
         for (Item item : inventory.getItems()) {
             if (item instanceof HealthPotion) {
-                healthBoost = (HealthPotion) item;
+                HealthPotion healthBoost = (HealthPotion) item;
                 healthBoost.use(this);
-                toRemove = item;
-                healthBoost = null;
+                toRemove = healthBoost;
                 break;
             }
         }
