@@ -37,7 +37,7 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        boolean isWalkable = getCell().isWalkable(nextCell);
+        boolean isWalkable = cell.isWalkable(nextCell);
         boolean isClosedDoor = nextCell.getType().equals(CellType.CLOSED_DOOR);
 
         if (isWalkable) {
@@ -52,7 +52,7 @@ public class Player extends Actor {
     }
 
     public void attack() {
-        List<Cell> neighbors = getCell().getNeighbors();
+        List<Cell> neighbors = cell.getNeighbors();
         List<Monster> allMonsters = GameMap.getMonsters();
 
         for (Cell neighbor : neighbors) {
@@ -130,14 +130,13 @@ public class Player extends Actor {
         Item item = cell.getItem();
 
         if (item != null) {
-            getCell().setItem(null);
-            inventory.addItem(item);
+            cell.setItem(null);
             item.addToPlayer(this);
         }
     }
 
     public void openChest() {
-        List<Cell> neighborsCell = getCell().getNeighbors();
+        List<Cell> neighborsCell = cell.getNeighbors();
 
         for (Cell neighbor : neighborsCell) {
             Chest chest = neighbor.getChest();

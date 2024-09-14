@@ -18,8 +18,8 @@ public class ChickenBoss extends Monster {
 
     @Override
     public void move(int dx, int dy) {
-        Cell nextCell = getCell().getNeighbor(dx, dy);
-        boolean isWalkable = getCell().isWalkable(nextCell);
+        Cell nextCell = cell.getNeighbor(dx, dy);
+        boolean isWalkable = cell.isWalkable(nextCell);
         int bossHorPos = dx * 2;
         int bossVerPos = dy * 2;
 
@@ -33,7 +33,7 @@ public class ChickenBoss extends Monster {
     }
 
     private void attackPlayer() {
-        List<Cell> neighboringCells = getCell().getNeighbors();
+        List<Cell> neighboringCells = cell.getNeighbors();
 
         for (Cell neighbor : neighboringCells) {
             Actor player = neighbor.getActor();
