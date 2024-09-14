@@ -14,7 +14,7 @@ public class GameMap {
 
     private Player player;
 
-    private final List<Monster> monsters = new ArrayList<>();
+    protected final List<Monster> monsters = new ArrayList<>();
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -58,10 +58,11 @@ public class GameMap {
                 moveRandomly(monster);
             }
         }
+
         monsters.removeAll(deadMonsters);
     }
 
-    private void moveRandomly(Actor monster) {
+    protected void moveRandomly(Actor monster) {
         List<Cell> walkableCells = getWalkableCells(monster);
         Cell nextCell = walkableCells.get(randomNumber(walkableCells.size()));
         int currentX = monster.getX();

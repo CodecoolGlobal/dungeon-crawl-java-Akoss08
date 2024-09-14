@@ -100,7 +100,7 @@ public class StatusPane {
     }
 
     public void setValues(String health, String inventory, String playerStrength, String playerDefense, String monsterHealth, String monsterStrength, String monsterAbility) {
-        instructionsValueLabel.setText("[A: attack, O: open, H: heal]");
+        instructionsValueLabel.setText("[A: attack, O: open, H: heal, P: power boost]");
         healthValueLabel.setText(health);
         inventoryValueLabel.setText(inventory);
         playerStrengthValueLabel.setText(playerStrength);

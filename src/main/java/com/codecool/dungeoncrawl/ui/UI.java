@@ -46,7 +46,6 @@ public class UI {
         }
         logic.moveMonsters();
         refresh();
-
     }
 
     public void refresh() {

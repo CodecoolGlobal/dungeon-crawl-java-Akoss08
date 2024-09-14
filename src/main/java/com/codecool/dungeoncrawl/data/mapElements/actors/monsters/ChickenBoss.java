@@ -38,6 +38,9 @@ public class ChickenBoss extends Monster {
 
             if (player instanceof Player) {
                 attack((Player) player);
+                if (player.getHealth() <= 0) {
+                    ((Player) player).die();
+                }
                 break;
             }
         }

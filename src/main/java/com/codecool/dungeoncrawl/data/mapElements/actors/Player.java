@@ -60,20 +60,14 @@ public class Player extends Actor {
     }
 
     @Override
-    protected void die() {
+    public void die() {
         super.die();
         Platform.exit();
     }
 
-    ;
-
     private void attackMonster(Monster monster) {
         if (powerBoost != null) {
             applyPowerUp();
-        }
-
-        if (health <= 0) {
-            die();
         }
 
         int monsterHealth = monster.getHealth();
@@ -83,13 +77,19 @@ public class Player extends Actor {
         monster.setHealth(monsterNewHealth);
 
         monster.attack(this);
+
+        if (health <= 0) {
+            die();
+            System.out.println("chicken attacked, health: " + health);
+        }
     }
 
     private void applyPowerUp() {
-        powerBoost.decreaseDuration();
         if (powerBoost.getDuration() == 0) {
             powerBoost.resetPowerBoost(this);
             powerBoost = null;
+        } else {
+            powerBoost.decreaseDuration();
         }
     }
 

@@ -9,8 +9,7 @@ public abstract class Actor implements Drawable {
     protected int attackStrength;
     protected int defense = 0;
     private String tileName;
-
-    private boolean isDead = false;
+    protected boolean isDead = false;
 
     public Actor(Cell cell, int health, int attackStrength, String tileName) {
         this.cell = cell;
@@ -50,7 +49,7 @@ public abstract class Actor implements Drawable {
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
 
-        if (nextCell.isWalkable()) {
+        if (nextCell.isWalkable() && !isDead) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
