@@ -60,7 +60,10 @@ public class MapLoader {
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            map.addMonster(new Scorpion(cell));
+                            int scorpionHealth = 6;
+                            int scorpionStrength = 7;
+                            int scorpionDefense = 0;
+                            map.addMonster(new Scorpion(cell, scorpionHealth, scorpionStrength, scorpionDefense));
                             break;
                         case 'B':
                             cell.setType(CellType.FLOOR);
@@ -80,11 +83,19 @@ public class MapLoader {
                             break;
                         case 'D':
                             cell.setType(CellType.FLOOR);
-                            int health = 10;
-                            int strength = 5;
-                            int defense = 0;
+
+                            int chickenBossHealth = 20;
+                            int chickenBossStrength = 5;
+                            int chickenBossDefense = 0;
                             String ability = "Chicken can fly 2 cells and attacks immediately";
-                            ChickenBoss duckBoss = new ChickenBoss(cell, health, strength, defense, ability);
+
+                            ChickenBoss duckBoss = new ChickenBoss(
+                                    cell,
+                                    chickenBossHealth,
+                                    chickenBossStrength,
+                                    chickenBossDefense,
+                                    ability);
+
                             map.addMonster(duckBoss);
                             break;
                         default:

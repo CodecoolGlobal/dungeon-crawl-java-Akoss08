@@ -4,10 +4,8 @@ import com.codecool.dungeoncrawl.data.Cell;
 
 public class Scorpion extends Monster {
 
-    public Scorpion(Cell cell) {
-        super(cell);
-        setAttackStrength(7);
-        setHealth(6);
+    public Scorpion(Cell cell, int health, int strength, int defense) {
+        super(cell, health, strength, defense);
     }
 
     @Override
