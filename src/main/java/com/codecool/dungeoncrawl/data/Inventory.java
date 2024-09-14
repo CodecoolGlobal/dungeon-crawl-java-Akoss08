@@ -23,16 +23,16 @@ public class Inventory {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("[");
+        str.append("[\n");
 
         for (Item item : items) {
             str.append(item.getTileName());
             if (item != items.get(items.size() - 1)) {
-                str.append(", ");
+                str.append(", \n");
             }
         }
 
-        str.append("]");
+        str.append("\n]");
         return str.toString();
     }
 }
