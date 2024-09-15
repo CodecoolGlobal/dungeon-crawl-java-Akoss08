@@ -17,6 +17,7 @@ import java.util.Scanner;
 
 public class MapLoader {
     private static String fileName = "/map1.txt";
+    private static Player existingPlayer;
 
     public static void setFileName(String fileName) {
         MapLoader.fileName = fileName;
@@ -57,7 +58,15 @@ public class MapLoader {
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
-                            map.setPlayer(new Player(cell, "player"));
+                            if (existingPlayer != null) {
+                                cell.setActor(existingPlayer);
+                                existingPlayer.setCell(cell);
+                                map.setPlayer(existingPlayer);
+                            } else {
+                                Player newPlayer = new Player(cell, "player");
+                                existingPlayer = newPlayer;
+                                map.setPlayer(newPlayer);
+                            }
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);

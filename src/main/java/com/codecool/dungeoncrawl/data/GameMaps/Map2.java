@@ -26,8 +26,6 @@ public class Map2 extends GameMap {
             }
         }
 
-        System.out.println("Map2 movemonsters method called");
-        System.out.println(monsters.size());
         if (deadMonsters.size() == 1) {
             lastKilledMonster.getCell().setItem(new BasicShield(lastKilledMonster.getCell()));
         }
