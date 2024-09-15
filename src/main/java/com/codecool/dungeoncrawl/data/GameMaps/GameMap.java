@@ -21,6 +21,7 @@ public abstract class GameMap {
     protected Player player;
 
     protected List<Monster> monsters = new ArrayList<>();
+    protected List<Monster> deadMonsters = new ArrayList<>();
 
     public GameMap(int width, int height, CellType defaultCellType, String nextMapFileName) {
         this.width = width;
@@ -72,10 +73,17 @@ public abstract class GameMap {
 
     public void moveMonsters() {
         for (Monster monster : monsters) {
-            if (!monster.isDead()) {
+            if (monster.isDead()) {
+                deadMonsters.add(monster);
+            } else {
                 moveRandomly(monster);
             }
         }
+
+        System.out.println("alive monsters: " + monsters.size());
+        System.out.println("dead monsters: " + deadMonsters.size());
+
+        monsters.removeAll(deadMonsters);
     }
 
     protected void moveRandomly(Actor monster) {

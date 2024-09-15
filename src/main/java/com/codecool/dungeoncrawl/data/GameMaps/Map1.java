@@ -5,11 +5,9 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.items.Key;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Map1 extends GameMap {
     private static final String NEXT_MAP_FILE_NAME = "/map2.txt";
+    private boolean keyDropped = false;
 
     public Map1(int width, int height, CellType defaultCellType) {
         super(width, height, defaultCellType, NEXT_MAP_FILE_NAME);
@@ -17,20 +15,13 @@ public class Map1 extends GameMap {
 
     @Override
     public void moveMonsters() {
-        List<Monster> deadMonsters = new ArrayList<>();
-        Monster lastKilledMonster = null;
+        Monster lastKilledMonster;
+        super.moveMonsters();
 
-        for (Monster monster : monsters) {
-            if (monster.isDead()) {
-                deadMonsters.add(monster);
-                lastKilledMonster = monster;
-            } else {
-                moveRandomly(monster);
-            }
-        }
-
-        if (!deadMonsters.isEmpty() && monsters.size() - deadMonsters.size() == 1) {
+        if (monsters.size() == 1 && !keyDropped) {
+            lastKilledMonster = deadMonsters.get(deadMonsters.size() - 1);
             dropKey(lastKilledMonster);
+            keyDropped = true;
         } else if (monsters.isEmpty()) {
             openStair();
             if (player.getCell().getType().equals(CellType.STAIR)) {

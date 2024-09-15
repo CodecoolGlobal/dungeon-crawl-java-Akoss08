@@ -4,30 +4,22 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.items.BasicShield;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Map2 extends GameMap {
+    private boolean shieldDropped = false;
+
     public Map2(int width, int height, CellType defaultCellType) {
         super(width, height, defaultCellType);
     }
 
     @Override
     public void moveMonsters() {
-        List<Monster> deadMonsters = new ArrayList<>();
-        Monster lastKilledMonster = null;
+        Monster firstKilledMonster;
+        super.moveMonsters();
 
-        for (Monster monster : monsters) {
-            if (monster.isDead()) {
-                deadMonsters.add(monster);
-                lastKilledMonster = monster;
-            } else {
-                moveRandomly(monster);
-            }
-        }
-
-        if (deadMonsters.size() == 1) {
-            lastKilledMonster.getCell().setItem(new BasicShield(lastKilledMonster.getCell()));
+        if (deadMonsters.size() == 1 && !shieldDropped) {
+            firstKilledMonster = deadMonsters.get(0);
+            firstKilledMonster.getCell().setItem(new BasicShield(firstKilledMonster.getCell()));
+            shieldDropped = true;
         }
 
         monsters.removeAll(deadMonsters);
