@@ -2,7 +2,7 @@ package com.codecool.dungeoncrawl.data.mapElements.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
-import com.codecool.dungeoncrawl.data.mapElements.Chest;
+import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
 import javafx.application.Platform;
@@ -80,7 +80,6 @@ public class Player extends Actor {
 
         if (health <= 0) {
             die();
-            System.out.println("chicken attacked, health: " + health);
         }
     }
 

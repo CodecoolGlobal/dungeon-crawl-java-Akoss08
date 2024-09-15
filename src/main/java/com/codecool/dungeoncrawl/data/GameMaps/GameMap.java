@@ -1,20 +1,23 @@
-package com.codecool.dungeoncrawl.data;
+package com.codecool.dungeoncrawl.data.GameMaps;
 
+import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
+import com.codecool.dungeoncrawl.logic.MapLoader;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameMap {
-    private final int width;
-    private final int height;
-    private final Cell[][] cells;
+    private int width;
+    private int height;
+    protected Cell[][] cells;
 
-    private Player player;
+    protected Player player;
 
-    protected final List<Monster> monsters = new ArrayList<>();
+    protected List<Monster> monsters = new ArrayList<>();
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -49,17 +52,11 @@ public class GameMap {
     }
 
     public void moveMonsters() {
-        List<Monster> deadMonsters = new ArrayList<>();
-
         for (Monster monster : monsters) {
-            if (monster.isDead()) {
-                deadMonsters.add(monster);
-            } else {
+            if (!monster.isDead()) {
                 moveRandomly(monster);
             }
         }
-
-        monsters.removeAll(deadMonsters);
     }
 
     protected void moveRandomly(Actor monster) {
@@ -88,6 +85,15 @@ public class GameMap {
             }
         }
         return walkableCells;
+    }
+
+    public void switchMap(String fileName) {
+        MapLoader.setFileName(fileName);
+        GameMap newMap = MapLoader.loadMap();
+        this.cells = newMap.cells;
+        this.monsters.clear();
+        this.monsters.addAll(newMap.monsters);
+        this.player.setCell(newMap.player.getCell());
     }
 
     public void setPlayer(Player player) {
