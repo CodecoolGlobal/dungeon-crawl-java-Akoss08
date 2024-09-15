@@ -12,7 +12,7 @@ public class Map1 extends GameMap {
     private static final String NEXT_MAP_FILE_NAME = "/map2.txt";
 
     public Map1(int width, int height, CellType defaultCellType) {
-        super(width, height, defaultCellType);
+        super(width, height, defaultCellType, NEXT_MAP_FILE_NAME);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Map1 extends GameMap {
         } else if (monsters.isEmpty()) {
             openStair();
             if (player.getCell().getType().equals(CellType.STAIR)) {
-                switchMap(NEXT_MAP_FILE_NAME);
+                isLevelBeaten = true;
             }
         }
 

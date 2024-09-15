@@ -10,14 +10,29 @@ import com.codecool.dungeoncrawl.logic.MapLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameMap {
-    private int width;
-    private int height;
+public abstract class GameMap {
+    private final int width;
+    private final int height;
     protected Cell[][] cells;
+    protected String nextMapFileName;
+
+    protected boolean isLevelBeaten = false;
 
     protected Player player;
 
     protected List<Monster> monsters = new ArrayList<>();
+
+    public GameMap(int width, int height, CellType defaultCellType, String nextMapFileName) {
+        this.width = width;
+        this.height = height;
+        this.nextMapFileName = nextMapFileName;
+        cells = new Cell[width][height];
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                cells[x][y] = new Cell(this, x, y, defaultCellType);
+            }
+        }
+    }
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -28,6 +43,10 @@ public class GameMap {
                 cells[x][y] = new Cell(this, x, y, defaultCellType);
             }
         }
+    }
+
+    public boolean isLevelBeaten() {
+        return isLevelBeaten;
     }
 
     public Monster getMonster() {
@@ -87,13 +106,9 @@ public class GameMap {
         return walkableCells;
     }
 
-    public void switchMap(String fileName) {
-        MapLoader.setFileName(fileName);
-        GameMap newMap = MapLoader.loadMap();
-        this.cells = newMap.cells;
-        this.monsters.clear();
-        this.monsters.addAll(newMap.monsters);
-        this.player.setCell(newMap.player.getCell());
+    public GameMap updateMap() {
+        MapLoader.setFileName(nextMapFileName);
+        return MapLoader.loadMap();
     }
 
     public void setPlayer(Player player) {

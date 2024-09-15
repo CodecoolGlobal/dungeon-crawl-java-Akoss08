@@ -6,7 +6,7 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 
 
 public class GameLogic {
-    private final GameMap map;
+    private GameMap map;
 
     public GameLogic() {
         this.map = MapLoader.loadMap();
@@ -80,5 +80,9 @@ public class GameLogic {
 
     public void moveMonsters() {
         map.moveMonsters();
+    }
+
+    public void updateMap() {
+        this.map = map.updateMap();
     }
 }
