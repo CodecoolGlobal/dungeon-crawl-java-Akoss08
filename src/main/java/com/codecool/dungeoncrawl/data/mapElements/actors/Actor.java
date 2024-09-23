@@ -5,23 +5,51 @@ import com.codecool.dungeoncrawl.data.Drawable;
 
 public abstract class Actor implements Drawable {
     protected Cell cell;
-    private int health = 10;
+    protected int health;
     protected int attackStrength;
-    private int defense;
+    protected int defense = 0;
+    private String tileName;
+    protected boolean isDead = false;
 
-    public Actor(Cell cell, int health, int attackStrength, int defense) {
+    public Actor(Cell cell, int health, int attackStrength, String tileName) {
+        this.cell = cell;
+        this.cell.setActor(this);
+        this.health = health;
+        this.attackStrength = attackStrength;
+        this.tileName = tileName;
+    }
+
+    public Actor(Cell cell, int health, int attackStrength, int defense, String tileName) {
         this.cell = cell;
         this.cell.setActor(this);
         this.health = health;
         this.attackStrength = attackStrength;
         this.defense = defense;
+        this.tileName = tileName;
     }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    @Override
+    public String getTileName() {
+        return tileName;
+    }
+
+    public void setTileName(String tileName) {
+        this.tileName = tileName;
+    }
+
+    protected void die() {
+        cell.setActor(null);
+        isDead = true;
+    };
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        boolean isWalkable = cell.isWalkable(nextCell);
 
-        if (isWalkable) {
+        if (nextCell.isWalkable() && !isDead) {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;

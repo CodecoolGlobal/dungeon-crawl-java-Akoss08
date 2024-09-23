@@ -1,11 +1,12 @@
 package com.codecool.dungeoncrawl.logic;
 
-import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.CellType;
-import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.mapElements.Chest;
+import com.codecool.dungeoncrawl.data.*;
+import com.codecool.dungeoncrawl.data.GameMaps.GameMap;
+import com.codecool.dungeoncrawl.data.GameMaps.Map1;
+import com.codecool.dungeoncrawl.data.GameMaps.Map2;
+import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Boss;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.ChickenBoss;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Skeleton;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Spider;
@@ -15,19 +16,31 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
+    private static String fileName = "/map1.txt";
+    private static Player existingPlayer;
+
+    public static void setFileName(String fileName) {
+        MapLoader.fileName = fileName;
+    }
+
     public static GameMap loadMap() {
-        InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
+        InputStream is = MapLoader.class.getResourceAsStream(fileName);
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
         int height = scanner.nextInt();
 
         scanner.nextLine(); // empty line
 
-        GameMap map = new GameMap(width, height, CellType.EMPTY);
+        GameMap map = null;
+
+        if (fileName.equals("/map1.txt")) map = new Map1(width, height, CellType.EMPTY);
+        else if (fileName.equals("/map2.txt")) map = new Map2(width, height, CellType.EMPTY);
+
         for (int y = 0; y < height; y++) {
             String line = scanner.nextLine();
             for (int x = 0; x < width; x++) {
                 if (x < line.length()) {
+                    assert map != null;
                     Cell cell = map.getCell(x, y);
                     switch (line.charAt(x)) {
                         case ' ':
@@ -45,7 +58,15 @@ public class MapLoader {
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
-                            map.setPlayer(new Player(cell));
+                            if (existingPlayer != null) {
+                                cell.setActor(existingPlayer);
+                                existingPlayer.setCell(cell);
+                                map.setPlayer(existingPlayer);
+                            } else {
+                                Player newPlayer = new Player(cell, "player");
+                                existingPlayer = newPlayer;
+                                map.setPlayer(newPlayer);
+                            }
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
@@ -53,7 +74,7 @@ public class MapLoader {
                             break;
                         case 'S':
                             cell.setType(CellType.FLOOR);
-                            new Sword(cell);
+                            new BasicSword(cell);
                             break;
                         case 'd':
                             cell.setType(CellType.CLOSED_DOOR);
@@ -68,11 +89,11 @@ public class MapLoader {
                             break;
                         case 'c':
                             cell.setType(CellType.CLOSED_CHEST);
-                            new Chest(cell, new Shield(null));
+                            new Chest(cell, new BasicShield(null));
                             break;
                         case 'h':
                             cell.setType(CellType.FLOOR);
-                            new Helmet(cell);
+                            new BasicHelmet(cell);
                             break;
                         case 'p':
                             cell.setType(CellType.FLOOR);
@@ -80,8 +101,10 @@ public class MapLoader {
                             break;
                         case 'D':
                             cell.setType(CellType.FLOOR);
-                            Boss duckBoss = new Boss(cell);
-                            map.addMonster(duckBoss);
+                            map.addMonster(new ChickenBoss(cell));
+                            break;
+                        case 'i':
+                            cell.setType(CellType.INVISIBLE_STAIR);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

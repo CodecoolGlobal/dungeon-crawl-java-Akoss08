@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.data;
 
-import com.codecool.dungeoncrawl.data.mapElements.Chest;
+import com.codecool.dungeoncrawl.data.GameMaps.GameMap;
+import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.items.Item;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 public class Cell implements Drawable {
     private CellType type;
+
     private Actor actor;
     private Item item;
     private Chest chest;
@@ -25,6 +27,10 @@ public class Cell implements Drawable {
 
     public void setType(CellType type) {
         this.type = type;
+    }
+
+    public CellType getType() {
+        return type;
     }
 
     public void setActor(Actor actor) {
@@ -67,8 +73,7 @@ public class Cell implements Drawable {
     }
 
     public boolean isWalkable() {
-        return this.isWalkable = type.isWalkable()
-                && actor == null;
+        return type.isWalkable() && actor == null;
     }
 
     @Override
@@ -82,16 +87,5 @@ public class Cell implements Drawable {
 
     public int getY() {
         return y;
-    }
-
-
-    //Why do we need this?
-    public boolean isWalkable(Cell nextCell) {
-        boolean isMonster = nextCell.getActor() != null;
-        boolean isWall = nextCell.getTileName().equals("wall");
-        boolean isClosedDoor = nextCell.getTileName().equals("closedDoor");
-        boolean isChest = nextCell.getTileName().contains("Chest");
-
-        return !isMonster && !isWall && !isChest && !isClosedDoor;
     }
 }

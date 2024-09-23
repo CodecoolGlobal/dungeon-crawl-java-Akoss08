@@ -2,7 +2,7 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
-import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.GameMaps.GameMap;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

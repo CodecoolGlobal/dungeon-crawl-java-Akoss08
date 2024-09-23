@@ -1,4 +1,4 @@
-package com.codecool.dungeoncrawl.data;
+package com.codecool.dungeoncrawl.data.mapElements.actors;
 
 import com.codecool.dungeoncrawl.data.mapElements.items.Item;
 
@@ -28,7 +28,7 @@ public class Inventory {
         for (Item item : items) {
             str.append(item.getTileName());
             if (item != items.get(items.size() - 1)) {
-                str.append(", ");
+                str.append(", \n");
             }
         }
 
