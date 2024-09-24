@@ -5,7 +5,7 @@ import com.codecool.dungeoncrawl.data.Drawable;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
 public abstract class Npc implements Drawable {
-    private final String dialog;
+    protected String dialog;
     protected Cell cell;
     private final String tileName;
 

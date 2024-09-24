@@ -236,9 +236,15 @@ public class Player extends Actor {
         }
     }
 
-    public boolean hasThreeTeeth() {
-        return inventory.getItems().stream().
+    public boolean hasThreeTeeth(int requiredTeeth) {
+        boolean hasTeeth = inventory.getItems().stream().
                 filter(item -> item instanceof SnakeTooth).
-                count() == 3;
+                count() == requiredTeeth;
+        if (hasTeeth) {
+            inventory.getItems().removeIf(item -> item instanceof SnakeTooth);
+            return true;
+        }
+
+        return false;
     }
 }

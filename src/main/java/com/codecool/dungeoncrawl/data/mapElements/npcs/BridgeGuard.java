@@ -4,21 +4,41 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
 public class BridgeGuard extends Npc {
-    private static final String DIALOG = "Halt, Traveler!\nThis bridge isn’t for just anyone. " +
+    private static final String BASE_DIALOG = "Halt, Traveler!\nThis bridge isn’t for just anyone. " +
             "You’ll need to earn\n" +
             "your way across. There are three snakes lurking\nnearby, each carrying poison in their " +
             "teeth. \n\nBring me their teeth, and only then will I let you pass." +
             "\nNo teeth, no crossing. Simple as that.";
+    private static final String FAIL_DIALOG = "You think you can fool me, Traveler?\n" +
+            "These are not all the teeth I asked for.\n" +
+            "There are still snakes out there, and I want them\n" +
+            "dealt with." +
+            "\n\nReturn when you have all the teeth,\n" +
+            "or there will be no crossing.";
+    private static final String SUCCESS_DIALOG = "Ah, Traveler! You've done it.\n" +
+            "All the snake teeth, just as I asked.\n" +
+            "You have proven your worth,\n" +
+            "and I will keep my word." +
+            "\n\nGo ahead and cross the bridge.\n" +
+            "Safe travels on your journey.";
     private static final String TILE_NAME = "guard";
+    private boolean interractable = true;
 
     public BridgeGuard(Cell cell) {
-        super(DIALOG, cell, TILE_NAME);
+        super(BASE_DIALOG, cell, TILE_NAME);
     }
 
     @Override
     public void interact(Player player) {
-        if (player.hasThreeTeeth()) {
-            move();
+        int requiredTeeth = 3;
+        if (interractable) {
+            if (player.hasThreeTeeth(requiredTeeth)) {
+                move();
+                dialog = SUCCESS_DIALOG;
+                interractable = false;
+            } else {
+                dialog = FAIL_DIALOG;
+            }
         }
     }
 
