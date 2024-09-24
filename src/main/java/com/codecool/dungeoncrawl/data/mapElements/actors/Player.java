@@ -15,6 +15,8 @@ public class Player extends Actor {
     private static final int BASE_DEFENSE = 0;
     private final Inventory inventory;
     private PowerPotion powerBoost;
+    private int level = 1;
+    private int xp = 0;
 
     public Player(Cell cell, String tileName) {
         super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE, tileName);

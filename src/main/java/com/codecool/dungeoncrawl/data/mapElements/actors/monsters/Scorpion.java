@@ -6,10 +6,11 @@ import com.codecool.dungeoncrawl.data.mapElements.items.PowerPotion;
 public class Scorpion extends Monster {
     private static final int BASE_HEALTH = 7;
     private static final int BASE_POWER = 5;
+    private static final int DROPPED_XP = 3;
     private static final String TILE_NAME = "scorpion";
 
     public Scorpion(Cell cell) {
-        super(cell, BASE_HEALTH, BASE_POWER, TILE_NAME);
+        super(cell, BASE_HEALTH, BASE_POWER, TILE_NAME, DROPPED_XP);
     }
 
     @Override

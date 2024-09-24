@@ -6,23 +6,28 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
 public abstract class Monster extends Actor {
     private String ability = "No special ability";
+    private int droppedXp;
 
-    public Monster(Cell cell, int health, int strength, String tileName) {
+    public Monster(Cell cell, int health, int strength, String tileName, int droppedXp) {
         super(cell, health, strength, tileName);
+        this.droppedXp = droppedXp;
     }
 
-    public Monster(Cell cell, int health, int strength, String ability, String tileName) {
+    public Monster(Cell cell, int health, int strength, String ability, String tileName, int droppedXp) {
         super(cell, health, strength, tileName);
         this.ability = ability;
+        this.droppedXp = droppedXp;
     }
 
-    public Monster(Cell cell, int health, int strength, int defense, String tileName) {
+    public Monster(Cell cell, int health, int strength, int defense, String tileName, int droppedXp) {
         super(cell, health, strength, defense, tileName);
+        this.droppedXp = droppedXp;
     }
 
-    public Monster(Cell cell, int health, int strength, int defense, String ability, String tileName) {
+    public Monster(Cell cell, int health, int strength, int defense, String ability, String tileName, int droppedXp) {
         super(cell, health, strength, defense, tileName);
         this.ability = ability;
+        this.droppedXp = droppedXp;
     }
 
     public void attack(Player player) {
