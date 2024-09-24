@@ -86,6 +86,10 @@ public class Player extends Actor {
                 setNextMove(nextCell);
             }
         }
+
+        if (health <= 0) {
+            die();
+        }
     }
 
     private void checkForPoison() {

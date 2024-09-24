@@ -5,7 +5,7 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.items.SnakeTooth;
 
 public class Snake extends Monster {
-    private static final int BASE_HEALTH = 1;
+    private static final int BASE_HEALTH = 50;
     private static final int BASE_POWER = 1;
     private static final int XP_VALUE = 4;
     private static final String TILE_NAME = "snake";
