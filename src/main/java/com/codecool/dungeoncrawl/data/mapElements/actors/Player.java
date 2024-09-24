@@ -14,6 +14,7 @@ public class Player extends Actor {
     private static final int BASE_POWER = 5;
     private static final int BASE_DEFENSE = 0;
     private int level = 1;
+    private static final int MULTIPLIER_TO_LEVEL_UP = 10;
     private int xp = 0;
     private final Inventory inventory;
     private PowerPotion powerBoost;
@@ -172,5 +173,13 @@ public class Player extends Actor {
 
     public void collectXp(int xp) {
         this.xp += xp;
+        if (this.xp == level * MULTIPLIER_TO_LEVEL_UP) {
+            levelUp();
+        }
+    }
+
+    private void levelUp() {
+        level++;
+        this.xp = 0;
     }
 }
