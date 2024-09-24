@@ -57,6 +57,8 @@ public class Tiles {
         tileMap.put("waterCrossing", new Tile(11,4));
         tileMap.put("waterTurn", new Tile(9,4));
         tileMap.put("waterTurnRotate90", new Tile(9,4));
+        tileMap.put("waterTurnRotate180", new Tile(9,4));
+        tileMap.put("waterTurnRotate270", new Tile(9,4));
         tileMap.put("bridge", new Tile(6,5));
     }
 

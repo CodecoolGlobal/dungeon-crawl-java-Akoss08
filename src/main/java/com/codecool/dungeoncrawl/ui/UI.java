@@ -64,6 +64,10 @@ public class UI {
                     Tiles.drawTile(context, cell.getItem(), x, y);
                 } else if (cell.getType().getTileName().contains("90")) {
                     Tiles.drawTile(context, cell, x, y, 90);
+                } else if (cell.getType().getTileName().contains("180")) {
+                    Tiles.drawTile(context, cell, x, y, 180);
+                } else if (cell.getType().getTileName().contains("270")) {
+                    Tiles.drawTile(context, cell, x, y, 270);
                 } else {
                     Tiles.drawTile(context, cell, x, y);
                 }

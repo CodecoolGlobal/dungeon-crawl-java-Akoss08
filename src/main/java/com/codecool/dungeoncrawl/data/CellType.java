@@ -19,6 +19,8 @@ public enum CellType {
     WATER_CROSSING("waterCrossing", false),
     WATER_TURN("waterTurn", false),
     WATER_TURN_ROTATE_90("waterTurnRotate90", false),
+    WATER_TURN_ROTATE_180("waterTurnRotate180", false),
+    WATER_TURN_ROTATE_270("waterTurnRotate270", false),
     BRIDGE("bridge", true);
 
 
