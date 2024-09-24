@@ -9,8 +9,10 @@ public enum CellType {
     CLOSED_CHEST("closedChest", false),
     OPEN_CHEST("openChest", false),
     INVISIBLE_STAIR("invisibleStair", true),
-    STAIR("stair", true);
-
+    STAIR("stair", true),
+    WATER("water", false),
+    WATER_TO_RIGHT("waterToRight", false),
+    BRIDGE("bridge", true);
 
     private final String tileName;
     private final boolean isWalkable;

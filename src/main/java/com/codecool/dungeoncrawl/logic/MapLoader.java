@@ -4,19 +4,17 @@ import com.codecool.dungeoncrawl.data.*;
 import com.codecool.dungeoncrawl.data.GameMaps.GameMap;
 import com.codecool.dungeoncrawl.data.GameMaps.Map1;
 import com.codecool.dungeoncrawl.data.GameMaps.Map2;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.*;
 import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.ChickenBoss;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Skeleton;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Spider;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
+import com.codecool.dungeoncrawl.data.mapElements.npcs.BridgeGuard;
 
 import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
-    private static String fileName = "/map1.txt";
+    private static String fileName = "/map2.txt";
     private static Player existingPlayer;
 
     public static void setFileName(String fileName) {
@@ -106,6 +104,24 @@ public class MapLoader {
                             break;
                         case 'i':
                             cell.setType(CellType.INVISIBLE_STAIR);
+                            break;
+                        case 'w':
+                            cell.setType(CellType.WATER);
+                            break;
+                        case 'e':
+                            cell.setType(CellType.BRIDGE);
+                            break;
+                        case 'g':
+                            cell.setType(CellType.FLOOR);
+                            map.addNpc(new BridgeGuard(cell));
+                            break;
+                        case 'r':
+                            cell.setType(CellType.WATER_TO_RIGHT);
+                            break;
+                        case 'P':
+                            cell.setType(CellType.FLOOR);
+                            Snake snake = new Snake(cell, new SnakeTooth());
+                            map.addMonster(snake);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

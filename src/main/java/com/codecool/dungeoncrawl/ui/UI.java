@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
 import com.codecool.dungeoncrawl.ui.keyeventhandler.KeyHandler;
@@ -61,6 +62,10 @@ public class UI {
                     Tiles.drawTile(context, cell.getActor(), x, y);
                 } else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
+                } else if (cell.getNpc() != null) {
+                    Tiles.drawTile(context, cell.getNpc(), x, y);
+                } else if (cell.getType().equals(CellType.WATER_TO_RIGHT)) {
+                    Tiles.drawTile(context, cell, x, y, 90);
                 } else {
                     Tiles.drawTile(context, cell, x, y);
                 }
@@ -70,6 +75,6 @@ public class UI {
                 logic.getPlayerStrength(), logic.getPlayerDefense(),
                 logic.getPlayerLevel(), logic.getPlayerXp(), logic.getMonsterHealth(),
                 logic.getMonsterStrength(),
-                logic.getMonsterAbility());
+                logic.getMonsterAbility(), logic.getNpcDialog());
     }
 }

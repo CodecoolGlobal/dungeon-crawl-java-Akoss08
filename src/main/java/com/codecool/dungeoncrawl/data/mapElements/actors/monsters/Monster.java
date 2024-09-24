@@ -6,7 +6,7 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
 public abstract class Monster extends Actor {
     private String ability = "No special ability";
-    private int xpValue;
+    private final int xpValue;
 
     public Monster(Cell cell, int health, int strength, String tileName, int xpValue) {
         super(cell, health, strength, tileName);

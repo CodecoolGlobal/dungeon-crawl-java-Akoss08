@@ -5,9 +5,9 @@ import com.codecool.dungeoncrawl.data.Drawable;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
 public abstract class Item implements Drawable {
-    private final Cell cell;
+    private Cell cell;
 
-    private final String tileName;
+    private String tileName;
 
     public Item(Cell cell, String tileName) {
         this.cell = cell;
@@ -15,6 +15,9 @@ public abstract class Item implements Drawable {
         if (cell != null) {
             this.cell.setItem(this);
         }
+    }
+
+    public Item() {
     }
 
     @Override
