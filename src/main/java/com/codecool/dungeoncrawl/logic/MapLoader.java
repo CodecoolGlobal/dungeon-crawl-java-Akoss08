@@ -142,6 +142,12 @@ public class MapLoader {
                         case 'U':
                             cell.setType(CellType.WATER_TURN_ROTATE_270);
                             break;
+                        case ',':
+                            cell.setType(CellType.GRASS);
+                            break;
+                        case ';':
+                            cell.setType(CellType.FLOWER);
+                            break;
                       default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }

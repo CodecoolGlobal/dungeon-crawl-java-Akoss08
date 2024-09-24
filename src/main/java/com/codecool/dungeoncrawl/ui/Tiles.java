@@ -60,6 +60,8 @@ public class Tiles {
         tileMap.put("waterTurnRotate180", new Tile(9,4));
         tileMap.put("waterTurnRotate270", new Tile(9,4));
         tileMap.put("bridge", new Tile(6,5));
+        tileMap.put("grass", new Tile(5,0));
+        tileMap.put("flower", new Tile(16,6));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {

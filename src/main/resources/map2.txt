@@ -1,16 +1,16 @@
 25 20
    tTTtTTttfFURffFFFfF
  tTTtTTt..TtTtwFffFFFffF
-TTt..tt...tTFfwf.....fFFf
-tT.k.......TFfw.........f
-ttT..@......rWu.........F
- TTt........w...........F
-TtT.........A...........f
- tTWR..rWR..w...........F
-  ttw..A.w..w..rWWR.....f
- Tt.UWRw.UWWxWWu..w....Fr
-tT...sUu....w....ru...rWu
-tTT.........w....A..rWuF
+TTt..tt...tTFfwf,,,,,fFFf
+tT.k.......TFfw,;,,;,,,,f
+ttT..@......rWu,,,;,,;,,F
+ TTt........w,,;,,,;,,,;F
+TtT.........A,,,,;,,;,,,f
+ tTWR..rWR..w,,;,,;,,,;,F
+  ttw..A.w..w,,rWWR,;,,;f
+ Tt.UWRw.UWWxWWu..w,,,,Fr
+tT...sUu....w....ru,;,rWu
+tTT.........w....A,,rWuF
 Tt..........w....UWWu...f
  TT.........A...........f
  tt.........UWR........F
