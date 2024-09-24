@@ -65,6 +65,19 @@ public abstract class GameMap {
         return null;
     }
 
+    public Npc getNpc() {
+        Cell playerCell = getPlayer().getCell();
+        List<Cell> neighbouringCells = playerCell.getNeighbors();
+
+        for (Cell neighbouringCell : neighbouringCells) {
+            if (neighbouringCell.getNpc() != null) {
+                return neighbouringCell.getNpc();
+            }
+        }
+
+        return null;
+    }
+
     public Cell getCell(int x, int y) {
         return cells[x][y];
     }

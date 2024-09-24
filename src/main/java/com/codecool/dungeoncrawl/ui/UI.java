@@ -72,6 +72,6 @@ public class UI {
                 logic.getPlayerStrength(), logic.getPlayerDefense(),
                 logic.getPlayerLevel(), logic.getPlayerXp(), logic.getMonsterHealth(),
                 logic.getMonsterStrength(),
-                logic.getMonsterAbility());
+                logic.getMonsterAbility(), logic.getNpcDialog());
     }
 }

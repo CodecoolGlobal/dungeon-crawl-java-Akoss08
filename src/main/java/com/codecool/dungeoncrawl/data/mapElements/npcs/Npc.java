@@ -19,4 +19,8 @@ public abstract class Npc implements Drawable {
     public String getTileName() {
         return tileName;
     }
+
+    public String getDialog() {
+        return dialog;
+    }
 }

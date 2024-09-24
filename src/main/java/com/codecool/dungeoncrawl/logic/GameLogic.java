@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMaps.GameMap;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
+import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
 
 
 public class GameLogic {
@@ -73,6 +74,16 @@ public class GameLogic {
 
         if (monster != null) {
             return monster.getAbility();
+        }
+
+        return "";
+    }
+
+    public String getNpcDialog() {
+        Npc npc = map.getNpc();
+
+        if (npc != null) {
+            return npc.getDialog();
         }
 
         return "";
