@@ -118,6 +118,9 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.addNpc(new BridgeGuard(cell));
                             break;
+                        case 'r':
+                            cell.setType(CellType.WATER_TO_RIGHT);
+                            break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }

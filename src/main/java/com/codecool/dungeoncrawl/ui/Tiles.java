@@ -49,6 +49,7 @@ public class Tiles {
         tileMap.put("invisibleStair", new Tile(2, 0));
         tileMap.put("stair", new Tile(3, 6));
         tileMap.put("water", new Tile(8, 4));
+        tileMap.put("waterToRight", new Tile(8, 4));
         tileMap.put("bridge", new Tile(6, 5));
         tileMap.put("guard", new Tile(30, 0));
     }
@@ -58,4 +59,20 @@ public class Tiles {
         context.drawImage(tileset, tile.x, tile.y, tile.w, tile.h,
                 x * TILE_WIDTH, y * TILE_WIDTH, TILE_WIDTH, TILE_WIDTH);
     }
+
+    public static void drawTile(GraphicsContext context, Drawable d, int x, int y, double angle) {
+        Tile tile = tileMap.get(d.getTileName());
+
+        context.save();
+
+        context.translate(x * TILE_WIDTH + (double) TILE_WIDTH / 2, y * TILE_WIDTH + (double) TILE_WIDTH / 2);
+
+        context.rotate(angle);
+
+        context.drawImage(tileset, tile.x, tile.y, tile.w, tile.h,
+                (double) -TILE_WIDTH / 2, (double) -TILE_WIDTH / 2, TILE_WIDTH, TILE_WIDTH);
+
+        context.restore();
+    }
+
 }

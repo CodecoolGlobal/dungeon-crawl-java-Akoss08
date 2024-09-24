@@ -11,6 +11,7 @@ public enum CellType {
     INVISIBLE_STAIR("invisibleStair", true),
     STAIR("stair", true),
     WATER("water", false),
+    WATER_TO_RIGHT("waterToRight", false),
     BRIDGE("bridge", true);
 
     private final String tileName;
