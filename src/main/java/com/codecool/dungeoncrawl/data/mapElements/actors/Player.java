@@ -13,16 +13,23 @@ public class Player extends Actor {
     private static final int BASE_HEALTH = 10;
     private static final int BASE_POWER = 5;
     private static final int BASE_DEFENSE = 0;
-    private final Inventory inventory;
-    private PowerPotion powerBoost;
     private int level = 1;
     private int xp = 0;
+    private final Inventory inventory;
+    private PowerPotion powerBoost;
 
     public Player(Cell cell, String tileName) {
         super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE, tileName);
         this.inventory = new Inventory();
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public int getXp() {
+        return xp;
+    }
 
     public Inventory getInventory() {
         return inventory;
@@ -163,5 +170,7 @@ public class Player extends Actor {
         inventory.getItems().remove(toRemove);
     }
 
-
+    public void collectXp(int xp) {
+        this.xp += xp;
+    }
 }

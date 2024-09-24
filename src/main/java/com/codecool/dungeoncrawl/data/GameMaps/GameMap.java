@@ -80,9 +80,6 @@ public abstract class GameMap {
             }
         }
 
-        System.out.println("alive monsters: " + monsters.size());
-        System.out.println("dead monsters: " + deadMonsters.size());
-
         monsters.removeAll(deadMonsters);
     }
 
