@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
+import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
 import javafx.application.Platform;
 
 import java.util.List;
@@ -27,18 +28,6 @@ public class Player extends Actor {
     public Player(Cell cell, String tileName) {
         super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE, tileName);
         this.inventory = new Inventory();
-    }
-
-    public boolean isPoisoned() {
-        return isPoisoned;
-    }
-
-    public int getPoisonDuration() {
-        return poisonDuration;
-    }
-
-    public int getPoisonStrength() {
-        return poisonStrength;
     }
 
     public int getLevel() {
@@ -233,5 +222,23 @@ public class Player extends Actor {
         defense += level;
         level++;
         this.xp = 0;
+    }
+
+    public void interactWithNpc() {
+        List<Cell> neighborsCell = cell.getNeighbors();
+
+        for (Cell neighbor : neighborsCell) {
+            Npc npc = neighbor.getNpc();
+
+            if (npc != null) {
+                npc.interact(this);
+            }
+        }
+    }
+
+    public boolean hasThreeTeeth() {
+        return inventory.getItems().stream().
+                filter(item -> item instanceof SnakeTooth).
+                count() == 3;
     }
 }

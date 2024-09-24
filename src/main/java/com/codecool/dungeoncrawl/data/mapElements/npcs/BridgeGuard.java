@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.data.mapElements.npcs;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
 public class BridgeGuard extends Npc {
     private static final String DIALOG = "Halt, Traveler!\nThis bridge isn’t for just anyone. " +
@@ -12,5 +13,19 @@ public class BridgeGuard extends Npc {
 
     public BridgeGuard(Cell cell) {
         super(DIALOG, cell, TILE_NAME);
+    }
+
+    @Override
+    public void interact(Player player) {
+        if (player.hasThreeTeeth()) {
+            move();
+        }
+    }
+
+    private void move() {
+        Cell nextCell = cell.getNeighbor(0, 1);
+        cell.setNpc(null);
+        nextCell.setNpc(this);
+        cell = nextCell;
     }
 }
