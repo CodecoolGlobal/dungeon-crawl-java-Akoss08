@@ -52,8 +52,7 @@ public class Tiles {
         tileMap.put("doublePine", new Tile(3,2));
         tileMap.put("simpleTree", new Tile(2,1));
         tileMap.put("doubleTree", new Tile(3,1));
-        tileMap.put("waterEnd", new Tile(12,4));
-        tileMap.put("wideWaterStraight", new Tile(8,4));
+        tileMap.put("water", new Tile(8,4));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {

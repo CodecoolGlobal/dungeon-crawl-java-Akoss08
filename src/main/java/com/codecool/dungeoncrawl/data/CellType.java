@@ -10,7 +10,10 @@ public enum CellType {
     OPEN_CHEST("openChest", false),
     INVISIBLE_STAIR("invisibleStair", true),
     STAIR("stair", true),
-    TREE("tree", false),
+    SIMPLE_TREE("simpleTree", false),
+    DOUBLE_TREE("doubleTree", false),
+    PINE_TREE("pineTree", false),
+    DOUBLE_PINE("doublePine", false),
     WATER("water", false);
 
 

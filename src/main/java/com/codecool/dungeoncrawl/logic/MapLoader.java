@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
-    private static String fileName = "/map1.txt";
+    private static String fileName = "/map2.txt";
     private static Player existingPlayer;
 
     public static void setFileName(String fileName) {
@@ -107,11 +107,21 @@ public class MapLoader {
                             cell.setType(CellType.INVISIBLE_STAIR);
                             break;
                         case 'f':
-                      case 'F':
-                      case 't':
-                      case 'T':
-                        cell.setType(CellType.TREE);
+                            cell.setType(CellType.PINE_TREE);
                             break;
+                        case 'F':
+                            cell.setType(CellType.DOUBLE_PINE);
+                            break;
+                        case 't':
+                            cell.setType(CellType.SIMPLE_TREE);
+                            break;
+                        case 'T':
+                            cell.setType(CellType.DOUBLE_TREE);
+                            break;
+//                        case 'w':
+//                        case 'W':
+//                            cell.setType(CellType.WATER);
+//                            break;
                       default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
