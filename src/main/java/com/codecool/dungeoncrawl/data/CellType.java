@@ -14,7 +14,9 @@ public enum CellType {
     DOUBLE_TREE("doubleTree", false),
     PINE_TREE("pineTree", false),
     DOUBLE_PINE("doublePine", false),
-    WATER("water", false);
+    WATER_VERTICAL("waterVertical", false),
+    WATER_HORIZONTAL("waterHorizontal", false),
+    BRIDGE("bridge", true);
 
 
     private final String tileName;

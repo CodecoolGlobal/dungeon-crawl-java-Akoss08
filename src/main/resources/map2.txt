@@ -14,7 +14,7 @@ tTT.........w..........F
 Tt....s.....w..s........f
  TT....s....w...........f
  tt.........w.....s.....F
-  Tt.....s..ws..........f
+  Tt.....s..Ws..........f
  Ttt.s.....fFt....s.....f
  tTT....fTtTfTF...s.....F
   tTTfFFf   FFfFTttTfFFtF

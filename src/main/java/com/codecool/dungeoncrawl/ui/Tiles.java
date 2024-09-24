@@ -52,12 +52,28 @@ public class Tiles {
         tileMap.put("doublePine", new Tile(3,2));
         tileMap.put("simpleTree", new Tile(2,1));
         tileMap.put("doubleTree", new Tile(3,1));
-        tileMap.put("water", new Tile(8,4));
+        tileMap.put("waterVertical", new Tile(8,4));
+        tileMap.put("waterHorizontal", new Tile(8,4));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
         Tile tile = tileMap.get(d.getTileName());
         context.drawImage(tileset, tile.x, tile.y, tile.w, tile.h,
                 x * TILE_WIDTH, y * TILE_WIDTH, TILE_WIDTH, TILE_WIDTH);
+    }
+
+    public static void drawTile(GraphicsContext context, Drawable d, int x, int y, double angle) {
+        Tile tile = tileMap.get(d.getTileName());
+
+        context.save();
+
+        context.translate(x * TILE_WIDTH + (double) TILE_WIDTH / 2, y * TILE_WIDTH + (double) TILE_WIDTH / 2);
+
+        context.rotate(angle);
+
+        context.drawImage(tileset, tile.x, tile.y, tile.w, tile.h,
+                (double) -TILE_WIDTH / 2, (double) -TILE_WIDTH / 2, TILE_WIDTH, TILE_WIDTH);
+
+        context.restore();
     }
 }
