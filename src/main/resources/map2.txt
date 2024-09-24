@@ -3,19 +3,19 @@
  tTTtTTt..TtTtfFffFFFffF
 TTts.tt...tTFf.....s.fFFf
 tT.k.......TFf.s........f
-ttT..@......ws.....s....F
+ttT..@......rWWR...s....F
  TTt........w.s.........F
-TtT...s.....w.....s.....f
+TtT...s.....A.....s.....f
  tT......s..w...s.......F
   tt........w..s....s...f
- Tt...s.....w..........F
+ TtWWWWWWWWWxWWWWWWWWWWF
 tT...s.....sw.....s...F
 tTT.........w..........F
 Tt....s.....w..s........f
  TT....s....w...........f
- tt.........w.....s.....F
-  Tt.....s..Ws..........f
- Ttt.s.....fFt....s.....f
- tTT....fTtTfTF...s.....F
+ tt.........w....s.....F
+  Tt.....s..ws.........Tf
+ Ttt.s.....fFt....s...tFf
+ tTT....fTtTfTF...s.tfTFF
   tTTfFFf   FFfFTttTfFFtF
-   TTtT       FTtTffTFfFF
+   TTtT       FTtTffTFfF

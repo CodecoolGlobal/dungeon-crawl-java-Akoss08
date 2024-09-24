@@ -14,8 +14,11 @@ public enum CellType {
     DOUBLE_TREE("doubleTree", false),
     PINE_TREE("pineTree", false),
     DOUBLE_PINE("doublePine", false),
-    WATER_VERTICAL("waterVertical", false),
-    WATER_HORIZONTAL("waterHorizontal", false),
+    WATER_VERTICAL("water", false),
+    WATER_ROTATE_90("waterRotate90", false),
+    WATER_CROSSING("waterCrossing", false),
+    WATER_TURN("waterTurn", false),
+    WATER_TURN_ROTATE_90("waterTurnRotate90", false),
     BRIDGE("bridge", true);
 
 

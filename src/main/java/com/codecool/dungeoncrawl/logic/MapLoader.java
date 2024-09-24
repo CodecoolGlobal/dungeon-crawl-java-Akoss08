@@ -122,7 +122,19 @@ public class MapLoader {
                             cell.setType(CellType.WATER_VERTICAL);
                             break;
                         case 'W':
-                            cell.setType(CellType.WATER_HORIZONTAL);
+                            cell.setType(CellType.WATER_ROTATE_90);
+                            break;
+                        case 'x':
+                            cell.setType(CellType.WATER_CROSSING);
+                            break;
+                        case 'r':
+                            cell.setType(CellType.WATER_TURN);
+                            break;
+                        case 'R':
+                            cell.setType(CellType.WATER_TURN_ROTATE_90);
+                            break;
+                        case 'A':
+                            cell.setType(CellType.BRIDGE);
                             break;
                       default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

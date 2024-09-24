@@ -52,8 +52,12 @@ public class Tiles {
         tileMap.put("doublePine", new Tile(3,2));
         tileMap.put("simpleTree", new Tile(2,1));
         tileMap.put("doubleTree", new Tile(3,1));
-        tileMap.put("waterVertical", new Tile(8,4));
-        tileMap.put("waterHorizontal", new Tile(8,4));
+        tileMap.put("water", new Tile(8,4));
+        tileMap.put("waterRotate90", new Tile(8,4));
+        tileMap.put("waterCrossing", new Tile(11,4));
+        tileMap.put("waterTurn", new Tile(9,4));
+        tileMap.put("waterTurnRotate90", new Tile(9,4));
+        tileMap.put("bridge", new Tile(6,5));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
