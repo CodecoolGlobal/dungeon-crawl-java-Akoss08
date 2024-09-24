@@ -1,21 +1,21 @@
 25 20
    tTTtTTttfF  ffFFFfF
  tTTtTTt..TtTtfFffFFFffF
-TTts.tt...tT.......s.fFFf
-tT.k.......b...s........f
-ttT..@.......s.....s....F
- TTt..........s.........F
-TtT...s...........s.....f
- tT......s......s.......F
-  tt...........s....s...f
- Tt...s................F
-tT...s.....s......s...F
-tTT.........s..........F
-Tt....s........s........f
- TT....s................f
- tt.........s.....s.....F
-  Tt.....s...s..........f
-  ttTs.......s....s.....f
- tTT.......s......s.....F
-TttTTfFFf   FFfFTttTfFFtF
-TTtTTtT       FTtTffTFfFF
+TTts.tt...tTFf.....s.fFFf
+tT.k.......TFf.s........f
+ttT..@......ws.....s....F
+ TTt........w.s.........F
+TtT...s.....w.....s.....f
+ tT......s..w...s.......F
+  tt........w..s....s...f
+ Tt...s.....w..........F
+tT...s.....sw.....s...F
+tTT.........w..........F
+Tt....s.....w..s........f
+ TT....s....w...........f
+ tt.........w.....s.....F
+  Tt.....s..ws..........f
+ Ttt.s.....fFt....s.....f
+ tTT....fTtTfTF...s.....F
+  tTTfFFf   FFfFTttTfFFtF
+   TTtT       FTtTffTFfFF

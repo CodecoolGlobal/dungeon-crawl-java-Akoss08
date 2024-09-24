@@ -118,10 +118,9 @@ public class MapLoader {
                         case 'T':
                             cell.setType(CellType.DOUBLE_TREE);
                             break;
-//                        case 'w':
-//                        case 'W':
-//                            cell.setType(CellType.WATER);
-//                            break;
+                        case 'w':
+                            cell.setType(CellType.WATER);
+                            break;
                       default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
