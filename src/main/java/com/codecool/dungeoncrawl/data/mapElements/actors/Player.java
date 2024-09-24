@@ -15,6 +15,8 @@ public class Player extends Actor {
     private static final int BASE_DEFENSE = 0;
     private int level = 1;
     private static final int MULTIPLIER_TO_LEVEL_UP = 10;
+    private static final int MULTIPLIER_FOR_HEALTH_ON_LEVEL_UP = 3;
+    private static final int MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP = 2;
     private int xp = 0;
     private final Inventory inventory;
     private PowerPotion powerBoost;
@@ -179,6 +181,9 @@ public class Player extends Actor {
     }
 
     private void levelUp() {
+        health = BASE_HEALTH + level * MULTIPLIER_FOR_HEALTH_ON_LEVEL_UP;
+        attackStrength += level * MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP;
+        defense += level;
         level++;
         this.xp = 0;
     }
