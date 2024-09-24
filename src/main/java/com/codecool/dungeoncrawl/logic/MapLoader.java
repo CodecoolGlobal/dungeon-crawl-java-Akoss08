@@ -106,7 +106,13 @@ public class MapLoader {
                         case 'i':
                             cell.setType(CellType.INVISIBLE_STAIR);
                             break;
-                        default:
+                        case 'f':
+                      case 'F':
+                      case 't':
+                      case 'T':
+                        cell.setType(CellType.TREE);
+                            break;
+                      default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
                 }
