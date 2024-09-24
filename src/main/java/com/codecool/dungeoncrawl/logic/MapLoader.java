@@ -33,6 +33,7 @@ public class MapLoader {
 
         GameMap map = null;
 
+        /*TODO refactor map files to list*/
         if (fileName.equals("/map1.txt")) map = new Map1(width, height, CellType.EMPTY);
         else if (fileName.equals("/map2.txt")) map = new Map2(width, height, CellType.EMPTY);
 

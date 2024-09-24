@@ -8,12 +8,13 @@ import java.util.List;
 
 public class ChickenBoss extends Monster {
     private static final int BASE_HEALTH = 20;
-    private static final int BASE_POWER = 5;
+    private static final int BASE_POWER = 10;
+    private static final int XP_VALUE = 5;
     private static final String ABILITY = "Chicken can fly 2 cells and attacks immediately";
     private static final String TILE_NAME = "chickenBoss";
 
     public ChickenBoss(Cell cell) {
-        super(cell, BASE_HEALTH, BASE_POWER, ABILITY, TILE_NAME);
+        super(cell, BASE_HEALTH, BASE_POWER, ABILITY, TILE_NAME, XP_VALUE);
     }
 
     @Override

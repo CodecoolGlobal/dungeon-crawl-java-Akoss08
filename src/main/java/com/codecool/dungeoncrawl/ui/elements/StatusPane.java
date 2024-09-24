@@ -20,6 +20,10 @@ public class StatusPane {
     private final Label playerStrengthValueLabel;
     private final Label playerDefenseTextLabel;
     private final Label playerDefenseValueLabel;
+    private final Label playerLevelTextLabel;
+    private final Label playerLevelValueLabel;
+    private final Label playerXpTextLabel;
+    private final Label playerXpValueLabel;
 
     private final Label monsterHealthTextLabel;
     private final Label monsterHealthValueLabel;
@@ -47,6 +51,12 @@ public class StatusPane {
 
         playerDefenseTextLabel = new Label("Player defense: ");
         playerDefenseValueLabel = new Label();
+
+        playerLevelTextLabel = new Label("Player level: ");
+        playerLevelValueLabel = new Label();
+
+        playerXpTextLabel = new Label("Player xp: ");
+        playerXpValueLabel = new Label();
 
         monsterHealthTextLabel = new Label("Monster Health: ");
         monsterHealthValueLabel = new Label();
@@ -83,28 +93,39 @@ public class StatusPane {
         ui.add(playerDefenseTextLabel, 0, 5);
         ui.add(playerDefenseValueLabel, 1, 5);
 
-        ui.add(emptyRow, 0, 6);
+        ui.add(playerLevelTextLabel, 0, 6);
+        ui.add(playerLevelValueLabel, 1, 6);
 
-        ui.add(monsterHealthTextLabel, 0, 7);
-        ui.add(monsterHealthValueLabel, 1, 7);
+        ui.add(playerXpTextLabel, 0, 7);
+        ui.add(playerXpValueLabel, 1, 7);
 
-        ui.add(monsterStrengthTextLabel, 0, 8);
-        ui.add(monsterStrengthValueLabel, 1, 8);
+        ui.add(emptyRow, 0, 8);
 
-        ui.add(monsterAbilityTextLabel, 0, 9);
-        ui.add(monsterAbilityValueLabel, 1, 9);
+        ui.add(monsterHealthTextLabel, 0, 9);
+        ui.add(monsterHealthValueLabel, 1, 9);
+
+        ui.add(monsterStrengthTextLabel, 0, 10);
+        ui.add(monsterStrengthValueLabel, 1, 10);
+
+        ui.add(monsterAbilityTextLabel, 0, 11);
+        ui.add(monsterAbilityValueLabel, 1, 11);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
         return borderPane;
     }
 
-    public void setValues(String health, String inventory, String playerStrength, String playerDefense, String monsterHealth, String monsterStrength, String monsterAbility) {
+    public void setValues(String health, String inventory, String playerStrength,
+                          String playerDefense, String playerLevel, String playerXp,
+                          String monsterHealth, String monsterStrength,
+                          String monsterAbility) {
         instructionsValueLabel.setText("[A: attack, O: open, H: heal, P: power boost]");
         healthValueLabel.setText(health);
         inventoryValueLabel.setText(inventory);
         playerStrengthValueLabel.setText(playerStrength);
         playerDefenseValueLabel.setText(playerDefense);
+        playerLevelValueLabel.setText(playerLevel);
+        playerXpValueLabel.setText(playerXp);
 
         monsterHealthValueLabel.setText(monsterHealth);
         monsterStrengthValueLabel.setText(monsterStrength);
