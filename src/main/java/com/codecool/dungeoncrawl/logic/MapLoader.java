@@ -4,12 +4,9 @@ import com.codecool.dungeoncrawl.data.*;
 import com.codecool.dungeoncrawl.data.GameMaps.GameMap;
 import com.codecool.dungeoncrawl.data.GameMaps.Map1;
 import com.codecool.dungeoncrawl.data.GameMaps.Map2;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.*;
 import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.ChickenBoss;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Skeleton;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Spider;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.BridgeGuard;
 
@@ -120,6 +117,11 @@ public class MapLoader {
                             break;
                         case 'r':
                             cell.setType(CellType.WATER_TO_RIGHT);
+                            break;
+                        case 'P':
+                            cell.setType(CellType.FLOOR);
+                            Snake snake = new Snake(cell, new SnakeTooth());
+                            map.addMonster(snake);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

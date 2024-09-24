@@ -7,4 +7,9 @@ public class SnakeTooth extends Item {
     public void addToPlayer(Player player) {
         player.getInventory().addItem(this);
     }
+
+    @Override
+    public String getTileName() {
+        return "snakeTooth";
+    }
 }

@@ -5,11 +5,14 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.items.SnakeTooth;
 
 public class Snake extends Monster {
-    private static final int BASE_HEALTH = 15;
-    private static final int BASE_POWER = 5;
+    private static final int BASE_HEALTH = 1;
+    private static final int BASE_POWER = 1;
     private static final int XP_VALUE = 4;
-    private static final String TILE_NAME = "scorpion";
+    private static final String TILE_NAME = "snake";
+
     private final SnakeTooth snakeTooth;
+    private static final int POISON_STRENGTH = 2;
+    private static final int POISON_LENGTH = 2;
 
     public Snake(Cell cell, SnakeTooth snakeTooth) {
         super(cell, BASE_HEALTH, BASE_POWER, TILE_NAME, XP_VALUE);
@@ -23,11 +26,19 @@ public class Snake extends Monster {
             player.collectXp(XP_VALUE);
             snakeTooth.addToPlayer(player);
         } else {
+            poison(player);
+
             int playerHealth = player.getHealth();
             int monsterStrength = Math.max(attackStrength - player.getDefense(), 0);
             int playerNewHealth = playerHealth - monsterStrength;
 
             player.setHealth(playerNewHealth);
         }
+    }
+
+    private void poison(Player player) {
+        player.setPoisoned(true);
+        player.setPoisonDuration(POISON_LENGTH);
+        player.setPoisonStrength(POISON_STRENGTH);
     }
 }

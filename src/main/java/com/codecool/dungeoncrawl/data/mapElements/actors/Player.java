@@ -20,14 +20,41 @@ public class Player extends Actor {
     private int xp = 0;
     private final Inventory inventory;
     private PowerPotion powerBoost;
+    private boolean isPoisoned = false;
+    private int poisonStrength = 0;
+    private int poisonDuration = 0;
 
     public Player(Cell cell, String tileName) {
         super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE, tileName);
         this.inventory = new Inventory();
     }
 
+    public boolean isPoisoned() {
+        return isPoisoned;
+    }
+
+    public int getPoisonDuration() {
+        return poisonDuration;
+    }
+
+    public int getPoisonStrength() {
+        return poisonStrength;
+    }
+
     public int getLevel() {
         return level;
+    }
+
+    public void setPoisonStrength(int poisonStrength) {
+        this.poisonStrength = poisonStrength;
+    }
+
+    public void setPoisonDuration(int poisonDuration) {
+        this.poisonDuration = poisonDuration;
+    }
+
+    public void setPoisoned(boolean poisoned) {
+        isPoisoned = poisoned;
     }
 
     public int getXp() {
@@ -45,6 +72,8 @@ public class Player extends Actor {
 
     @Override
     public void move(int dx, int dy) {
+        checkForPoison();
+
         Cell nextCell = cell.getNeighbor(dx, dy);
         boolean isClosedDoor = nextCell.getType().equals(CellType.CLOSED_DOOR);
 
@@ -56,6 +85,20 @@ public class Player extends Actor {
             if (doorOpened) {
                 setNextMove(nextCell);
             }
+        }
+    }
+
+    private void checkForPoison() {
+        if (isPoisoned) {
+            health -= poisonStrength;
+            poisonDuration--;
+            restoreIsPoisoned();
+        }
+    }
+
+    private void restoreIsPoisoned() {
+        if (poisonDuration == 0) {
+            isPoisoned = false;
         }
     }
 
