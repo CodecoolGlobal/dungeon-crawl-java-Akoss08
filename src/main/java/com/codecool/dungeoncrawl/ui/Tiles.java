@@ -48,6 +48,10 @@ public class Tiles {
         tileMap.put("powerPotion", new Tile(17, 25));
         tileMap.put("invisibleStair", new Tile(2, 0));
         tileMap.put("stair", new Tile(3, 6));
+        tileMap.put("pineTree", new Tile(0,1));
+        tileMap.put("doublePine", new Tile(3,2));
+        tileMap.put("simpleTree", new Tile(2,1));
+        tileMap.put("doubleTree", new Tile(3,1));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
