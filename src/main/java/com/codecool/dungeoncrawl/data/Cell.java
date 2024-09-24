@@ -4,20 +4,22 @@ import com.codecool.dungeoncrawl.data.GameMaps.GameMap;
 import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.items.Item;
+import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cell implements Drawable {
     private CellType type;
-
     private Actor actor;
+
+    private Npc npc;
+
     private Item item;
     private Chest chest;
     private final GameMap gameMap;
     private final int x;
     private final int y;
-
     public Cell(GameMap gameMap, int x, int y, CellType type) {
         this.gameMap = gameMap;
         this.x = x;
@@ -29,12 +31,20 @@ public class Cell implements Drawable {
         this.type = type;
     }
 
+    public Npc getNpc() {
+        return npc;
+    }
+
     public CellType getType() {
         return type;
     }
 
     public void setActor(Actor actor) {
         this.actor = actor;
+    }
+
+    public void setNpc(Npc npc) {
+        this.npc = npc;
     }
 
     public Item getItem() {
@@ -73,7 +83,7 @@ public class Cell implements Drawable {
     }
 
     public boolean isWalkable() {
-        return type.isWalkable() && actor == null;
+        return type.isWalkable() && actor == null && npc == null;
     }
 
     @Override

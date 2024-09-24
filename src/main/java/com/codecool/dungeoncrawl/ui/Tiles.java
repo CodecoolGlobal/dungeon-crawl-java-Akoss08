@@ -48,6 +48,9 @@ public class Tiles {
         tileMap.put("powerPotion", new Tile(17, 25));
         tileMap.put("invisibleStair", new Tile(2, 0));
         tileMap.put("stair", new Tile(3, 6));
+        tileMap.put("water", new Tile(8, 4));
+        tileMap.put("bridge", new Tile(6, 5));
+        tileMap.put("guard", new Tile(30, 0));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
