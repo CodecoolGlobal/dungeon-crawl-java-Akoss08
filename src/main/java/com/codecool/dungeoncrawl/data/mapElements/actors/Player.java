@@ -82,7 +82,7 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         checkForPoison();
-
+        updateEffects();
         Cell nextCell = cell.getNeighbor(dx, dy);
         boolean isClosedDoor = nextCell.getType().equals(CellType.CLOSED_DOOR);
 
