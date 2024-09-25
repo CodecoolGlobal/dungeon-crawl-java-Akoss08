@@ -28,10 +28,10 @@ public class MainStage {
 
     public void setLabelsText(String healthText, String inventoryText, String playerStrengthText,
                               String playerDefense, String playerLevel, String playerXp,
-                              String monsterHealthText, String monsterStrengthText,
+                              String playerGold, String monsterHealthText, String monsterStrengthText,
                               String monsterAbility, String npcDialog) {
         this.statusPane.setValues(healthText, inventoryText, playerStrengthText, playerDefense,
-                playerLevel, playerXp, monsterHealthText, monsterStrengthText, monsterAbility,
+                playerLevel, playerXp, playerGold, monsterHealthText, monsterStrengthText, monsterAbility,
                 npcDialog);
     }
 }

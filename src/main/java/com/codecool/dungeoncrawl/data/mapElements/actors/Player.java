@@ -11,7 +11,7 @@ import javafx.application.Platform;
 import java.util.List;
 
 public class Player extends Actor {
-    private static final int BASE_HEALTH = 10;
+    private static int baseHealth = 10;
     private static final int BASE_POWER = 5;
     private static final int BASE_DEFENSE = 0;
     private int level = 1;
@@ -19,6 +19,9 @@ public class Player extends Actor {
     private static final int MULTIPLIER_FOR_HEALTH_ON_LEVEL_UP = 3;
     private static final int MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP = 2;
     private int xp = 0;
+
+    private int gold = 0;
+
     private final Inventory inventory;
     private PowerPotion powerBoost;
     private boolean isPoisoned = false;
@@ -26,7 +29,7 @@ public class Player extends Actor {
     private int poisonDuration = 0;
 
     public Player(Cell cell, String tileName) {
-        super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE, tileName);
+        super(cell, baseHealth, BASE_POWER, BASE_DEFENSE, tileName);
         this.inventory = new Inventory();
     }
 
@@ -50,12 +53,16 @@ public class Player extends Actor {
         return xp;
     }
 
+    public int getGold() {
+        return gold;
+    }
+
     public Inventory getInventory() {
         return inventory;
     }
 
     public int getBaseHealth() {
-        return BASE_HEALTH;
+        return baseHealth;
     }
 
 
@@ -216,8 +223,13 @@ public class Player extends Actor {
         }
     }
 
+    public void collectGold(int gold) {
+        this.gold += gold;
+    }
+
     private void levelUp() {
-        health = BASE_HEALTH + level * MULTIPLIER_FOR_HEALTH_ON_LEVEL_UP;
+        baseHealth += level * MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP;
+        health = baseHealth;
         attackStrength += level * MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP;
         defense += level;
         level++;

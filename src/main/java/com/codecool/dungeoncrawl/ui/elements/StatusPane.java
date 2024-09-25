@@ -24,6 +24,8 @@ public class StatusPane {
     private final Label playerLevelValueLabel;
     private final Label playerXpTextLabel;
     private final Label playerXpValueLabel;
+    private final Label playerGoldTextLabel;
+    private final Label playerGoldValueLabel;
 
     private final Label monsterHealthTextLabel;
     private final Label monsterHealthValueLabel;
@@ -61,6 +63,9 @@ public class StatusPane {
 
         playerXpTextLabel = new Label("Player xp: ");
         playerXpValueLabel = new Label();
+
+        playerGoldTextLabel = new Label("Player gold: ");
+        playerGoldValueLabel = new Label();
 
         monsterHealthTextLabel = new Label("Monster Health: ");
         monsterHealthValueLabel = new Label();
@@ -107,21 +112,24 @@ public class StatusPane {
         ui.add(playerXpTextLabel, 0, 7);
         ui.add(playerXpValueLabel, 1, 7);
 
-        ui.add(emptyRow, 0, 8);
+        ui.add(playerGoldTextLabel, 0, 8);
+        ui.add(playerGoldValueLabel, 1, 8);
 
-        ui.add(monsterHealthTextLabel, 0, 9);
-        ui.add(monsterHealthValueLabel, 1, 9);
+        ui.add(emptyRow, 0, 9);
 
-        ui.add(monsterStrengthTextLabel, 0, 10);
-        ui.add(monsterStrengthValueLabel, 1, 10);
+        ui.add(monsterHealthTextLabel, 0, 10);
+        ui.add(monsterHealthValueLabel, 1, 10);
 
-        ui.add(monsterAbilityTextLabel, 0, 11);
-        ui.add(monsterAbilityValueLabel, 1, 11);
+        ui.add(monsterStrengthTextLabel, 0, 11);
+        ui.add(monsterStrengthValueLabel, 1, 11);
 
-        ui.add(emptyRow3, 0, 12);
+        ui.add(monsterAbilityTextLabel, 0, 12);
+        ui.add(monsterAbilityValueLabel, 1, 12);
 
-        ui.add(npcDialogTextLabel, 0, 13);
-        ui.add(npcDialogValueLabel, 1, 13);
+        ui.add(emptyRow3, 0, 13);
+
+        ui.add(npcDialogTextLabel, 0, 14);
+        ui.add(npcDialogValueLabel, 1, 14);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
@@ -130,7 +138,7 @@ public class StatusPane {
 
     public void setValues(String health, String inventory, String playerStrength,
                           String playerDefense, String playerLevel, String playerXp,
-                          String monsterHealth, String monsterStrength,
+                          String playerGold, String monsterHealth, String monsterStrength,
                           String monsterAbility, String npcDialog) {
         instructionsValueLabel.setText("[A: attack, O: open, H: heal, P: power boost]");
         healthValueLabel.setText(health);
@@ -139,6 +147,7 @@ public class StatusPane {
         playerDefenseValueLabel.setText(playerDefense);
         playerLevelValueLabel.setText(playerLevel);
         playerXpValueLabel.setText(playerXp);
+        playerGoldValueLabel.setText(playerGold);
 
         monsterHealthValueLabel.setText(monsterHealth);
         monsterStrengthValueLabel.setText(monsterStrength);

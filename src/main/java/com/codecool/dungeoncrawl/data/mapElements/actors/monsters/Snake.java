@@ -9,7 +9,6 @@ public class Snake extends Monster {
     private static final int BASE_POWER = 1;
     private static final int XP_VALUE = 4;
     private static final String TILE_NAME = "snake";
-
     private final SnakeTooth snakeTooth;
     private static final int POISON_STRENGTH = 2;
     private static final int POISON_LENGTH = 2;
