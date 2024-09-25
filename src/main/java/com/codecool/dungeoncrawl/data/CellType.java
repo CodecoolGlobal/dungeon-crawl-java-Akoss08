@@ -10,9 +10,21 @@ public enum CellType {
     OPEN_CHEST("openChest", false),
     INVISIBLE_STAIR("invisibleStair", true),
     STAIR("stair", true),
-    WATER("water", false),
-    WATER_TO_RIGHT("waterToRight", false),
-    BRIDGE("bridge", true);
+    SIMPLE_TREE("simpleTree", false),
+    DOUBLE_TREE("doubleTree", false),
+    PINE_TREE("pineTree", false),
+    DOUBLE_PINE("doublePine", false),
+    WATER_VERTICAL("water", false),
+    WATER_ROTATE_90("waterRotate90", false),
+    WATER_CROSSING("waterCrossing", false),
+    WATER_TURN("waterTurn", false),
+    WATER_TURN_ROTATE_90("waterTurnRotate90", false),
+    WATER_TURN_ROTATE_180("waterTurnRotate180", false),
+    WATER_TURN_ROTATE_270("waterTurnRotate270", false),
+    BRIDGE("bridge", true),
+    GRASS("grass", true),
+    FLOWER("flower", true),
+    TREE_STUMP("treeStump", false);
 
     private final String tileName;
     private final boolean isWalkable;

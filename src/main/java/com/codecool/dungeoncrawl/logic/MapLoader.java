@@ -105,18 +105,54 @@ public class MapLoader {
                         case 'i':
                             cell.setType(CellType.INVISIBLE_STAIR);
                             break;
-                        case 'w':
-                            cell.setType(CellType.WATER);
+                        case 'f':
+                            cell.setType(CellType.PINE_TREE);
                             break;
-                        case 'e':
+                        case 'F':
+                            cell.setType(CellType.DOUBLE_PINE);
+                            break;
+                        case 't':
+                            cell.setType(CellType.SIMPLE_TREE);
+                            break;
+                        case 'T':
+                            cell.setType(CellType.DOUBLE_TREE);
+                            break;
+                        case 'w':
+                            cell.setType(CellType.WATER_VERTICAL);
+                            break;
+                        case 'W':
+                            cell.setType(CellType.WATER_ROTATE_90);
+                            break;
+                        case 'x':
+                            cell.setType(CellType.WATER_CROSSING);
+                            break;
+                        case 'r':
+                            cell.setType(CellType.WATER_TURN);
+                            break;
+                        case 'R':
+                            cell.setType(CellType.WATER_TURN_ROTATE_90);
+                            break;
+                        case 'A':
                             cell.setType(CellType.BRIDGE);
+                            break;
+                        case 'u':
+                            cell.setType(CellType.WATER_TURN_ROTATE_180);
+                            break;
+                        case 'U':
+                            cell.setType(CellType.WATER_TURN_ROTATE_270);
+                            break;
+                        case ',':
+                            cell.setType(CellType.GRASS);
+                            break;
+                        case ';':
+                            cell.setType(CellType.FLOWER);
+                            break;
+                        case 'P':
+                            cell.setType(CellType.TREE_STUMP);
                             break;
                         case 'g':
                             cell.setType(CellType.FLOOR);
                             map.addNpc(new BridgeGuard(cell));
-                            break;
-                        case 'r':
-                            cell.setType(CellType.WATER_TO_RIGHT);
                             break;
                         case 'P':
                             cell.setType(CellType.FLOOR);
