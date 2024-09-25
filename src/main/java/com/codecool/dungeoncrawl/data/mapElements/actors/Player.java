@@ -24,9 +24,6 @@ public class Player extends Actor {
     private int gold = 0;
     private final Inventory inventory;
     private PowerPotion powerBoost;
-    private boolean isPoisoned = false;
-    private int poisonStrength = 0;
-    private int poisonDuration = 0;
     private Weapon currentWeapon;
     private Armor currentArmor;
 
@@ -79,18 +76,6 @@ public class Player extends Actor {
         currentArmor = null;
     }
 
-    public void setPoisonStrength(int poisonStrength) {
-        this.poisonStrength = poisonStrength;
-    }
-
-    public void setPoisonDuration(int poisonDuration) {
-        this.poisonDuration = poisonDuration;
-    }
-
-    public void setPoisoned(boolean poisoned) {
-        isPoisoned = poisoned;
-    }
-
     public int getXp() {
         return xp;
     }
@@ -110,7 +95,6 @@ public class Player extends Actor {
 
     @Override
     public void move(int dx, int dy) {
-        checkForPoison();
         updateEffects();
         Cell nextCell = cell.getNeighbor(dx, dy);
         boolean isClosedDoor = nextCell.getType().equals(CellType.CLOSED_DOOR);
@@ -130,19 +114,6 @@ public class Player extends Actor {
         }
     }
 
-    private void checkForPoison() {
-        if (isPoisoned) {
-            health -= poisonStrength;
-            poisonDuration--;
-            restoreIsPoisoned();
-        }
-    }
-
-    private void restoreIsPoisoned() {
-        if (poisonDuration == 0) {
-            isPoisoned = false;
-        }
-    }
 
     public void attack() {
         List<Cell> neighbors = cell.getNeighbors();
