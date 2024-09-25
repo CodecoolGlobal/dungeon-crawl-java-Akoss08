@@ -3,6 +3,8 @@ package com.codecool.dungeoncrawl.data.mapElements.actors.monsters;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
+import com.codecool.dungeoncrawl.data.mapElements.items.Gold;
+import com.codecool.dungeoncrawl.data.mapElements.items.PowerPotion;
 
 import java.util.List;
 
@@ -45,6 +47,12 @@ public class ChickenBoss extends Monster {
                 break;
             }
         }
+    }
+
+    @Override
+    protected void die() {
+        super.die();
+        cell.setItem(new Gold(cell, 50));
     }
 
 }

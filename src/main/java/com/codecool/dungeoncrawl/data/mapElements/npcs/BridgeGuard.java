@@ -22,7 +22,7 @@ public class BridgeGuard extends Npc {
             "\n\nGo ahead and cross the bridge.\n" +
             "Safe travels on your journey.";
     private static final String TILE_NAME = "guard";
-    private boolean interractable = true;
+    private boolean interactable = true;
 
     public BridgeGuard(Cell cell) {
         super(BASE_DIALOG, cell, TILE_NAME);
@@ -31,11 +31,15 @@ public class BridgeGuard extends Npc {
     @Override
     public void interact(Player player) {
         int requiredTeeth = 3;
-        if (interractable) {
+        if (interactable) {
             if (player.hasThreeTeeth(requiredTeeth)) {
+                int goldForMission = 30;
+                int xpForMission = 3;
+                player.collectGold(goldForMission);
+                player.collectXp(xpForMission);
                 move();
                 dialog = SUCCESS_DIALOG;
-                interractable = false;
+                interactable = false;
             } else {
                 dialog = FAIL_DIALOG;
             }
