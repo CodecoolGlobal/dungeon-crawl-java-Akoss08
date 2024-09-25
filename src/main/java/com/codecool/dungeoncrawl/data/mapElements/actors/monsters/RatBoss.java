@@ -18,7 +18,6 @@ public class RatBoss extends Monster {
 
   @Override
   public String getTileName() {
-    Random random = new Random();
     boolean isDisappearing = Math.random() >= 0.7;
     if (isDisappearing) {
       return cell.getTileName();
