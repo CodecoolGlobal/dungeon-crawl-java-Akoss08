@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Moopsy;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 
@@ -129,7 +130,16 @@ public abstract class GameMap {
         return walkableCells;
     }
 
-    public Cell getRandomWalkableCell() {
+    private void moveMoopsy(Moopsy moopsy, int dx, int dy) {
+        boolean isTeleporting = Math.random() <= 0.2;
+        if (isTeleporting) {
+            moopsy.teleport(getRandomWalkableCell());
+        } else {
+            moopsy.move(dx, dy);
+        }
+    }
+
+    private Cell getRandomWalkableCell() {
         Random random = new Random();
         List<Cell> walkableCells = getWalkableCells();
         return walkableCells.get(random.nextInt(walkableCells.size()));

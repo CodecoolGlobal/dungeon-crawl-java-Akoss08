@@ -2,7 +2,7 @@ package com.codecool.dungeoncrawl.data.mapElements.actors.monsters;
 
 import com.codecool.dungeoncrawl.data.Cell;
 
-public class BlueMoopsy extends Monster {
+public class BlueMoopsy extends Moopsy {
   private static int baseHealth = 0;
   private static final int BASE_POWER = 4;
   private static final int XP_VALUE = 5;
@@ -23,11 +23,4 @@ public class BlueMoopsy extends Monster {
     baseHealth = moopsyHPBeforeSplit;
   }
 
-  public void teleport(Cell nextCell) {
-    if (nextCell.isWalkable() && !isDead) {
-      cell.setActor(null);
-      nextCell.setActor(this);
-      cell = nextCell;
-    }
-  }
 }
