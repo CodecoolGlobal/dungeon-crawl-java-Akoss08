@@ -11,6 +11,14 @@ public class HealthPotion extends Item implements Interractable {
         super(cell, TILE_NAME, PRICE);
     }
 
+    public HealthPotion() {
+    }
+
+    @Override
+    public String getTileName() {
+        return TILE_NAME;
+    }
+
     @Override
     public void addToPlayer(Player player) {
         player.getInventory().addItem(this);
