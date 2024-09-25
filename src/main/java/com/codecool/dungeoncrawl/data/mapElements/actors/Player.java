@@ -20,7 +20,7 @@ public class Player extends Actor {
     private static final int MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP = 2;
     private int xp = 0;
 
-    private int gold = 0;
+    private int gold = 1000;
 
     private final Inventory inventory;
     private PowerPotion powerBoost;
@@ -258,5 +258,13 @@ public class Player extends Actor {
         }
 
         return false;
+    }
+
+    public boolean hasMoneyForItem(Item item) {
+        return gold >= item.getPrice();
+    }
+
+    public void payForItem(int price) {
+        gold -= price;
     }
 }

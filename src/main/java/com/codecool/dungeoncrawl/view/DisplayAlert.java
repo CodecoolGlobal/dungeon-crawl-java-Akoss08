@@ -4,22 +4,42 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Inventory;
 import com.codecool.dungeoncrawl.data.mapElements.items.Item;
 import javafx.scene.control.*;
 
+import java.util.*;
+
 public class DisplayAlert {
+    public Item getChoice(Inventory shopItems) {
+        List<String> items = getItemValues(shopItems);
 
-    public void listShopItems(Inventory shopItems) {
-        System.out.println(shopItems);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Shopkeeper's Wares");
-        alert.setHeaderText(null);
-        StringBuilder builder = new StringBuilder();
+        ChoiceDialog<String> dialog = setDialog(items);
 
-        for (int i = 0; i < shopItems.getItems().size(); i++) {
-            Item currentItem = shopItems.getItems().get(i);
-            builder.append(i + 1).append(". ").
-                    append(currentItem.getTileName().toUpperCase()).append(", ").
-                    append(currentItem.getPrice()).append(" GOLD").append("\n");
+        String result = dialog.showAndWait().orElse(null);
+
+        if (result != null && !result.equals("--SELECT AN ITEM--")) {
+            String selectedItem = result.split(":")[0];
+
+            return shopItems.getItems().stream()
+                    .filter(item -> item.getTileName().equalsIgnoreCase(selectedItem)).
+                    findFirst().
+                    orElse(null);
         }
-        alert.setContentText(builder.toString());
-        alert.showAndWait();
+
+        return null;
+    }
+
+    private List<String> getItemValues(Inventory shopItems) {
+        List<String> items = new ArrayList<>();
+
+        for (Item item : shopItems.getItems()) {
+            items.add(item.getTileName().toUpperCase() + ": " + item.getPrice() + " GOLD");
+        }
+        return items;
+    }
+
+    private ChoiceDialog<String> setDialog(List<String> items) {
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("--SELECT AN ITEM--", items);
+        dialog.setTitle("Shopkeeper's Wares");
+        dialog.setHeaderText("Choose an item to buy");
+        dialog.setContentText("Select an item:");
+        return dialog;
     }
 }

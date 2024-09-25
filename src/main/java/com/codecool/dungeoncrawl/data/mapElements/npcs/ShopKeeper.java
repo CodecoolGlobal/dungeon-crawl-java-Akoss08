@@ -5,11 +5,9 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.Inventory;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.items.BasicSpear;
 import com.codecool.dungeoncrawl.data.mapElements.items.HealthPotion;
+import com.codecool.dungeoncrawl.data.mapElements.items.Item;
 import com.codecool.dungeoncrawl.data.mapElements.items.RareHelmet;
 import com.codecool.dungeoncrawl.view.DisplayAlert;
-
-import static javafx.application.Application.launch;
-
 
 public class ShopKeeper extends Npc {
     private static final String BASE_DIALOG = "Welcome, traveler!\n" +
@@ -26,11 +24,15 @@ public class ShopKeeper extends Npc {
         inventory.addItem(new BasicSpear());
         inventory.addItem(new RareHelmet());
         inventory.addItem(new HealthPotion());
-        System.out.println(new BasicSpear().getTileName());
     }
 
     @Override
     public void interact(Player player) {
-        display.listShopItems(inventory);
+        Item selectedItem = display.getChoice(inventory);
+
+        if (selectedItem != null && player.hasMoneyForItem(selectedItem)) {
+            player.payForItem(selectedItem.getPrice());
+            selectedItem.addToPlayer(player);
+        }
     }
 }
