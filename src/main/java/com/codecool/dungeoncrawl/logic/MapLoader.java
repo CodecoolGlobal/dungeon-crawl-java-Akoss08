@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
-    private static String fileName = "/map1.txt";
+    private static String fileName = "/map2.txt";
     private static Player existingPlayer;
 
     public static void setFileName(String fileName) {
@@ -160,8 +160,12 @@ public class MapLoader {
                             map.addMonster(snake);
                             break;
                         case 'K':
-                            cell.setType(CellType.GRASS);
+                            cell.setType(CellType.FLOOR);
                             map.addMonster(new Crocodile(cell));
+                            break;
+                        case 'J':
+                            cell.setType(CellType.GRASS);
+                            map.addMonster(new RatBoss(cell));
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
