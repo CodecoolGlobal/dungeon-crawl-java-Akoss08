@@ -1,4 +1,4 @@
-package com.codecool.dungeoncrawl.view;
+package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.mapElements.actors.Inventory;
 import com.codecool.dungeoncrawl.data.mapElements.items.Item;

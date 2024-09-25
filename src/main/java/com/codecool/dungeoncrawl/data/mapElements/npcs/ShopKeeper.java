@@ -3,11 +3,11 @@ package com.codecool.dungeoncrawl.data.mapElements.npcs;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Inventory;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
-import com.codecool.dungeoncrawl.data.mapElements.items.weapons.BasicSpear;
+import com.codecool.dungeoncrawl.data.mapElements.items.BasicSpear;
 import com.codecool.dungeoncrawl.data.mapElements.items.HealthPotion;
 import com.codecool.dungeoncrawl.data.mapElements.items.Item;
 import com.codecool.dungeoncrawl.data.mapElements.items.RareHelmet;
-import com.codecool.dungeoncrawl.view.DisplayAlert;
+import com.codecool.dungeoncrawl.ui.DisplayAlert;
 
 public class ShopKeeper extends Npc {
     private static final String BASE_DIALOG = "Welcome, traveler!\n" +
@@ -33,6 +33,7 @@ public class ShopKeeper extends Npc {
         if (selectedItem != null && player.hasMoneyForItem(selectedItem)) {
             player.payForItem(selectedItem.getPrice());
             selectedItem.addToPlayer(player);
+            inventory.getItems().remove(selectedItem);
         }
     }
 }

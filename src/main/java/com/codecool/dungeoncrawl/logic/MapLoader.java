@@ -8,7 +8,7 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.*;
 import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
-import com.codecool.dungeoncrawl.data.mapElements.items.weapons.BasicSword;
+import com.codecool.dungeoncrawl.data.mapElements.items.BasicSword;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.BridgeGuard;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.ShopKeeper;
 
@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
-    private static String fileName = "/map2.txt";
+    private static String fileName = "/map1.txt";
     private static Player existingPlayer;
 
     public static void setFileName(String fileName) {
@@ -154,7 +154,7 @@ public class MapLoader {
                             break;
                         case 'g':
                             cell.setType(CellType.FLOOR);
-                            map.addNpc(new BridgeGuard(cell));
+                            new BridgeGuard(cell);
                             break;
                         case 'a':
                             cell.setType(CellType.FLOOR);
@@ -163,7 +163,7 @@ public class MapLoader {
                             break;
                         case 'm':
                             cell.setType(CellType.FLOOR);
-                            map.addNpc(new ShopKeeper(cell));
+                            new ShopKeeper(cell);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

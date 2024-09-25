@@ -1,17 +1,12 @@
 package com.codecool.dungeoncrawl.data.mapElements.items;
 
-import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
-
-public class RareHelmet extends Item {
+public class RareHelmet extends Armor {
     private static final int PRICE = 20;
+    private static final int PLUS_DEFENSE = 4;
+    private static final String TILE_NAME_FOR_PLAYER = "playerWithSwordAndShieldAndRareHelmet";
 
     public RareHelmet() {
-        super(PRICE);
-    }
-
-    @Override
-    public void addToPlayer(Player player) {
-        player.getInventory().addItem(this);
+        super(PRICE, PLUS_DEFENSE, TILE_NAME_FOR_PLAYER);
     }
 
     @Override
