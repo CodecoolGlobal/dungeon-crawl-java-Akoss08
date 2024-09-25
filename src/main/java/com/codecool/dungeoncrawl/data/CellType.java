@@ -23,7 +23,8 @@ public enum CellType {
     WATER_TURN_ROTATE_270("waterTurnRotate270", false),
     BRIDGE("bridge", true),
     GRASS("grass", true),
-    FLOWER("flower", true);
+    FLOWER("flower", true),
+    TREE_STUMP("treeStump", false);
 
 
     private final String tileName;

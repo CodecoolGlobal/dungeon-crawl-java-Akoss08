@@ -5,12 +5,12 @@ TTt..tt...tTFfwf,,,,,fFFf
 tT.k.......TFfw,;,,;,,,,f
 ttT..@......rWu,,,;,,;,,F
  TTt........w,,;,,,;,,,;F
-TtT.........A,,,,;,,;,,,f
+TtT.........w,,,,;,,;,,,f
  tTWR..rWR..w,,;,,;,,,;,F
   ttw..A.w..w,,rWWR,;,,;f
- Tt.UWRw.UWWxWWu..w,,,,Fr
-tT...sUu....w....ru,;,rWu
-tTT.........w....A,,rWuF
+ Tt.UWRw.URPUWWu..w,,,,Fr
+tT...sUu..w......ru,;,rWu
+tTT.......UWR....A,,rWuF
 Tt..........w....UWWu...f
  TT.........A...........f
  tt.........UWR........F

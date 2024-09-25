@@ -148,6 +148,9 @@ public class MapLoader {
                         case ';':
                             cell.setType(CellType.FLOWER);
                             break;
+                        case 'P':
+                            cell.setType(CellType.TREE_STUMP);
+                            break;
                       default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
