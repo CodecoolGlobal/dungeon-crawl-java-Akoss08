@@ -72,9 +72,8 @@ public class UI {
             }
         }
         mainStage.setLabelsText(logic.getPlayerHealth(), logic.getPlayerInventory(),
-                logic.getPlayerStrength(), logic.getPlayerDefense(),
-                logic.getPlayerLevel(), logic.getPlayerXp(), logic.getMonsterHealth(),
-                logic.getMonsterStrength(),
-                logic.getMonsterAbility(), logic.getNpcDialog());
+                logic.getPlayerStrength(), logic.getPlayerDefense(), logic.getPlayerLevel(),
+                logic.getPlayerXp(), logic.getPlayerGold(), logic.getMonsterHealth(),
+                logic.getMonsterStrength(), logic.getMonsterAbility(), logic.getNpcDialog());
     }
 }

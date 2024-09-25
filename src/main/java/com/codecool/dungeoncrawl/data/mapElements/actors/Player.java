@@ -19,12 +19,14 @@ public class Player extends Actor {
     private static final int MULTIPLIER_FOR_HEALTH_ON_LEVEL_UP = 3;
     private static final int MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP = 2;
     private int xp = 0;
+
+    private int gold = 0;
+
     private final Inventory inventory;
     private PowerPotion powerBoost;
     private boolean isPoisoned = false;
     private int poisonStrength = 0;
     private int poisonDuration = 0;
-
     public Player(Cell cell, String tileName) {
         super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE, tileName);
         this.inventory = new Inventory();
@@ -48,6 +50,10 @@ public class Player extends Actor {
 
     public int getXp() {
         return xp;
+    }
+
+    public int getGold() {
+        return gold;
     }
 
     public Inventory getInventory() {
@@ -214,6 +220,10 @@ public class Player extends Actor {
         if (this.xp == level * MULTIPLIER_TO_LEVEL_UP) {
             levelUp();
         }
+    }
+
+    public void collectGold(int gold) {
+        this.gold += gold;
     }
 
     private void levelUp() {
