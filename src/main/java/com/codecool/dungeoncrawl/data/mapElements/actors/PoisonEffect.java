@@ -1,7 +1,4 @@
-package com.codecool.dungeoncrawl.data.mapElements.actors.monsters;
-
-import com.codecool.dungeoncrawl.data.mapElements.actors.Effect;
-import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
+package com.codecool.dungeoncrawl.data.mapElements.actors;
 
 public class PoisonEffect extends Effect {
   private final int poisonPower;

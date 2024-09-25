@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.data.mapElements.actors.monsters;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Effect;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
+import com.codecool.dungeoncrawl.data.mapElements.actors.PoisonEffect;
 import com.codecool.dungeoncrawl.data.mapElements.items.SnakeTooth;
 
 public class Snake extends Monster {
