@@ -12,9 +12,11 @@ public class Snake extends Monster {
     private final SnakeTooth snakeTooth;
     private static final int POISON_STRENGTH = 1;
     private static final int POISON_LENGTH = 2;
+    private static final String ABILITY = "Snakes are poisonous, their poison deal 1 damage\n" +
+            "for 2 moves";
 
     public Snake(Cell cell, SnakeTooth snakeTooth) {
-        super(cell, BASE_HEALTH, BASE_POWER, TILE_NAME, XP_VALUE);
+        super(cell, BASE_HEALTH, BASE_POWER, ABILITY, TILE_NAME, XP_VALUE);
         this.snakeTooth = snakeTooth;
     }
 
