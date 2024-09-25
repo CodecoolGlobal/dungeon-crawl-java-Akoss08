@@ -159,6 +159,10 @@ public class MapLoader {
                             Snake snake = new Snake(cell, new SnakeTooth());
                             map.addMonster(snake);
                             break;
+                        case 'K':
+                            cell.setType(CellType.FLOOR);
+                            map.addMonster(new Crocodile(cell));
+                            break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
