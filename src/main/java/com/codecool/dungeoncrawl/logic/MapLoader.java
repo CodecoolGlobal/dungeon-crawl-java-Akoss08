@@ -17,7 +17,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
-    private static String fileName = "/map1.txt";
+    private static String fileName = "/map3.txt";
     private static Player existingPlayer;
 
     public static void setFileName(String fileName) {
