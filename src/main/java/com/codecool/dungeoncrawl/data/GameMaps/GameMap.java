@@ -23,7 +23,6 @@ public abstract class GameMap {
 
     protected List<Monster> monsters = new ArrayList<>();
     protected List<Monster> deadMonsters = new ArrayList<>();
-    protected List<Npc> npcs = new ArrayList<>();
 
     public GameMap(int width, int height, CellType defaultCellType, String nextMapFileName) {
         this.width = width;
@@ -141,10 +140,6 @@ public abstract class GameMap {
 
     public void addMonster(Monster monster) {
         this.monsters.add(monster);
-    }
-
-    public void addNpc(Npc npc) {
-        this.npcs.add(npc);
     }
 
     public int getWidth() {

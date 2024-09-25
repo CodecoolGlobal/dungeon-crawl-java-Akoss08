@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
+import com.codecool.dungeoncrawl.data.mapElements.items.Weapon;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
 import javafx.application.Platform;
 
@@ -20,14 +21,14 @@ public class Player extends Actor {
     private static final int MULTIPLIER_FOR_HEALTH_ON_LEVEL_UP = 3;
     private static final int MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP = 2;
     private int xp = 0;
-
     private int gold = 0;
-
     private final Inventory inventory;
     private PowerPotion powerBoost;
     private boolean isPoisoned = false;
     private int poisonStrength = 0;
     private int poisonDuration = 0;
+    private Weapon currentWeapon;
+    private Armor currentArmor;
 
     private List<Effect> activeEffects = new ArrayList<>();
 
@@ -48,6 +49,34 @@ public class Player extends Actor {
 
     public int getLevel() {
         return level;
+    }
+
+    public void setCurrentWeapon(Weapon currentWeapon) {
+        this.currentWeapon = currentWeapon;
+    }
+
+    public boolean hasWeapon() {
+        return currentWeapon != null;
+    }
+
+    public void dropWeapon() {
+        attackStrength -= currentWeapon.getDamage();
+        inventory.getItems().remove(currentWeapon);
+        currentWeapon = null;
+    }
+
+    public void setCurrentArmor(Armor currentArmor) {
+        this.currentArmor = currentArmor;
+    }
+
+    public boolean hasArmor() {
+        return currentArmor != null;
+    }
+
+    public void dropArmor() {
+        defense -= currentArmor.getDefense();
+        inventory.getItems().remove(currentArmor);
+        currentArmor = null;
     }
 
     public void setPoisonStrength(int poisonStrength) {
@@ -241,7 +270,7 @@ public class Player extends Actor {
     }
 
     private void levelUp() {
-        baseHealth += level * MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP;
+        baseHealth += level * MULTIPLIER_FOR_HEALTH_ON_LEVEL_UP;
         health = baseHealth;
         attackStrength += level * MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP;
         defense += level;
@@ -271,5 +300,13 @@ public class Player extends Actor {
         }
 
         return false;
+    }
+
+    public boolean hasMoneyForItem(Item item) {
+        return gold >= item.getPrice();
+    }
+
+    public void payForItem(int price) {
+        gold -= price;
     }
 }
