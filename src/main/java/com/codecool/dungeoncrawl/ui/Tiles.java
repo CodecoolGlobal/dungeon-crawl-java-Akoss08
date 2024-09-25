@@ -48,24 +48,25 @@ public class Tiles {
         tileMap.put("powerPotion", new Tile(17, 25));
         tileMap.put("invisibleStair", new Tile(2, 0));
         tileMap.put("stair", new Tile(3, 6));
-        tileMap.put("pineTree", new Tile(0,1));
-        tileMap.put("doublePine", new Tile(3,2));
-        tileMap.put("simpleTree", new Tile(2,1));
-        tileMap.put("doubleTree", new Tile(3,1));
-        tileMap.put("water", new Tile(8,4));
-        tileMap.put("waterRotate90", new Tile(8,4));
-        tileMap.put("waterCrossing", new Tile(11,4));
-        tileMap.put("waterTurn", new Tile(9,4));
-        tileMap.put("waterTurnRotate90", new Tile(9,4));
-        tileMap.put("waterTurnRotate180", new Tile(9,4));
-        tileMap.put("waterTurnRotate270", new Tile(9,4));
-        tileMap.put("bridge", new Tile(6,5));
-        tileMap.put("grass", new Tile(5,0));
-        tileMap.put("flower", new Tile(16,6));
-        tileMap.put("treeStump", new Tile(18,6));
+        tileMap.put("pineTree", new Tile(0, 1));
+        tileMap.put("doublePine", new Tile(3, 2));
+        tileMap.put("simpleTree", new Tile(2, 1));
+        tileMap.put("doubleTree", new Tile(3, 1));
+        tileMap.put("water", new Tile(8, 4));
+        tileMap.put("waterRotate90", new Tile(8, 4));
+        tileMap.put("waterCrossing", new Tile(11, 4));
+        tileMap.put("waterTurn", new Tile(9, 4));
+        tileMap.put("waterTurnRotate90", new Tile(9, 4));
+        tileMap.put("waterTurnRotate180", new Tile(9, 4));
+        tileMap.put("waterTurnRotate270", new Tile(9, 4));
+        tileMap.put("bridge", new Tile(6, 5));
+        tileMap.put("grass", new Tile(5, 0));
+        tileMap.put("flower", new Tile(16, 6));
+        tileMap.put("treeStump", new Tile(18, 6));
         tileMap.put("guard", new Tile(30, 0));
         tileMap.put("snake", new Tile(28, 8));
         tileMap.put("gold", new Tile(9, 26));
+        tileMap.put("shopKeeper", new Tile(24, 1));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
