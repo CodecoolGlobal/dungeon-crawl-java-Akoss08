@@ -8,6 +8,7 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.*;
 import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
+import com.codecool.dungeoncrawl.data.mapElements.items.weapons.BasicSword;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.BridgeGuard;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.ShopKeeper;
 

@@ -3,7 +3,7 @@ package com.codecool.dungeoncrawl.data.mapElements.npcs;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Inventory;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
-import com.codecool.dungeoncrawl.data.mapElements.items.BasicSpear;
+import com.codecool.dungeoncrawl.data.mapElements.items.weapons.BasicSpear;
 import com.codecool.dungeoncrawl.data.mapElements.items.HealthPotion;
 import com.codecool.dungeoncrawl.data.mapElements.items.Item;
 import com.codecool.dungeoncrawl.data.mapElements.items.RareHelmet;
