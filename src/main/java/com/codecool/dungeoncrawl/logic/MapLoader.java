@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
-    private static String fileName = "/map2.txt";
+    private static String fileName = "/map1.txt";
     private static Player existingPlayer;
 
     public static void setFileName(String fileName) {
@@ -154,7 +154,7 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.addNpc(new BridgeGuard(cell));
                             break;
-                        case 'P':
+                        case 'a':
                             cell.setType(CellType.FLOOR);
                             Snake snake = new Snake(cell, new SnakeTooth());
                             map.addMonster(snake);
