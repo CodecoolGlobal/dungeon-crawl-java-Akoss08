@@ -9,7 +9,11 @@ import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public abstract class GameMap {
     private final int width;
@@ -123,6 +127,20 @@ public abstract class GameMap {
             }
         }
         return walkableCells;
+    }
+
+    public Cell getRandomWalkableCell() {
+        Random random = new Random();
+        List<Cell> walkableCells = getWalkableCells();
+        return walkableCells.get(random.nextInt(walkableCells.size()));
+    }
+
+    private List<Cell> getWalkableCells() {
+        return Arrays.stream(cells)
+                .flatMap(Stream::of)
+                .filter(Cell::isWalkable)
+                .filter(cell -> cell.getActor() == null)
+                .collect(Collectors.toList());
     }
 
     public GameMap updateMap() {
