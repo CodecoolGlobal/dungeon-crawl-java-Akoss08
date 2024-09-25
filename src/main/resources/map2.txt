@@ -1,8 +1,8 @@
 25 20
    tTTtTTttfFURffFFFfF
  tTTtTTt..TtTtwFffFFFffF
-TTt..tt...tTFfwf,,,,,fFFf
-tT.........TFfw,;,,;,,,,f
+TTt..tt..atTFfwf,,;,,fFFf
+tT.........TFfw,;,,;,J,,f
 ttT..@......rWu,,,;,,;,,F
  TTt........w,,;,,,;,,,;F
 TtT...a.....w,,,,;,,;,,,f
@@ -14,7 +14,7 @@ tTT.......UWR...gA,,rWuF
 Tt..........w....UWWu...f
  TT...a.....A...........f
  tt.........UWR........F
-  Tt...a......UWR.....mTf
+  Tt...K......UWR.....mTf
  Ttt.......fFt..w.....tFf
  tTT....fTtTfTF.UR..tfTFF
   tTTfFFf   FFfFTttTfFFtF

@@ -9,6 +9,7 @@ import com.codecool.dungeoncrawl.data.mapElements.items.Weapon;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
 import javafx.application.Platform;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Actor {
@@ -29,9 +30,21 @@ public class Player extends Actor {
     private Weapon currentWeapon;
     private Armor currentArmor;
 
+    private List<Effect> activeEffects = new ArrayList<>();
+
     public Player(Cell cell, String tileName) {
         super(cell, baseHealth, BASE_POWER, BASE_DEFENSE, tileName);
         this.inventory = new Inventory();
+    }
+
+    public void applyEffect(Effect effect) {
+        activeEffects.add(effect);
+        effect.apply(this);
+    }
+
+    public void updateEffects() {
+        activeEffects.forEach(effect -> effect.updateEffectState(this));
+        activeEffects.removeIf(Effect::isExpired);
     }
 
     public int getLevel() {
@@ -98,7 +111,7 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         checkForPoison();
-
+        updateEffects();
         Cell nextCell = cell.getNeighbor(dx, dy);
         boolean isClosedDoor = nextCell.getType().equals(CellType.CLOSED_DOOR);
 
