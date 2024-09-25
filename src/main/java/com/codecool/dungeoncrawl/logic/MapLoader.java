@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.data.*;
 import com.codecool.dungeoncrawl.data.GameMaps.GameMap;
 import com.codecool.dungeoncrawl.data.GameMaps.Map1;
 import com.codecool.dungeoncrawl.data.GameMaps.Map2;
+import com.codecool.dungeoncrawl.data.GameMaps.Map3;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.*;
 import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
@@ -36,6 +37,7 @@ public class MapLoader {
         /*TODO refactor map files to list*/
         if (fileName.equals("/map1.txt")) map = new Map1(width, height, CellType.EMPTY);
         else if (fileName.equals("/map2.txt")) map = new Map2(width, height, CellType.EMPTY);
+        else if (fileName.equals("/map3.txt")) map = new Map3(width, height, CellType.EMPTY);
 
         for (int y = 0; y < height; y++) {
             String line = scanner.nextLine();

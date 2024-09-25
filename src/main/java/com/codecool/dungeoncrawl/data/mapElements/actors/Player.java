@@ -231,7 +231,7 @@ public class Player extends Actor {
 
     public void collectXp(int xp) {
         this.xp += xp;
-        if (this.xp == level * MULTIPLIER_TO_LEVEL_UP) {
+        if (this.xp >= level * MULTIPLIER_TO_LEVEL_UP) {
             levelUp();
         }
     }
