@@ -5,11 +5,16 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Moopsy;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public abstract class GameMap {
     private final int width;
@@ -123,6 +128,29 @@ public abstract class GameMap {
             }
         }
         return walkableCells;
+    }
+
+    private void moveMoopsy(Moopsy moopsy, int dx, int dy) {
+        boolean isTeleporting = Math.random() <= 0.2;
+        if (isTeleporting) {
+            moopsy.teleport(getRandomWalkableCell());
+        } else {
+            moopsy.move(dx, dy);
+        }
+    }
+
+    private Cell getRandomWalkableCell() {
+        Random random = new Random();
+        List<Cell> walkableCells = getWalkableCells();
+        return walkableCells.get(random.nextInt(walkableCells.size()));
+    }
+
+    private List<Cell> getWalkableCells() {
+        return Arrays.stream(cells)
+                .flatMap(Stream::of)
+                .filter(Cell::isWalkable)
+                .filter(cell -> cell.getActor() == null)
+                .collect(Collectors.toList());
     }
 
     public GameMap updateMap() {

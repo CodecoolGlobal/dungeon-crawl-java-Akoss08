@@ -71,6 +71,27 @@ public class Tiles {
         tileMap.put("playerWithSpear", new Tile(29, 0));
         tileMap.put("playerWithSwordAndShieldAndRareHelmet", new Tile(31, 0));
         tileMap.put("ratBoss", new Tile(31,8));
+
+        tileMap.put("yellowMoopsy1", new Tile(18,8));
+        tileMap.put("yellowMoopsy2", new Tile(19,8));
+        tileMap.put("yellowMoopsy3", new Tile(20,8));
+        tileMap.put("yellowMoopsy4", new Tile(21,8));
+        tileMap.put("yellowMoopsy5", new Tile(22,8));
+        tileMap.put("yellowMoopsy6", new Tile(23,8));
+
+        tileMap.put("blueMoopsy1", new Tile(18,7));
+        tileMap.put("blueMoopsy2", new Tile(19,7));
+        tileMap.put("blueMoopsy3", new Tile(20,7));
+        tileMap.put("blueMoopsy4", new Tile(21,7));
+        tileMap.put("blueMoopsy5", new Tile(22,7));
+        tileMap.put("blueMoopsy6", new Tile(23,7));
+
+        tileMap.put("greenMoopsy1", new Tile(18,9));
+        tileMap.put("greenMoopsy2", new Tile(19,9));
+        tileMap.put("greenMoopsy3", new Tile(20,9));
+        tileMap.put("greenMoopsy4", new Tile(21,9));
+        tileMap.put("greenMoopsy5", new Tile(22,9));
+        tileMap.put("greenMoopsy6", new Tile(23,9));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
