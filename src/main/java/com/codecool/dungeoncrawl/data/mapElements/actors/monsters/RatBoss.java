@@ -14,7 +14,7 @@ public class RatBoss extends Monster {
   private static final String ABILITY =
           "Rats are sneaky and can disappear from sight, \nalso spreading disease weakening the player by 2";
   private static final String TILE_NAME = "ratBoss";
-  private static final Effect WEAKEN = new WeakenEffect(1,2);
+  private static final Effect WEAKEN = new WeakenEffect(2,2);
 
   public RatBoss(Cell cell) {
     super(cell, BASE_HEALTH, BASE_POWER, ABILITY, TILE_NAME, XP_VALUE);
