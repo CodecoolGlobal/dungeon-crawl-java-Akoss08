@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
+import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
 import javafx.application.Platform;
 
 import java.util.List;
@@ -13,14 +14,41 @@ public class Player extends Actor {
     private static final int BASE_HEALTH = 10;
     private static final int BASE_POWER = 5;
     private static final int BASE_DEFENSE = 0;
+    private int level = 1;
+    private static final int MULTIPLIER_TO_LEVEL_UP = 10;
+    private static final int MULTIPLIER_FOR_HEALTH_ON_LEVEL_UP = 3;
+    private static final int MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP = 2;
+    private int xp = 0;
     private final Inventory inventory;
     private PowerPotion powerBoost;
+    private boolean isPoisoned = false;
+    private int poisonStrength = 0;
+    private int poisonDuration = 0;
 
     public Player(Cell cell, String tileName) {
         super(cell, BASE_HEALTH, BASE_POWER, BASE_DEFENSE, tileName);
         this.inventory = new Inventory();
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setPoisonStrength(int poisonStrength) {
+        this.poisonStrength = poisonStrength;
+    }
+
+    public void setPoisonDuration(int poisonDuration) {
+        this.poisonDuration = poisonDuration;
+    }
+
+    public void setPoisoned(boolean poisoned) {
+        isPoisoned = poisoned;
+    }
+
+    public int getXp() {
+        return xp;
+    }
 
     public Inventory getInventory() {
         return inventory;
@@ -33,6 +61,8 @@ public class Player extends Actor {
 
     @Override
     public void move(int dx, int dy) {
+        checkForPoison();
+
         Cell nextCell = cell.getNeighbor(dx, dy);
         boolean isClosedDoor = nextCell.getType().equals(CellType.CLOSED_DOOR);
 
@@ -44,6 +74,24 @@ public class Player extends Actor {
             if (doorOpened) {
                 setNextMove(nextCell);
             }
+        }
+
+        if (health <= 0) {
+            die();
+        }
+    }
+
+    private void checkForPoison() {
+        if (isPoisoned) {
+            health -= poisonStrength;
+            poisonDuration--;
+            restoreIsPoisoned();
+        }
+    }
+
+    private void restoreIsPoisoned() {
+        if (poisonDuration == 0) {
+            isPoisoned = false;
         }
     }
 
@@ -161,5 +209,42 @@ public class Player extends Actor {
         inventory.getItems().remove(toRemove);
     }
 
+    public void collectXp(int xp) {
+        this.xp += xp;
+        if (this.xp == level * MULTIPLIER_TO_LEVEL_UP) {
+            levelUp();
+        }
+    }
 
+    private void levelUp() {
+        health = BASE_HEALTH + level * MULTIPLIER_FOR_HEALTH_ON_LEVEL_UP;
+        attackStrength += level * MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP;
+        defense += level;
+        level++;
+        this.xp = 0;
+    }
+
+    public void interactWithNpc() {
+        List<Cell> neighborsCell = cell.getNeighbors();
+
+        for (Cell neighbor : neighborsCell) {
+            Npc npc = neighbor.getNpc();
+
+            if (npc != null) {
+                npc.interact(this);
+            }
+        }
+    }
+
+    public boolean hasThreeTeeth(int requiredTeeth) {
+        boolean hasTeeth = inventory.getItems().stream().
+                filter(item -> item instanceof SnakeTooth).
+                count() == requiredTeeth;
+        if (hasTeeth) {
+            inventory.getItems().removeIf(item -> item instanceof SnakeTooth);
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -26,7 +26,6 @@ public enum CellType {
     FLOWER("flower", true),
     TREE_STUMP("treeStump", false);
 
-
     private final String tileName;
     private final boolean isWalkable;
 

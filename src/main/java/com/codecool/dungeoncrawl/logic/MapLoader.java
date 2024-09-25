@@ -4,13 +4,11 @@ import com.codecool.dungeoncrawl.data.*;
 import com.codecool.dungeoncrawl.data.GameMaps.GameMap;
 import com.codecool.dungeoncrawl.data.GameMaps.Map1;
 import com.codecool.dungeoncrawl.data.GameMaps.Map2;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.*;
 import com.codecool.dungeoncrawl.data.mapElements.items.Chest;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.ChickenBoss;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Scorpion;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Skeleton;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Spider;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
+import com.codecool.dungeoncrawl.data.mapElements.npcs.BridgeGuard;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -33,6 +31,7 @@ public class MapLoader {
 
         GameMap map = null;
 
+        /*TODO refactor map files to list*/
         if (fileName.equals("/map1.txt")) map = new Map1(width, height, CellType.EMPTY);
         else if (fileName.equals("/map2.txt")) map = new Map2(width, height, CellType.EMPTY);
 
@@ -151,7 +150,16 @@ public class MapLoader {
                         case 'P':
                             cell.setType(CellType.TREE_STUMP);
                             break;
-                      default:
+                        case 'g':
+                            cell.setType(CellType.FLOOR);
+                            map.addNpc(new BridgeGuard(cell));
+                            break;
+                        case 'P':
+                            cell.setType(CellType.FLOOR);
+                            Snake snake = new Snake(cell, new SnakeTooth());
+                            map.addMonster(snake);
+                            break;
+                        default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
                 }

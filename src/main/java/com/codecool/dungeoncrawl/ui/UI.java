@@ -68,6 +68,8 @@ public class UI {
                     Tiles.drawTile(context, cell, x, y, 180);
                 } else if (cell.getType().getTileName().contains("270")) {
                     Tiles.drawTile(context, cell, x, y, 270);
+                } else if (cell.getNpc() != null) {
+                    Tiles.drawTile(context, cell.getNpc(), x, y);
                 } else {
                     Tiles.drawTile(context, cell, x, y);
                 }
@@ -75,7 +77,8 @@ public class UI {
         }
         mainStage.setLabelsText(logic.getPlayerHealth(), logic.getPlayerInventory(),
                 logic.getPlayerStrength(), logic.getPlayerDefense(),
-                logic.getMonsterHealth(), logic.getMonsterStrength(),
-                logic.getMonsterAbility());
+                logic.getPlayerLevel(), logic.getPlayerXp(), logic.getMonsterHealth(),
+                logic.getMonsterStrength(),
+                logic.getMonsterAbility(), logic.getNpcDialog());
     }
 }

@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
+import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public abstract class GameMap {
 
     protected List<Monster> monsters = new ArrayList<>();
     protected List<Monster> deadMonsters = new ArrayList<>();
+    protected List<Npc> npcs = new ArrayList<>();
 
     public GameMap(int width, int height, CellType defaultCellType, String nextMapFileName) {
         this.width = width;
@@ -63,6 +65,19 @@ public abstract class GameMap {
         return null;
     }
 
+    public Npc getNpc() {
+        Cell playerCell = getPlayer().getCell();
+        List<Cell> neighbouringCells = playerCell.getNeighbors();
+
+        for (Cell neighbouringCell : neighbouringCells) {
+            if (neighbouringCell.getNpc() != null) {
+                return neighbouringCell.getNpc();
+            }
+        }
+
+        return null;
+    }
+
     public Cell getCell(int x, int y) {
         return cells[x][y];
     }
@@ -79,9 +94,6 @@ public abstract class GameMap {
                 moveRandomly(monster);
             }
         }
-
-        System.out.println("alive monsters: " + monsters.size());
-        System.out.println("dead monsters: " + deadMonsters.size());
 
         monsters.removeAll(deadMonsters);
     }
@@ -129,6 +141,10 @@ public abstract class GameMap {
 
     public void addMonster(Monster monster) {
         this.monsters.add(monster);
+    }
+
+    public void addNpc(Npc npc) {
+        this.npcs.add(npc);
     }
 
     public int getWidth() {

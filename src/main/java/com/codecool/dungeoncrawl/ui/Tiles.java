@@ -63,6 +63,8 @@ public class Tiles {
         tileMap.put("grass", new Tile(5,0));
         tileMap.put("flower", new Tile(16,6));
         tileMap.put("treeStump", new Tile(18,6));
+        tileMap.put("guard", new Tile(30, 0));
+        tileMap.put("snake", new Tile(28, 8));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
@@ -85,4 +87,5 @@ public class Tiles {
 
         context.restore();
     }
+
 }
