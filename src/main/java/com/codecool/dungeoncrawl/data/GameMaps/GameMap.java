@@ -110,7 +110,12 @@ public abstract class GameMap {
         int nextX = nextCell.getX();
         int nextY = nextCell.getY();
 
-        monster.move(nextX - currentX, nextY - currentY);
+        if (monster instanceof Moopsy) {
+            moveMoopsy((Moopsy) monster, nextX - currentX, nextY - currentY);
+        } else {
+            monster.move(nextX - currentX, nextY - currentY);
+        }
+
     }
 
     private int randomNumber(int max) {
@@ -131,7 +136,7 @@ public abstract class GameMap {
     }
 
     private void moveMoopsy(Moopsy moopsy, int dx, int dy) {
-        boolean isTeleporting = Math.random() <= 0.2;
+        boolean isTeleporting = Math.random() <= 0.1;
         if (isTeleporting) {
             moopsy.teleport(getRandomWalkableCell());
         } else {
