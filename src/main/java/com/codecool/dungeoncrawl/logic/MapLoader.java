@@ -154,10 +154,14 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.addNpc(new BridgeGuard(cell));
                             break;
-                        case 'P':
+                        case 'a':
                             cell.setType(CellType.FLOOR);
                             Snake snake = new Snake(cell, new SnakeTooth());
                             map.addMonster(snake);
+                            break;
+                        case 'K':
+                            cell.setType(CellType.GRASS);
+                            map.addMonster(new Crocodile(cell));
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
