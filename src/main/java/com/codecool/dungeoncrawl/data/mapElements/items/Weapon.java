@@ -28,6 +28,7 @@ public abstract class Weapon extends Item {
         if (player.hasWeapon()) {
             player.dropWeapon();
         }
+        player.setCurrentPower(damage);
         player.getInventory().addItem(this);
         player.setCurrentWeapon(this);
         player.setAttackStrength(player.getAttackStrength() + damage);
