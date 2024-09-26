@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.BlueMoopsy;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Moopsy;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
@@ -110,7 +111,7 @@ public abstract class GameMap {
         int nextX = nextCell.getX();
         int nextY = nextCell.getY();
 
-        if (monster instanceof Moopsy) {
+       if (monster instanceof Moopsy) {
             moveMoopsy((Moopsy) monster, nextX - currentX, nextY - currentY);
         } else {
             monster.move(nextX - currentX, nextY - currentY);
@@ -118,11 +119,11 @@ public abstract class GameMap {
 
     }
 
-    private int randomNumber(int max) {
+    int randomNumber(int max) {
         return (int) (Math.random() * max + 0);
     }
 
-    private List<Cell> getWalkableCells(Actor monster) {
+    List<Cell> getWalkableCells(Actor monster) {
         List<Cell> monsterNeighbouringCells = monster.getCell().getNeighbors();
         List<Cell> walkableCells = new ArrayList<>();
         walkableCells.add(monster.getCell());
@@ -150,7 +151,7 @@ public abstract class GameMap {
         return walkableCells.get(random.nextInt(walkableCells.size()));
     }
 
-    private List<Cell> getWalkableCells() {
+    protected List<Cell> getWalkableCells() {
         return Arrays.stream(cells)
                 .flatMap(Stream::of)
                 .filter(Cell::isWalkable)

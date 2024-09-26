@@ -8,6 +8,7 @@ import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cell implements Drawable {
     private CellType type;
@@ -80,6 +81,13 @@ public class Cell implements Drawable {
         neighbors.add(getNeighbor(0, -1));
 
         return neighbors;
+    }
+
+    public List<Cell> getWalkableNeighbors() {
+        return this.getNeighbors().stream()
+                .filter(Cell::isWalkable)
+                .filter(cell -> cell.getActor() == null)
+                .collect(Collectors.toList());
     }
 
     public boolean isWalkable() {

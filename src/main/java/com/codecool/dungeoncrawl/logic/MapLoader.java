@@ -177,7 +177,14 @@ public class MapLoader {
                             break;
                         case 'Y':
                             cell.setType(CellType.FLOOR);
-                            map.addMonster(new YellowMoopsy(cell));
+                            Moopsy yellowMoopsy = new YellowMoopsy(cell);
+                            map.addMonster(yellowMoopsy);
+                            assert map instanceof Map3;
+                            ((Map3) map).addMoopsy(yellowMoopsy);
+                            break;
+                        case 'y':
+                            cell.setType(CellType.FLOOR);
+                            map.addMonster(new BlueMoopsy(cell));
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
