@@ -7,6 +7,7 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
 import com.codecool.dungeoncrawl.data.mapElements.items.Weapon;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
+import com.codecool.dungeoncrawl.ui.DisplayAlert;
 import javafx.application.Platform;
 
 import java.util.List;
@@ -153,6 +154,7 @@ public class Player extends Actor {
     @Override
     public void die() {
         super.die();
+        DisplayAlert.displayGameOver();
         Platform.exit();
     }
 
