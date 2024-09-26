@@ -24,7 +24,22 @@ public enum CellType {
     BRIDGE("bridge", true),
     GRASS("grass", true),
     FLOWER("flower", true),
-    TREE_STUMP("treeStump", false);
+    TREE_STUMP("treeStump", false),
+    SPIKE("spike", false),
+    FIRE("fire", false),
+    TORCH("torch", false),
+    ANIMAL_SKELETON("animalSkeleton", false),
+    CASTLE_MID_FLOOR("castleMidFloor", true),
+    CASTLE_TOP_FLOOR("castleTopFloor", true),
+    CASTLE_TOP_RIGHT_FLOOR("castleTopRightFloor", true),
+    CASTLE_RIGHT_FLOOR("castleRightFloor", true),
+    CASTLE_BOTTOM_RIGHT_FLOOR("castleBottomRightFloor", true),
+    CASTLE_BOTTOM_FLOOR("castleBottomFloor", true),
+    CASTLE_BOTTOM_LEFT_FLOOR("castleBottomLeftFloor", true),
+    CASTLE_LEFT_FLOOR("castleLeftFloor", true),
+    CASTLE_TOP_LEFT_FLOOR("castleTopLeftFloor", true),
+    GRAVE("grave", false),
+    HUMAN_SKELETON("humanSkeleton", false);
 
     private final String tileName;
     private final boolean isWalkable;

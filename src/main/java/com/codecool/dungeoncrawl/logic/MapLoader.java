@@ -185,6 +185,50 @@ public class MapLoader {
                         case 'y':
                             cell.setType(CellType.FLOOR);
                             map.addMonster(new BlueMoopsy(cell));
+                        case '2':
+                            cell.setType(CellType.SPIKE);
+                            break;
+                        case '3':
+                            cell.setType(CellType.FIRE);
+                            break;
+                        case '4':
+                            cell.setType(CellType.TORCH);
+                            break;
+                        case '5':
+                            cell.setType(CellType.ANIMAL_SKELETON);
+                            break;
+                        case '6':
+                            cell.setType(CellType.CASTLE_MID_FLOOR);
+                            break;
+                        case '7':
+                            cell.setType(CellType.CASTLE_TOP_FLOOR);
+                            break;
+                        case '8':
+                            cell.setType(CellType.CASTLE_TOP_RIGHT_FLOOR);
+                            break;
+                        case '9':
+                            cell.setType(CellType.CASTLE_RIGHT_FLOOR);
+                            break;
+                        case '=':
+                            cell.setType(CellType.CASTLE_BOTTOM_RIGHT_FLOOR);
+                            break;
+                        case '+':
+                            cell.setType(CellType.CASTLE_BOTTOM_FLOOR);
+                            break;
+                        case '-':
+                            cell.setType(CellType.CASTLE_BOTTOM_LEFT_FLOOR);
+                            break;
+                        case '!':
+                            cell.setType(CellType.CASTLE_LEFT_FLOOR);
+                            break;
+                        case '"':
+                            cell.setType(CellType.CASTLE_TOP_LEFT_FLOOR);
+                            break;
+                        case '£':
+                            cell.setType(CellType.GRAVE);
+                            break;
+                        case '$':
+                            cell.setType(CellType.HUMAN_SKELETON);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

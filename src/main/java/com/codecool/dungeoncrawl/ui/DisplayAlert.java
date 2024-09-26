@@ -42,4 +42,23 @@ public class DisplayAlert {
         dialog.setContentText("Select an item:");
         return dialog;
     }
+
+    public static void displayWin() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Congratulations!");
+        alert.setHeaderText("You have won the game!");
+        alert.setContentText("Great job defeating the final boss and completing the dungeon.\n" +
+                "Victory is yours!");
+
+        alert.showAndWait();
+    }
+
+    public static void displayGameOver() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game Over");
+        alert.setHeaderText("You have been defeated...");
+        alert.setContentText("The dungeon has claimed another victim. Better luck next time!");
+
+        alert.showAndWait();
+    }
 }

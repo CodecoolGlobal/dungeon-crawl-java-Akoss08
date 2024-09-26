@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.data.GameMaps;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
+
 import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Moopsy;
@@ -10,6 +11,10 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.YellowMoopsy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.codecool.dungeoncrawl.ui.DisplayAlert;
+import javafx.application.Platform;
+
 
 public class Map3 extends GameMap {
     private List<Moopsy> moopsies;
@@ -72,5 +77,26 @@ public class Map3 extends GameMap {
 
     public void addMoopsy(Moopsy moopsy) {
         moopsies.add(moopsy);
+    }
+
+    @Override
+    public void moveMonsters() {
+        super.moveMonsters();
+
+        if (monsters.isEmpty()) {
+            DisplayAlert.displayWin();
+            Platform.exit();
+        }
+    }
+
+    private void openStair() {
+        for (Cell[] row : cells) {
+            for (Cell column : row) {
+                if (column.getType().equals(CellType.INVISIBLE_STAIR)) {
+                    column.setType(CellType.STAIR);
+                    break;
+                }
+            }
+        }
     }
 }

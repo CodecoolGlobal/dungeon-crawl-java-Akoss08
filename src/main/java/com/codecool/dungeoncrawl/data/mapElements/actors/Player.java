@@ -7,15 +7,19 @@ import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.items.*;
 import com.codecool.dungeoncrawl.data.mapElements.items.Weapon;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
+import com.codecool.dungeoncrawl.ui.DisplayAlert;
 import javafx.application.Platform;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Actor {
     private static int baseHealth = 10;
     private static final int BASE_POWER = 5;
+
+    private int currentPower = 5;
+
     private static final int BASE_DEFENSE = 0;
+
     private int level = 1;
     private static final int MULTIPLIER_TO_LEVEL_UP = 10;
     private static final int MULTIPLIER_FOR_HEALTH_ON_LEVEL_UP = 3;
@@ -27,7 +31,9 @@ public class Player extends Actor {
     private Weapon currentWeapon;
     private Armor currentArmor;
 
-    private List<Effect> activeEffects = new ArrayList<>();
+    private boolean isPoisoned = false;
+
+    private Effect activeEffect;
 
     public Player(Cell cell, String tileName) {
         super(cell, baseHealth, BASE_POWER, BASE_DEFENSE, tileName);
@@ -35,13 +41,28 @@ public class Player extends Actor {
     }
 
     public void applyEffect(Effect effect) {
-        activeEffects.add(effect);
-        effect.apply(this);
+        activeEffect = effect;
+        isPoisoned = true;
+    }
+
+    public int getCurrentPower() {
+        return currentPower;
+    }
+
+    public void setCurrentPower(int currentPower) {
+        this.currentPower += currentPower;
+    }
+
+    public void setActiveEffect(Effect activeEffect) {
+        this.activeEffect = activeEffect;
     }
 
     public void updateEffects() {
-        activeEffects.forEach(effect -> effect.updateEffectState(this));
-        activeEffects.removeIf(Effect::isExpired);
+        activeEffect.updateEffectState(this);
+    }
+
+    public void setPoisoned(boolean poisoned) {
+        isPoisoned = poisoned;
     }
 
     public int getLevel() {
@@ -95,7 +116,10 @@ public class Player extends Actor {
 
     @Override
     public void move(int dx, int dy) {
-        updateEffects();
+        if (isPoisoned) {
+            activeEffect.apply(this);
+            updateEffects();
+        }
         Cell nextCell = cell.getNeighbor(dx, dy);
         boolean isClosedDoor = nextCell.getType().equals(CellType.CLOSED_DOOR);
 
@@ -130,6 +154,7 @@ public class Player extends Actor {
     @Override
     public void die() {
         super.die();
+        DisplayAlert.displayGameOver();
         Platform.exit();
     }
 
@@ -244,6 +269,7 @@ public class Player extends Actor {
         baseHealth += level * MULTIPLIER_FOR_HEALTH_ON_LEVEL_UP;
         health = baseHealth;
         attackStrength += level * MULTIPLIER_FOR_STRENGTH_ON_LEVEL_UP;
+        currentPower = attackStrength;
         defense += level;
         level++;
         this.xp = 0;
