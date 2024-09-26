@@ -175,6 +175,16 @@ public class MapLoader {
                             cell.setType(CellType.GRASS);
                             map.addMonster(new RatBoss(cell));
                             break;
+                        case 'Y':
+                            cell.setType(CellType.FLOOR);
+                            Moopsy yellowMoopsy = new YellowMoopsy(cell);
+                            map.addMonster(yellowMoopsy);
+                            assert map instanceof Map3;
+                            ((Map3) map).addMoopsy(yellowMoopsy);
+                            break;
+                        case 'y':
+                            cell.setType(CellType.FLOOR);
+                            map.addMonster(new BlueMoopsy(cell));
                         case '2':
                             cell.setType(CellType.SPIKE);
                             break;
