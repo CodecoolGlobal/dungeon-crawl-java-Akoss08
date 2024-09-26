@@ -26,10 +26,10 @@ public class Map3 extends GameMap {
 
     @Override
     public void moveMonsters() {
-        System.out.println("moopsies size: " + moopsies.size());
+        //System.out.println("moopsies size: " + moopsies.size());
         for (Moopsy moopsy : moopsies) {
-            System.out.println("moopsyHP: " + moopsy.getHealth());
-            System.out.println("moopsy instanceOf: " + moopsy.getClass());
+            //System.out.println("moopsyHP: " + moopsy.getHealth());
+            //System.out.println("moopsy instanceOf: " + moopsy.getClass());
             if (moopsy.isHalfHP()) {
                 Moopsy[] newMoopsies = moopsy.split(this);
                 moopsies.removeIf(Actor::isDead);
@@ -42,6 +42,11 @@ public class Map3 extends GameMap {
         }
 
         super.moveMonsters();
+
+        if (monsters.isEmpty()) {
+            DisplayAlert.displayWin();
+            Platform.exit();
+        }
     }
 
 
@@ -79,15 +84,15 @@ public class Map3 extends GameMap {
         moopsies.add(moopsy);
     }
 
-    @Override
-    public void moveMonsters() {
-        super.moveMonsters();
-
-        if (monsters.isEmpty()) {
-            DisplayAlert.displayWin();
-            Platform.exit();
-        }
-    }
+//    @Override
+//    public void moveMonsters() {
+//        super.moveMonsters();
+//
+//        if (monsters.isEmpty()) {
+//            DisplayAlert.displayWin();
+//            Platform.exit();
+//        }
+//    }
 
     private void openStair() {
         for (Cell[] row : cells) {
