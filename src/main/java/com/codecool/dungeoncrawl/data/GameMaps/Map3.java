@@ -2,8 +2,10 @@ package com.codecool.dungeoncrawl.data.GameMaps;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
+import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Moopsy;
+import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.YellowMoopsy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +21,17 @@ public class Map3 extends GameMap {
 
     @Override
     public void moveMonsters() {
+        System.out.println("moopsies size: " + moopsies.size());
         for (Moopsy moopsy : moopsies) {
+            System.out.println("moopsyHP: " + moopsy.getHealth());
+            System.out.println("moopsy instanceOf: " + moopsy.getClass());
             if (moopsy.isHalfHP()) {
                 Moopsy[] newMoopsies = moopsy.split(this);
+                moopsies.removeIf(Actor::isDead);
                 addMonster(newMoopsies[0]);
                 addMonster(newMoopsies[1]);
+                moopsies.add(newMoopsies[0]);
+                moopsies.add(newMoopsies[1]);
                 //newMoopsies[1].addMoopsyToMonsters(this);
             }
         }
