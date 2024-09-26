@@ -71,6 +71,21 @@ public class Tiles {
         tileMap.put("playerWithSpear", new Tile(29, 0));
         tileMap.put("playerWithSwordAndShieldAndRareHelmet", new Tile(31, 0));
         tileMap.put("ratBoss", new Tile(31,8));
+        tileMap.put("spike", new Tile(22,0));
+        tileMap.put("fire", new Tile(15,10));
+        tileMap.put("torch", new Tile(4,15));
+        tileMap.put("animalSkeleton", new Tile(1,15));
+        tileMap.put("castleMidFloor", new Tile(19,1));
+        tileMap.put("castleTopFloor", new Tile(19,0));
+        tileMap.put("castleTopRightFloor", new Tile(20,0));
+        tileMap.put("castleRightFloor", new Tile(20,1));
+        tileMap.put("castleBottomRightFloor", new Tile(20,2));
+        tileMap.put("castleBottomFloor", new Tile(19,2));
+        tileMap.put("castleBottomLeftFloor", new Tile(18,2));
+        tileMap.put("castleLeftFloor", new Tile(18,1));
+        tileMap.put("castleTopLeftFloor", new Tile(18,0));
+        tileMap.put("grave", new Tile(1,14));
+        tileMap.put("humanSkeleton", new Tile(0,15));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
