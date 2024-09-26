@@ -2,11 +2,10 @@ package com.codecool.dungeoncrawl.data.mapElements.actors.monsters;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMaps.GameMap;
-import com.codecool.dungeoncrawl.data.GameMaps.Map3;
 
 public class BlueMoopsy extends Moopsy {
-  private static int baseHealth = 0;
-  private static final int BASE_POWER = 4;
+  private static int baseHealth = 15;
+  private static final int BASE_POWER = 10;
   private static final int XP_VALUE = 5;
   private static final String ABILITY =
           "When Moopsy's HP is half of the starting rate \nit divides into two Moopsies... " +
@@ -17,13 +16,7 @@ public class BlueMoopsy extends Moopsy {
           "blueMoopsy3",
           "blueMoopsy4",
           "blueMoopsy5",
-          "blueMoopsy6"
   };
-
-  public BlueMoopsy(Cell cell, int moopsyHPBeforeSplit) {
-    super(cell, baseHealth, BASE_POWER, ABILITY, TILE_NAMES[0], XP_VALUE);
-    baseHealth = moopsyHPBeforeSplit;
-  }
 
   public BlueMoopsy(Cell cell) {
     super(cell, baseHealth, BASE_POWER, ABILITY, TILE_NAMES[0], XP_VALUE);
@@ -35,7 +28,7 @@ public class BlueMoopsy extends Moopsy {
   }
 
   @Override
-  public Moopsy[] split(GameMap map) {
+  public Moopsy[] split() {
     return new Moopsy[2];
   }
 }

@@ -31,7 +31,7 @@ public class Map3 extends GameMap {
             //System.out.println("moopsyHP: " + moopsy.getHealth());
             //System.out.println("moopsy instanceOf: " + moopsy.getClass());
             if (moopsy.isHalfHP()) {
-                Moopsy[] newMoopsies = moopsy.split(this);
+                Moopsy[] newMoopsies = moopsy.split();
                 moopsies.removeIf(Actor::isDead);
                 addMonster(newMoopsies[0]);
                 addMonster(newMoopsies[1]);

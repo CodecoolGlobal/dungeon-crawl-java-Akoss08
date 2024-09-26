@@ -2,15 +2,13 @@ package com.codecool.dungeoncrawl.data.mapElements.actors.monsters;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMaps.GameMap;
-import com.codecool.dungeoncrawl.data.GameMaps.Map3;
 
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class YellowMoopsy extends Moopsy {
   private static final int BASE_HEALTH = 30;
-  private static final int BASE_POWER = 0;
+  private static final int BASE_POWER = 5;
   private static final int XP_VALUE = 10;
   private static final String ABILITY =
           "When Moopsy's HP is half of the starting rate \nit divides into two Moopsies. \nOh, and they can also teleport.";
@@ -20,7 +18,6 @@ public class YellowMoopsy extends Moopsy {
           "yellowMoopsy3",
           "yellowMoopsy4",
           "yellowMoopsy5",
-          //"yellowMoopsy6"
   };
 
   private int tileIndex = 0;
@@ -37,27 +34,25 @@ public class YellowMoopsy extends Moopsy {
     return currentTileName;
   }
 
-  public BlueMoopsy[] split(GameMap map) {
+  public BlueMoopsy[] split() {
     //current moopsy die, 2 blueMoopsies born -> spawn on random neighbouring cell
     List<Cell> walkableNeighbors = cell.getWalkableNeighbors();
     this.die();
     int randomIndex;
 
     BlueMoopsy[] newMoopsies = new BlueMoopsy[2];
+
     for (int i = 0; i < 2; i++) {
       randomIndex = new Random().nextInt(walkableNeighbors.size());
       Cell randomNeighbor = walkableNeighbors.get(randomIndex);
       walkableNeighbors.remove(randomIndex);
-      System.out.println(randomNeighbor.toString());
-      BlueMoopsy moopsy = new BlueMoopsy(randomNeighbor, this.health);
+      BlueMoopsy moopsy = new BlueMoopsy(randomNeighbor);
       randomNeighbor.setActor(moopsy);
       newMoopsies[i] = moopsy;
-      //map.addMoopsy(moopsy);
-
     }
+
     return newMoopsies;
   }
-
 
   @Override
   public boolean isHalfHP() {

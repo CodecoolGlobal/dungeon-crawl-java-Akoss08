@@ -2,7 +2,6 @@ package com.codecool.dungeoncrawl.data.mapElements.actors.monsters;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMaps.GameMap;
-import com.codecool.dungeoncrawl.data.GameMaps.Map3;
 
 public abstract class Moopsy extends Monster {
 
@@ -20,9 +19,6 @@ public abstract class Moopsy extends Monster {
 
   public abstract boolean isHalfHP();
 
-  public abstract Moopsy[] split(GameMap map);
+  public abstract Moopsy[] split();
 
-  public void addMoopsyToMonsters(GameMap map) {
-    map.addMonster(this);
-  }
 }
