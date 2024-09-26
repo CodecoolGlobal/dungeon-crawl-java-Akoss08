@@ -13,7 +13,7 @@ import javafx.application.Platform;
 import java.util.List;
 
 public class Player extends Actor {
-    private static int baseHealth = 10;
+    private static int baseHealth = 1000;
     private static final int BASE_POWER = 5;
 
     private int currentPower = 5;

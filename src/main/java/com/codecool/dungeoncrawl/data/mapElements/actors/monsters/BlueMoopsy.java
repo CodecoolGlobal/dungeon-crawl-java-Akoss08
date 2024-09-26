@@ -17,9 +17,18 @@ public class BlueMoopsy extends Moopsy {
           "blueMoopsy4",
           "blueMoopsy5",
   };
+  private int tileIndex = 0;
 
   public BlueMoopsy(Cell cell) {
     super(cell, baseHealth, BASE_POWER, ABILITY, TILE_NAMES[0], XP_VALUE);
+  }
+
+  @Override
+  public String getTileName() {
+    String currentTileName = TILE_NAMES[tileIndex];
+
+    tileIndex = (tileIndex + 1) % TILE_NAMES.length;
+    return currentTileName;
   }
 
   @Override

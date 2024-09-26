@@ -34,8 +34,9 @@ public class YellowMoopsy extends Moopsy {
     return currentTileName;
   }
 
+  //current moopsy die, 2 blueMoopsies born -> spawn on random neighbouring cell
+
   public BlueMoopsy[] split() {
-    //current moopsy die, 2 blueMoopsies born -> spawn on random neighbouring cell
     List<Cell> walkableNeighbors = cell.getWalkableNeighbors();
     this.die();
     int randomIndex;
