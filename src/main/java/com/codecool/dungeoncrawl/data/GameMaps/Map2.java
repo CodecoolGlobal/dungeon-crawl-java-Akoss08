@@ -24,14 +24,4 @@ public class Map2 extends GameMap {
         monsters.removeAll(deadMonsters);
     }
 
-    private void openStair() {
-        for (Cell[] row : cells) {
-            for (Cell column : row) {
-                if (column.getType().equals(CellType.INVISIBLE_STAIR)) {
-                    column.setType(CellType.STAIR);
-                    break;
-                }
-            }
-        }
-    }
 }

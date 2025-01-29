@@ -2,7 +2,6 @@ package com.codecool.dungeoncrawl.data.mapElements.items;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
-import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
 public class Chest implements Drawable {
     private final Item item;

@@ -1,7 +1,6 @@
 package com.codecool.dungeoncrawl.data.mapElements.items;
 
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 
 public class BasicHelmet extends Armor{
     private static final int PLUS_DEFENSE = 2;

@@ -18,7 +18,9 @@ public class Cell implements Drawable {
 
     private Item item;
     private Chest chest;
+
     private final GameMap gameMap;
+
     private final int x;
     private final int y;
     public Cell(GameMap gameMap, int x, int y, CellType type) {
@@ -27,13 +29,16 @@ public class Cell implements Drawable {
         this.y = y;
         this.type = type;
     }
-
     public void setType(CellType type) {
         this.type = type;
     }
 
     public Npc getNpc() {
         return npc;
+    }
+
+    public GameMap getGameMap() {
+        return gameMap;
     }
 
     public CellType getType() {

@@ -32,17 +32,6 @@ public class Map1 extends GameMap {
         monsters.removeAll(deadMonsters);
     }
 
-    private void openStair() {
-        for (Cell[] row : cells) {
-            for (Cell column : row) {
-                if (column.getType().equals(CellType.INVISIBLE_STAIR)) {
-                    column.setType(CellType.STAIR);
-                    break;
-                }
-            }
-        }
-    }
-
     private void dropKey(Monster lastKilledMonster) {
         Cell lastMonsterCell = lastKilledMonster.getCell();
         lastMonsterCell.setItem(new Key(lastMonsterCell));

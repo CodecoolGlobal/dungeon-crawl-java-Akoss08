@@ -4,7 +4,6 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.items.Gold;
-import com.codecool.dungeoncrawl.data.mapElements.items.PowerPotion;
 
 import java.util.List;
 

@@ -1,12 +1,9 @@
 package com.codecool.dungeoncrawl.data.mapElements.actors.monsters;
 
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.mapElements.actors.Effect;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
 import com.codecool.dungeoncrawl.data.mapElements.actors.WeakenEffect;
 import com.codecool.dungeoncrawl.data.mapElements.items.Gold;
-
-import java.util.Random;
 
 public class RatBoss extends Monster {
     private static final int BASE_HEALTH = 30;

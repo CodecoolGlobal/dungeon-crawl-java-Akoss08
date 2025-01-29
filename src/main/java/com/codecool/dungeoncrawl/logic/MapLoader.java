@@ -17,7 +17,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
-    private static String fileName = "/map3.txt";
+    private static String fileName = "/map1.txt";
     private static Player existingPlayer;
 
     public static void setFileName(String fileName) {
@@ -30,14 +30,21 @@ public class MapLoader {
         int width = scanner.nextInt();
         int height = scanner.nextInt();
 
-        scanner.nextLine(); // empty line
+        scanner.nextLine();
 
         GameMap map = null;
 
-        /*TODO refactor map files to list*/
-        if (fileName.equals("/map1.txt")) map = new Map1(width, height, CellType.EMPTY);
-        else if (fileName.equals("/map2.txt")) map = new Map2(width, height, CellType.EMPTY);
-        else if (fileName.equals("/map3.txt")) map = new Map3(width, height, CellType.EMPTY);
+        switch (fileName) {
+            case "/map1.txt":
+                map = new Map1(width, height, CellType.EMPTY);
+                break;
+            case "/map2.txt":
+                map = new Map2(width, height, CellType.EMPTY);
+                break;
+            case "/map3.txt":
+                map = new Map3(width, height, CellType.EMPTY);
+                break;
+        }
 
         for (int y = 0; y < height; y++) {
             String line = scanner.nextLine();

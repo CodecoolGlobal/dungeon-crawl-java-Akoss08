@@ -17,7 +17,7 @@ public class Game extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         this.keyHandlers = Set.of(new Up(), new Down(), new Left(), new Right(), new Attack(),
                 new OpenChest(), new Heal(), new PowerUp(), new InteractWithNpc());
         this.logic = new GameLogic();

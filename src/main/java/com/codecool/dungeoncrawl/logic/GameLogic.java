@@ -21,9 +21,6 @@ public class GameLogic {
         return map.getHeight();
     }
 
-    public void setup() {
-    }
-
     public Cell getCell(int x, int y) {
         return map.getCell(x, y);
     }
