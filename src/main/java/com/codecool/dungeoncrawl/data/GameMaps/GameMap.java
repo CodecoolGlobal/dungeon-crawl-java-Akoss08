@@ -4,16 +4,13 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Actor;
 import com.codecool.dungeoncrawl.data.mapElements.actors.Player;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.BlueMoopsy;
 import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Monster;
-import com.codecool.dungeoncrawl.data.mapElements.actors.monsters.Moopsy;
 import com.codecool.dungeoncrawl.data.mapElements.npcs.Npc;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -111,12 +108,7 @@ public abstract class GameMap {
         int nextX = nextCell.getX();
         int nextY = nextCell.getY();
 
-       if (monster instanceof Moopsy) {
-            moveMoopsy((Moopsy) monster, nextX - currentX, nextY - currentY);
-        } else {
-            monster.move(nextX - currentX, nextY - currentY);
-        }
-
+        monster.move(nextX - currentX, nextY - currentY);
     }
 
     int randomNumber(int max) {
@@ -136,22 +128,7 @@ public abstract class GameMap {
         return walkableCells;
     }
 
-    private void moveMoopsy(Moopsy moopsy, int dx, int dy) {
-        boolean isTeleporting = Math.random() <= 0.1;
-        if (isTeleporting) {
-            moopsy.teleport(getRandomWalkableCell());
-        } else {
-            moopsy.move(dx, dy);
-        }
-    }
-
-    private Cell getRandomWalkableCell() {
-        Random random = new Random();
-        List<Cell> walkableCells = getWalkableCells();
-        return walkableCells.get(random.nextInt(walkableCells.size()));
-    }
-
-    protected List<Cell> getWalkableCells() {
+    public List<Cell> getWalkableCellsForMoopsy() {
         return Arrays.stream(cells)
                 .flatMap(Stream::of)
                 .filter(Cell::isWalkable)
@@ -162,6 +139,18 @@ public abstract class GameMap {
     public GameMap updateMap() {
         MapLoader.setFileName(nextMapFileName);
         return MapLoader.loadMap();
+    }
+
+
+    protected void openStair() {
+        for (Cell[] row : cells) {
+            for (Cell column : row) {
+                if (column.getType().equals(CellType.INVISIBLE_STAIR)) {
+                    column.setType(CellType.STAIR);
+                    break;
+                }
+            }
+        }
     }
 
     public void setPlayer(Player player) {
