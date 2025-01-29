@@ -170,7 +170,7 @@ Once you have the game running, you can explore different dungeons, battle monst
 - P — use power potion (_add +3 strength for the next 3 attack_)
 - I — talk to NPCs
 
-2. **Explore Dungeons**: Move your character through on the maps by using the keyboard. Explore dungeons and uncover treasures as you progress.
+2. **Explore Dungeons**: Move your character through the maps by using the keyboard. Explore dungeons and uncover treasures as you progress.
 
 
 3. **Fight Monsters**: As you approach a monster, you’ll have the option to attack it. The outcome of the battle depends on your character's and the monster's stats (like health, attack, and defense).
