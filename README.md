@@ -219,9 +219,8 @@ Don't forget to give the project a star if you like it! 🌟
 
 ### Top contributors:
 
-!NEED TO CHANGE AFTER PUBLIC ON CONTRIB.ROCKS!
 <a href="https://github.com/CodecoolGlobal/dungeon-crawl-java-Akoss08/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=MAdem01/el-proyecte-grande-sprint-1" />
+<img src="https://contrib.rocks/image?repo=CodecoolGlobal/dungeon-crawl-java-Akoss08" />
 </a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
